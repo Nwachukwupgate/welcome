@@ -10,6 +10,10 @@ export const Nav = () => {
         setIsMenuOpen(!isMenuOpen)
     }
 
+    const scrollTo = () => {
+        document.getElementById('form').scrollIntoView({behavior: "smooth", inline: "nearest"});
+    }
+
     const changeBorder = () => {
         if (window.scrollY >= 66) {
           setNavbar(true)
@@ -262,15 +266,15 @@ export const Nav = () => {
                             <div className="block w-full lg:items-center lg:flex">
                                 <ul className="space-y-6 pb-6 tracking-wide font-medium text-gray-600 lg:pb-0 lg:pr-6 lg:items-center lg:flex lg:space-y-0">
                                     
-                                    <li>
-                                        <Link href="#">
-                                            <a href="#" className="block md:px-3">
-                                                <span className="relative before:absolute before:block before:bottom-[-0.15rem] before:left-0 before:w-1/4 before:h-[1px] before:bg-[#F49038] before:-p-2 ">Get a Quote</span>
-                                            </a>
-                                        </Link>
+                                    <li onClick={scrollTo}>
+                                        {/* <Link href="#">
+                                            <a href="#" className="block md:px-3"> */}
+                                                <span className="relative before:absolute before:block before:bottom-[-0.15rem] before:left-0 before:w-2/4 before:h-[1px] before:bg-[#F49038] before:-p-2 cursor-pointer ">Get a Quote</span>
+                                            {/* </a>
+                                        </Link> */}
                                     </li>
                                     <li>
-                                        <Link href="jobs.droomwork.io">
+                                        <Link href="https://jobs.droomwork.io/">
                                         <a className="block md:px-3">
                                             <span>Jobs</span>
                                         </a>

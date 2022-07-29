@@ -22,7 +22,7 @@ const TestimonialPage = ({setShowModal}) => {
   return (
     <>
         <div className="container m-auto px-6 md:px-12 lg:px-6">
-            <div className="bg-white dark:bg-gray-800 w-full mx-auto p-8">
+            <div className="bg-white dark:bg-gray-800 w-full mx-auto p-4 md:p-8">
                 <SectionTitle
                     title="Testimonials"
                 />

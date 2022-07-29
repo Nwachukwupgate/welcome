@@ -39,7 +39,7 @@ const MiniTestimony = () => {
                     {/* <Carousel autoPlay="true" infiniteLoop="true" interval={3000}> */}
                     <AwesomeSlider infinite="true" mobileTouch="true" >
                     {state && state.map((items) => (
-                        <div className="flex items-center md:items-start flex-col md:flex-row  items-center justify-center">
+                        <div className="flex md:items-start flex-col md:flex-row  items-center justify-center">
                             <div>
                                 <a href="#" className="block relative">
                                     <img alt="profil" src={items.imgFile} className="mx-auto object-cover rounded-full h-24 w-24 "/>

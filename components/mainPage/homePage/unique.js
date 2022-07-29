@@ -5,12 +5,12 @@ const UniquePage = () => {
   return (
     <>
     <div className="pb-20">
-        <div className="container m-auto px-6 md:px-12 lg:px-6">
-            <div className="py-16 px-8 bg-[#f3f4f6]">  
+        <div className="container m-auto px-4 md:px-12 lg:px-6">
+            <div className="py-16 px-2 text-center md:px-8 bg-[#f3f4f6]">  
             <SectionTitle 
                 title="What makes us Droomwork"
             />
-                <div className="container m-auto px-6 text-gray-500 md:px-12 xl:px-0">
+                <div className="container m-auto px-2 text-gray-500 md:px-12 xl:px-0">
                     <div className="grid lg:grid-cols-6 gap-6">
                         <div className="lg:col-span-2">
                             <div className="h-full flex flex-col justify-between bg-white rounded-xl shadow-lg px-8 space-y-4 py-12 sm:px-12 lg:px-8">

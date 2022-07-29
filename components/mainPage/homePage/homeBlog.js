@@ -11,10 +11,10 @@ const HomeBlog = ({ shortBlog }) => {
             <div className="container m-auto px-6 md:px-12 lg:px-6">
                 
                 
-                <section className="pt-20 lg:pt-[120px] pb-10 lg:pb-20 bg-[#F3F4F6]">
+                <section className="pt:2 md:pt-20 lg:pt-[120px] pb-10 lg:pb-20 bg-[#F3F4F6]">
                     <div className="container">
-                        <div className="flex flex-wrap mx-8">
-                            <div className="mb-4 flex justify-center w-full md:w-1/2 xl:w-1/5 px-4">
+                        <div className="flex flex-wrap mx-2 lg:mx-8">
+                            <div className="mb-4 flex justify-center w-full md:w-1/2 xl:w-1/5 px-2 md:px-4">
                                     <div className="w-fit h-fit mt-7 p-1 border-l-4 border-solid border-black">
                                         <div className="flex gap-x-2 ml-1.5 text-2xl font-bold md:flex-col">
                                             <div>Our</div>
@@ -24,7 +24,7 @@ const HomeBlog = ({ shortBlog }) => {
                             </div>
                             
                             {shortBlog && shortBlog.data.data.slice(0 , 2).map((post) => (
-                                <div className="mb-6 w-full md:w-1/2 xl:w-2/5 px-4">
+                                <div className="mb-6 w-full md:w-1/2 xl:w-2/5 px-2 md:px-4">
                                     <Link href={`/blog/${post.slug}`} passHref key={post.id}> 
                                         <div className="overflow-hidden transition-shadow duration-300 bg-white rounded shadow-sm">
                                             <img
