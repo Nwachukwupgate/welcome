@@ -1,7 +1,11 @@
-import React,{useState} from 'react'
+import React,{useState,useEffect} from 'react'
+import EasyHTTP from '../../../../helpers/easyHttp'
+import { useRouter } from 'next/router'
+
+const simpleHttp =  new EasyHTTP()
 
 function SelectLevel({handleClick, steps, currentStep}) {
-
+  const router = useRouter()
   const [myStack, setMyStack] = useState('');
   const [myLevel, setMylevel] = useState("Entry");
 
@@ -17,6 +21,22 @@ function SelectLevel({handleClick, steps, currentStep}) {
     formdata.append("unknownYet", myStack);
     formdata.append("unknown", myLevel);
   };
+
+   
+
+   useEffect(() =>{
+     // const res = await simpleHttp.get(`/api/v1/all/register/confirm/`)
+    const userRegData = router.asPath.slice(10)
+    if(userRegData.startsWith('welcome')){
+     const parameters = new URLSearchParams(userRegData)
+     var userToken = parameters.get('welcome')
+    }
+    if (typeof window !== "undefined") {
+        window.localStorage.setItem('userToken', JSON.stringify(userToken))
+    }
+  history.replaceState(null, "", location.href.split("?")[0])
+}, [])
+
 
   return (
     <>
