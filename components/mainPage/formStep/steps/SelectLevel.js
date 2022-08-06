@@ -1,6 +1,23 @@
-import React from 'react'
+import React,{useState} from 'react'
 
 function SelectLevel({handleClick, steps, currentStep}) {
+
+  const [myStack, setMyStack] = useState('');
+  const [myLevel, setMylevel] = useState("Entry");
+
+  function onChangeValue(event) {
+    setMylevel(event.target.value);
+    console.log(event.target.value);
+  }
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    var formdata = new FormData();
+
+    formdata.append("unknownYet", myStack);
+    formdata.append("unknown", myLevel);
+  };
+
   return (
     <>
       <form>
@@ -12,7 +29,7 @@ function SelectLevel({handleClick, steps, currentStep}) {
             <span className="text-lg" >Select your Level and Stack</span>
           </div>
 
-          <div>
+          <div onChange={onChangeValue}>
             <div class="flex items-center">
               <input id="orange-radio" type="radio" value="" name="colored-radio" class="w-4 h-4 text-orange-500 bg-gray-100 border-gray-300 focus:ring-orange-500 dark:focus:ring-orange-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" />
               <label for="orange-radio" class="ml-2 text-lg text-gray-900 dark:text-gray-300">Entry</label>
@@ -48,7 +65,8 @@ function SelectLevel({handleClick, steps, currentStep}) {
                         transition
                         disabled:bg-[#F5F7FD] disabled:cursor-default
                         appearance-none
-                        ">
+                        "
+                        value={myStack} onChange={(e)=> setMyStack(e.target.value)}>
                         <option value=""> Web-Frontend </option>
                         <option value="">Web-Backend</option>
                         <option value=""> Mobile App </option>

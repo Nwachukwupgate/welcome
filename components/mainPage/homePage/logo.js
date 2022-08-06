@@ -7,21 +7,21 @@ const LogoCompany = () => {
         <div class="relative py-8 flex flex-col items-center bg-cyan-900 overflow-hidden md:py-8">
             <div class="relative z-[1] container m-auto px-6 md:px-12">
                 <div class="m-auto text-center md:w-8/12 lg:w-6/12">
-                    <h2 class="text-2xl text-white font-bold md:text-4xl">Our heroes <span class="text-sky-400">contribute</span> to the development of tailus</h2>
+                    <h2 class="text-2xl text-white font-bold md:text-4xl">Our Clients <span class="text-sky-400">are</span> happy companies you know</h2>
                 </div>
                 <div class="m-auto mt-16 md:w-11/12 lg:w-8/12 xl:w-7/12">
                     <div class="flex flex-wrap justify-center gap-6">
                         <div class="group py-2 px-4 border border-opacity-10 rounded-xl bg-white bg-opacity-5 hover:bg-opacity-10">
-                            <img src="images/clients/airbnb.svg" class="contrast-0 transition group-hover:contrast-100" loading="lazy" alt="logo airbnb" />
+                            <img src="images/clients/nairaman-PhotoRoom.png" class="contrast-0 transition group-hover:contrast-100" loading="lazy" alt="logo airbnb" />
                         </div>
                         <div class="group py-2 px-4 border border-opacity-10 rounded-xl bg-white bg-opacity-5 hover:bg-opacity-10">
-                            <img src="images/clients/microsoft.svg" class="contrast-0 transition group-hover:contrast-100" loading="lazy" alt="logo microsoft" />
+                            <img src="images/clients/cinfores(1)-PhotoRoom(1).png" class="contrast-0 transition group-hover:contrast-100" loading="lazy" alt="logo microsoft" />
                         </div>
                         <div class="group py-2 px-4 border border-opacity-10 rounded-xl bg-white bg-opacity-5 hover:bg-opacity-10">
-                            <img src="images/clients/ge.svg" class="contrast-0 transition group-hover:contrast-100" loading="lazy" alt="logo ge" />
+                            <img src="images/clients/treepzs-PhotoRoom.png" class="contrast-0 transition group-hover:contrast-100" loading="lazy" alt="logo ge" />
                         </div>
                         <div class="group py-2 px-4 border border-opacity-10 rounded-xl bg-white bg-opacity-5 hover:bg-opacity-10">
-                            <img src="images/clients/bissell.svg" class="contrast-0 transition group-hover:contrast-100" loading="lazy" alt="logo bissell" />
+                            <img src="images/clients/pennecklogo.png" class="contrast-0 transition group-hover:contrast-100" loading="lazy" alt="logo bissell" />
                         </div>
                         <div class="group py-2 px-4 border border-opacity-10 rounded-xl bg-white bg-opacity-5 hover:bg-opacity-10">
                             <img src="images/clients/bissell.svg" class="contrast-0 transition group-hover:contrast-100" loading="lazy" alt="logo bissell" />
