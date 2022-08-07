@@ -7,7 +7,6 @@ import EasyHTTP from '../../../helpers/easyHttp'
 
 const simpleHttp =  new EasyHTTP()
 
-
 function RegisterForm() {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
@@ -32,7 +31,7 @@ function RegisterForm() {
     e.preventDefault()
     if(email !== '' && password !== ''){
     const data = {email,password}
-    const res = await simpleHttp.post('/api/v1/all/register',data)
+    const res = await simpleHttp.postNoAuth('/api/v1/all/register',data)
     if(res.status == true){
     toast.info(res.message)
     e.target.email.value = null

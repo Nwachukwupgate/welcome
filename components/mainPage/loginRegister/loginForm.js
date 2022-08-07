@@ -1,13 +1,15 @@
 import React from 'react'
 
 function LoginForm() {
+
+
+
   return (
     <>
         <div className="h-full m-0 grid">
         <div className="relative pt-4 pb-2
                         before:absolute before:inset-0 before:w-full before:h-[50%] before:bg-gray-200">
             <div className="relative container m-auto px-6 text-gray-500 md:px-12 xl:px-40">
-
             <div className="m-auto space-y-4 md:w-8/12 lg:w-full">
                     <img src="images/droomlogo.png" loading="lazy" className="block w-10 mx-auto " alt="tailus logo" />
                     <div className="rounded-xl border bg-opacity-50 backdrop-blur-2xl bg-white shadow-xl">

@@ -51,7 +51,7 @@ function DevHero() {
                         DailyBot takes chat and collaboration to the next level: daily standups, team check-ins, surveys, kudos, best companion bot for your virtual watercooler, 1:1 intros, motivation tracking and more.
                     </p>
                     <button className="inline-flex w-fit justify-center px-5 py-2 font-semibold text-gray-100 transition-colors duration-200 transform bg-[#001935] rounded-md hover:bg-white hover:text-[#001935] hover:border-2 hover:border-solid hover:border-[#001935]">
-                    <Link href="/stepForm">
+                    <Link href="/register">
                         <a>
                         <span className="block">
                             Apply now

@@ -1,5 +1,7 @@
 import React,{useState,useEffect} from 'react'
 import EasyHTTP from '../../../../helpers/easyHttp'
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import { useRouter } from 'next/router'
 
 const simpleHttp =  new EasyHTTP()
@@ -7,7 +9,9 @@ const simpleHttp =  new EasyHTTP()
 function SelectLevel({handleClick, steps, currentStep}) {
   const router = useRouter()
   const [myStack, setMyStack] = useState('');
-  const [myLevel, setMylevel] = useState("Entry");
+  const [myLevel, setMylevel] = useState("Entry")
+  const [userLevels, setUserLevels] = useState([])
+  const [userStacks, setUserStacks] = useState([])
 
   function onChangeValue(event) {
     setMylevel(event.target.value);
@@ -25,7 +29,6 @@ function SelectLevel({handleClick, steps, currentStep}) {
    
 
    useEffect(() =>{
-     // const res = await simpleHttp.get(`/api/v1/all/register/confirm/`)
     const userRegData = router.asPath.slice(10)
     if(userRegData.startsWith('welcome')){
      const parameters = new URLSearchParams(userRegData)
@@ -33,13 +36,37 @@ function SelectLevel({handleClick, steps, currentStep}) {
     }
     if (typeof window !== "undefined") {
         window.localStorage.setItem('userToken', JSON.stringify(userToken))
+        var checkToken = localStorage.getItem("userToken")
     }
-  history.replaceState(null, "", location.href.split("?")[0])
+   history.replaceState(null, "", location.href.split("?")[0])
+   if(checkToken == 'undefined' || checkToken == null || checkToken == ''){
+     router.push(`/`)
+   }
+    async function fetchData() {
+    const res = await simpleHttp.get(`/api/v1/dev/getLevels`,userToken)
+    const resStack = await simpleHttp.get(`/api/v1/dev/getStacks`,userToken)
+  
+    if(res.status == true){setUserLevels(res.data)}else{toast.error(res.error.message)}
+    if(resStack.status == true){setUserStacks(resStack.data)}else{toast.error(resStack.error.message)}
+    }
+    fetchData();
 }, [])
 
+console.log(userStacks,'userStack')
 
   return (
     <>
+     <ToastContainer
+      position="top-right"
+      autoClose={10000}
+      hideProgressBar={false}
+      newestOnTop={false}
+      closeOnClick
+      rtl={false}
+      pauseOnFocusLoss
+      draggable
+      pauseOnHover
+      />
       <form>
       <div className="flex justify-center">
         <div className="space-y-8">
@@ -50,27 +77,22 @@ function SelectLevel({handleClick, steps, currentStep}) {
           </div>
 
           <div onChange={onChangeValue}>
-            <div class="flex items-center">
+        {userLevels.map((single)=>{
+           return <>
+            <div class="flex items-center" key={single.id}>
               <input id="orange-radio" type="radio" value="" name="colored-radio" class="w-4 h-4 text-orange-500 bg-gray-100 border-gray-300 focus:ring-orange-500 dark:focus:ring-orange-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" />
-              <label for="orange-radio" class="ml-2 text-lg text-gray-900 dark:text-gray-300">Entry</label>
+              <label for="orange-radio" class="ml-2 text-lg text-gray-900 dark:text-gray-300">{single.name}</label>
             </div>
-
-            <div class="flex items-center">
-              <input id="orange-radio" type="radio" value="" name="colored-radio" class="w-4 h-4 text-orange-500 bg-gray-100 border-gray-300 focus:ring-orange-500 dark:focus:ring-orange-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" />
-              <label for="orange-radio" class="ml-2 text-lg text-gray-900 dark:text-gray-300">Mid-Level</label>
-            </div>
-
-            <div class="flex items-center">
-              <input id="orange-radio" type="radio" value="" name="colored-radio" class="w-4 h-4 text-orange-500 bg-gray-100 border-gray-300 focus:ring-orange-500 dark:focus:ring-orange-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" />
-              <label for="orange-radio" class="ml-2 text-lg text-gray-900 dark:text-gray-300">Senior</label>
-            </div>
+            </>
+          })}
           </div>
 
           <div class="flex flex-wrap -mx-4">
             <div class="w-full">
                 <div class="">
                   <div class="relative">
-                      <select class="
+               
+                   <select class="
                         w-full
                         border-[1.5px] border-form-stroke
                         rounded-lg
@@ -87,10 +109,15 @@ function SelectLevel({handleClick, steps, currentStep}) {
                         appearance-none
                         "
                         value={myStack} onChange={(e)=> setMyStack(e.target.value)}>
-                        <option value=""> Web-Frontend </option>
-                        <option value="">Web-Backend</option>
-                        <option value=""> Mobile App </option>
+                       {userStacks.map((single)=>{
+                         return <>
+                         <option value="" key={single.id}>{single.name}</option>
+                         </>
+                       })}
+                        
                       </select>
+                 
+                    
                       <span class="
                         absolute
                         right-4

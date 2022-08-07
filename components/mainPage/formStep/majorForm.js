@@ -13,9 +13,9 @@ function MajorForm() {
 
     const steps = [
         "Select Level",
-        "Select Stack",
+        "Select Framework",
         "Select Language",
-        "Select Last",
+        "Personal Detail",
         "Success"
     ];
 
