@@ -7,6 +7,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import EasyHTTP from '../../../../helpers/easyHttp'
 const simpleHttp =  new EasyHTTP()
+const initFrameworkArray=[]
 
 function SelectStack({handleClick, steps, currentStep}) {
   const [userFrameworks,setUserFrameworks] = useState([])
@@ -15,10 +16,11 @@ function SelectStack({handleClick, steps, currentStep}) {
   useEffect(() =>{
     
     async function fetchData() {
-      if (typeof window !== "undefined"){
-        var userToken = JSON.parse(localStorage.getItem("userToken"))
+    //   if (typeof window !== "undefined"){
+        
+    //  }
+    var userToken = JSON.parse(localStorage.getItem("userToken"))
         var userStack = JSON.parse(localStorage.getItem("userStack"))
-     }
     console.log(userStack,'userStack')
     const res = await simpleHttp.get(`/api/v1/dev/getFrameworksBasedOnStacks/${userStack}`,userToken)
 
@@ -30,23 +32,46 @@ function SelectStack({handleClick, steps, currentStep}) {
 
 console.log(userFrameworks,'userFrameworks')
 const handleSelectFramework = async(e)=>{
+  const singleId = e.target.id
   //max number is 6
   //unselect and check that user has selceted at least one framework
-  const singleId = e.target.id
-  //store frameworks for checks if user has selected any.
-  localStorage.setItem('userFrameworks', JSON.stringify(singleId))
-  var userToken = JSON.parse(localStorage.getItem("userToken"))
-  const res = await simpleHttp.put(`/api/v1/dev/chooseMyFramework/${singleId}`,userToken)
-  if(res.status === true ){
-    console.log('framework selected')
-    }else{toast.error(res.message)}
+
+  function checkIfClicked(single) {return single == singleId}
+  const checked = initFrameworkArray.find(checkIfClicked)
+  console.log(checked, 'Has been clicked?')
+  if (checked !== undefined) { // has been checked before, remove id from state
+  //unselect framework & remove from localstorage
+ 
+  var selectedFrameworks = JSON.parse(localStorage.getItem("userFrameworks"))
+  console.log('selectedFrameworks',selectedFrameworks,singleId)
+  let updatedFrameworks = selectedFrameworks.filter((id) => 
+  {
+    console.log(id,typeof(id),'id')
+    console.log(singleId,typeof(parseInt(singleId)),'singleId')
+    return id !== parseInt(singleId)
+  })
+
+  window.localStorage.setItem('userFrameworks', JSON.stringify(updatedFrameworks))
+
+
+  }else{
+    initFrameworkArray.push(parseInt(singleId))
+    localStorage.setItem('userFrameworks', JSON.stringify(initFrameworkArray))
+    console.log(initFrameworkArray,'initFrameworkArray')
+    var userToken = JSON.parse(localStorage.getItem("userToken"))
+    const res = await simpleHttp.put(`/api/v1/dev/chooseMyFramework/${singleId}`,userToken)
+    if(res.status === true ){
+      console.log('framework selected')
+      }else{toast.error(res.message)}
+  }
+  
 
 }
 
 const handleSubmitFrameworks = async(e)=>{
   e.preventDefault()
   var userFrameworks = JSON.parse(localStorage.getItem("userFrameworks"))
-  console.log(userFrameworks,'userFrameworkLocal')
+
   if(userFrameworks == null){
    return toast.error('You did not select any framework')
   }

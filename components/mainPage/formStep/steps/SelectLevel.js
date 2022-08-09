@@ -55,7 +55,7 @@ function SelectLevel({handleClick, steps, currentStep}) {
 
 const handleChooseLevelAndStack = async(e)=>{
 e.preventDefault()
-
+console.log(myStack,'checkMystack')
 localStorage.setItem('userStack', JSON.stringify(myStack))
 var userToken = JSON.parse(localStorage.getItem("userToken"))
 const res = await simpleHttp.put(`/api/v1/dev/chooseMyStacks/${myStack}`,userToken)
