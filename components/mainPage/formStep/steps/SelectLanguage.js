@@ -45,6 +45,7 @@ function SelectLanguage({handleClick, steps, currentStep}) {
   ])
 
   //api/v1/dev/getLanguagesBasedOnFrameworks/1/2/3/4/5
+  // max number of language 8
   const [userLanguages,setUserLanguages] = useState([])
   
   useEffect(() =>{

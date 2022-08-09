@@ -100,13 +100,13 @@
             }
      }
         // Make an HTTP PUT/UPDATE Request
-        async put(url,data){
+        async put(url,userToken,data){
               try {
                 const res = await fetch(`${api_origin}${url}`,{
                     mode: 'cors',
                     method:'PUT',
                     headers:{
-                         'Authorization': `Bearer ${Token}`,
+                         'Authorization': `Bearer ${userToken}`,
                          'Content-type':'application/json',
                          'Accept':'application/json',
                          'Access-Control-Allow-Origin':'*'

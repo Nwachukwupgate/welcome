@@ -12,6 +12,7 @@ function SelectLevel({handleClick, steps, currentStep}) {
   const [myLevel, setMylevel] = useState("Entry")
   const [userLevels, setUserLevels] = useState([])
   const [userStacks, setUserStacks] = useState([])
+  const [radio, setRadio] = useState(null)
 
   function onChangeValue(event) {
     setMylevel(event.target.value);
@@ -40,7 +41,7 @@ function SelectLevel({handleClick, steps, currentStep}) {
     }
    history.replaceState(null, "", location.href.split("?")[0])
    if(checkToken == 'undefined' || checkToken == null || checkToken == ''){
-     router.push(`/`)
+    //  router.push(`/`)
    }
     async function fetchData() {
     const res = await simpleHttp.get(`/api/v1/dev/getLevels`,userToken)
@@ -52,7 +53,20 @@ function SelectLevel({handleClick, steps, currentStep}) {
     fetchData();
 }, [])
 
-console.log(userStacks,'userStack')
+const handleChooseLevelAndStack = async(e)=>{
+e.preventDefault()
+
+localStorage.setItem('userStack', JSON.stringify(myStack))
+var userToken = JSON.parse(localStorage.getItem("userToken"))
+const res = await simpleHttp.put(`/api/v1/dev/chooseMyStacks/${myStack}`,userToken)
+const response = await simpleHttp.put(`/api/v1/dev/chooseMyLevel/${radio}`,userToken)
+if(res.status === true && response.status === true ){
+handleClick("next")
+}else{}
+
+}
+
+
 
   return (
     <>
@@ -67,7 +81,7 @@ console.log(userStacks,'userStack')
       draggable
       pauseOnHover
       />
-      <form>
+      <form onSubmit={handleChooseLevelAndStack}>
       <div className="flex justify-center">
         <div className="space-y-8">
 
@@ -80,7 +94,7 @@ console.log(userStacks,'userStack')
         {userLevels.map((single)=>{
            return <>
             <div class="flex items-center" key={single.id}>
-              <input id="orange-radio" type="radio" value="" name="colored-radio" class="w-4 h-4 text-orange-500 bg-gray-100 border-gray-300 focus:ring-orange-500 dark:focus:ring-orange-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" />
+              <input id="orange-radio" type="radio" value={single.id} name="colored-radio" class="w-4 h-4 text-orange-500 bg-gray-100 border-gray-300 focus:ring-orange-500 dark:focus:ring-orange-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" onChange={(e)=> setRadio(e.target.value)} />
               <label for="orange-radio" class="ml-2 text-lg text-gray-900 dark:text-gray-300">{single.name}</label>
             </div>
             </>
@@ -108,10 +122,11 @@ console.log(userStacks,'userStack')
                         disabled:bg-[#F5F7FD] disabled:cursor-default
                         appearance-none
                         "
-                        value={myStack} onChange={(e)=> setMyStack(e.target.value)}>
+                       
+                        onChange={(e)=> setMyStack(e.target.value)}>
                        {userStacks.map((single)=>{
                          return <>
-                         <option value="" key={single.id}>{single.name}</option>
+                         <option value={single.id} key={single.id}>{single.name}</option>
                          </>
                        })}
                         
@@ -155,7 +170,7 @@ console.log(userStacks,'userStack')
             {/*  Next button */}
             
             <button 
-            onClick={() => handleClick("next")}
+            type='submit'
             className="bg-white w-full text-slate-400 uppercase py-2 px-32 rounded-xl font-semibold cursor-pointer border-2 border-slate-300 hover:bg-slate-700 hover:text-white transiion duration-200 ease-in-out inline-flex
             items-center
             justify-center">
