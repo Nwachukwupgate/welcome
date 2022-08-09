@@ -1,7 +1,53 @@
-import React from 'react'
+import { data } from 'autoprefixer'
+import React,{useState, useEffect} from 'react'
+
+if(process.env.APP_env === 'development') {
+    var api_origin = 'https://api.droomwork.io'
+} else {
+    api_origin = 'http://api.droomwork.io'
+// api_origin = 'http://localhost:3000'
+}
+
+if (typeof window !== "undefined") {
+    const urlParams = new URLSearchParams(window.location.search)
+    const TokenAuthless = urlParams.get('enter')
+if(TokenAuthless){localStorage.setItem('authless', JSON.stringify(TokenAuthless))}
+    var Token = JSON.parse(localStorage.getItem("authless"))
+}
 
 const Tabs = ({ color }) => {
     const [openTab, setOpenTab] = React.useState(1);
+    const [location, setLocation] = useState('');
+    const [isLoaded, setIsLoaded] = useState(false);
+    const [err, setErr] = useState(null);
+
+    useEffect(() => {
+        fetch(`${api_origin}/api/v1/all/getLocationByIp`, {
+            headers:{
+            'Accept':'application/json',
+            'Authorization': `Bearer ${Token}`,
+            'Content-type':'application/json',
+            'Access-Control-Allow-Origin':'*'
+            }
+        })
+            .then(res => {
+                if (res.status >= 400) {
+                    throw new Error("Server responds with error!")
+                }
+                return res.json()
+            })
+            .then(data => {
+                setLocation(data)
+                console.log("this is the location", location)
+                setIsLoaded(true)
+            },
+                err => {
+                    setErr(err)
+                    setIsLoaded(true)
+                }
+            )
+    }, [])
+
   return (
     <>
 

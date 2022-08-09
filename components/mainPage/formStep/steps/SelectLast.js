@@ -6,6 +6,57 @@ function SelectLast({handleClick, steps, currentStep}) {
   const [fileName, setFileName] = useState('')
   const [profileName, setProfileName] = useState('')
 
+  const[suggest, setSuggest] = useState([
+    {
+      id: 1,
+      suggestDetail: 'abacus',
+    },
+
+    {
+      id: 2,
+      suggestDetail: 'arabacus',
+    },
+
+    {
+      id: 3,
+      suggestDetail: 'aaculus',
+    },
+
+    {
+      id: 4,
+      suggestDetail: 'Bvacf',
+    },
+
+    {
+      id: 5,
+      suggestDetail: 'cvacf',
+    },
+
+    {
+      id: 6,
+      suggestDetail: 'bbvacf',
+    },
+
+    {
+      id: 7,
+      suggestDetail: 'bacf',
+    },
+
+  ])
+
+  const[value, setValue] = useState("")
+
+  const onChange = (event) => {
+    setValue(event.target.value);
+  };
+
+  const onSearch = (searchTerm) => {
+    setValue(searchTerm);
+    console.log("search ", searchTerm);
+    tags.push(searchTerm)
+  };
+
+
 
     const handleChange = (event) => {
       setFileName(event.target.files[0].name)
@@ -63,7 +114,7 @@ function SelectLast({handleClick, steps, currentStep}) {
                 />
             </div>
 
-            <div className="">
+            <div className="relative">
               <div className={styles.tags_input}>
                 <ul className={styles.tags}>
                   {tags.map((tag, index) => (
@@ -81,8 +132,36 @@ function SelectLast({handleClick, steps, currentStep}) {
                   className={styles.textInput}
                   type="text"
                   onKeyDown={event => event.key === "Enter" ? addTags(event) : null}
+                  // onKeyUpCapture={showKeys}
                   placeholder="Press enter to add skills"
+                  onChange={onChange}
                 />
+              </div>
+
+              <div class="absolute left-0 z-20 w-full max-h-52 overflow-y-auto py-1 overflow-hidden bg-white rounded-md shadow-xl dark:bg-gray-800"> 
+              {suggest
+                .filter((item) => {
+                  const searchTerm = value.toLowerCase();
+                  const fullName = item.suggestDetail.toLowerCase();
+
+                  return (
+                    searchTerm &&
+                    fullName.startsWith(searchTerm) &&
+                    fullName !== searchTerm
+                  );
+                })
+
+                .slice(0, 10)
+                .map((item) => (
+                               
+                    <p class="block px-4 py-3 text-sm text-gray-600 capitalize transition-colors duration-200 transform dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 dark:hover:text-white cursor-pointer"
+                    onClick={() => onSearch(item.suggestDetail)}
+                    key={item.id}>
+                        {item.suggestDetail}
+                    </p>
+                
+                ))
+              }
               </div>
             </div>
 

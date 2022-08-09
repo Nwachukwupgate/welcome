@@ -18,11 +18,23 @@ function CompanyForm() {
     const displayStep = (step) => {
         switch(step) {
             case 1: 
-            return <CompInfo />
+            return <CompInfo 
+                currentStep = {currentStep}
+                steps={steps}
+                handleClick = {handleClick}
+                />
             case 2: 
-            return <DevChoice />
+            return <DevChoice 
+                currentStep = {currentStep}
+                steps={steps}
+                handleClick = {handleClick}
+                />
             case 3: 
-            return <CompSuccess />
+            return <CompSuccess 
+                currentStep = {currentStep}
+                steps={steps}
+                handleClick = {handleClick}
+                />
             default:
         }
     }
@@ -51,13 +63,13 @@ function CompanyForm() {
                 {displayStep(currentStep)}
             </div>
 
-            <div className="px-4">
+            {/* <div className="px-4">
             <StepCrtl
             currentStep = {currentStep}
             steps={steps}
             handleClick = {handleClick}
             />
-            </div>
+            </div> */}
 
         </div>
     </>

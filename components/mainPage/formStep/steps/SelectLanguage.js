@@ -39,6 +39,13 @@ function SelectLanguage({handleClick, steps, currentStep}) {
       stackIcon:"https://cdn.iconscout.com/icon/free/png-256/mongodb-4-1175139.png",
     },
   ])
+  const[show, setShow] = useState(true)
+
+  const showSelect = (e)=> {
+    e.preventDefault()
+    setShow(!show)
+  }
+
   return (
     <>
       <div className="flex justify-center">
@@ -61,6 +68,15 @@ function SelectLanguage({handleClick, steps, currentStep}) {
                       </div>
                       
                       <span className={styles.fa} aria-hidden="true"> {items.stack} </span>
+                      <span onClick={showSelect} className={`${show ? "block" : "hidden"} ml-2`}> + </span>
+                      
+                      <div className={`${show ? "hidden" : "block"}`}>
+                        <select>
+                          <option>2 years</option>
+                          <option>3 years</option>
+                          <option>4 years</option>
+                        </select>
+                      </div>
                     </div>
                   </label>
                 </li>
