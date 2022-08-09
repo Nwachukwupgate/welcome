@@ -43,7 +43,7 @@ function SelectLanguage({handleClick, steps, currentStep}) {
       stackIcon:"https://cdn.iconscout.com/icon/free/png-256/mongodb-4-1175139.png",
     },
   ])
-<<<<<<< HEAD
+
   const[show, setShow] = useState(true)
 
   const showSelect = (e)=> {
@@ -51,7 +51,6 @@ function SelectLanguage({handleClick, steps, currentStep}) {
     setShow(!show)
   }
 
-=======
 
   //api/v1/dev/getLanguagesBasedOnFrameworks/1/2/3/4/5
   // max number of language 8
@@ -72,7 +71,7 @@ function SelectLanguage({handleClick, steps, currentStep}) {
 }, [])
 
 console.log(userLanguages,'userLanguages')
->>>>>>> c8b9478486b41026fccd6eece5b3469d9df8e75c
+
   return (
     <>
       <div className="flex justify-center">
@@ -94,7 +93,6 @@ console.log(userLanguages,'userLanguages')
                         <img src={single.stackIcon} />
                       </div> */}
                       
-<<<<<<< HEAD
                       <span className={styles.fa} aria-hidden="true"> {items.stack} </span>
                       <span onClick={showSelect} className={`${show ? "block" : "hidden"} ml-2`}> + </span>
                       
@@ -105,9 +103,7 @@ console.log(userLanguages,'userLanguages')
                           <option>4 years</option>
                         </select>
                       </div>
-=======
                       <span className={styles.fa} aria-hidden="true"> {single.name} </span>
->>>>>>> c8b9478486b41026fccd6eece5b3469d9df8e75c
                     </div>
                   </label>
                 </li>

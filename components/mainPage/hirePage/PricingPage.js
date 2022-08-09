@@ -24,10 +24,10 @@ const Tabs = ({ color }) => {
     useEffect(() => {
         fetch(`${api_origin}/api/v1/all/getLocationByIp`, {
             headers:{
-            'Accept':'application/json',
-            'Authorization': `Bearer ${Token}`,
-            'Content-type':'application/json',
-            'Access-Control-Allow-Origin':'*'
+                    'Accept':'application/json',
+                    'Authorization': `Bearer ${Token}`,
+                    'Content-type':'application/json',
+                    'Access-Control-Allow-Origin':'*'
             }
         })
             .then(res => {
