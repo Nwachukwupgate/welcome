@@ -1,5 +1,9 @@
-import React, {useState} from 'react';
+import React, {useState,useEffect} from 'react';
 import styles from "../../../../styles/check.module.css"
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import EasyHTTP from '../../../../helpers/easyHttp'
+const simpleHttp =  new EasyHTTP()
 
 function SelectLanguage({handleClick, steps, currentStep}) {
   const[state, setState] = useState([
@@ -39,6 +43,7 @@ function SelectLanguage({handleClick, steps, currentStep}) {
       stackIcon:"https://cdn.iconscout.com/icon/free/png-256/mongodb-4-1175139.png",
     },
   ])
+<<<<<<< HEAD
   const[show, setShow] = useState(true)
 
   const showSelect = (e)=> {
@@ -46,6 +51,28 @@ function SelectLanguage({handleClick, steps, currentStep}) {
     setShow(!show)
   }
 
+=======
+
+  //api/v1/dev/getLanguagesBasedOnFrameworks/1/2/3/4/5
+  // max number of language 8
+  const [userLanguages,setUserLanguages] = useState([])
+  
+  useEffect(() =>{
+    
+    async function fetchData() {
+      if (typeof window !== "undefined"){
+        var userToken = JSON.parse(localStorage.getItem("userToken"))
+     }
+    console.log(userToken,'userToken')
+    const res = await simpleHttp.get(`/api/v1/dev/getLanguagesBasedOnFrameworks/${1}`,userToken)
+    if(res.status == true){setUserLanguages(res.data)}else{toast.error(res.error.message)}
+   
+    }
+    fetchData();
+}, [])
+
+console.log(userLanguages,'userLanguages')
+>>>>>>> c8b9478486b41026fccd6eece5b3469d9df8e75c
   return (
     <>
       <div className="flex justify-center">
@@ -58,15 +85,16 @@ function SelectLanguage({handleClick, steps, currentStep}) {
           <div className={styles.main_container}>
 
             <ul className={styles.main_list}>
-              {state && state.map((items => (
-                <li className={styles.single_list} key={items.id}>
+              {userLanguages.map((single => (
+                <li className={styles.single_list} key={single.id}>
                   <label className={styles.list_label}>
                     <input type="checkbox" name="" className={styles.inputType} />
                     <div className={styles.icon_box}>
-                      <div className={styles.fab}>
-                        <img src={items.stackIcon} />
-                      </div>
+                      {/* <div className={styles.fab}>
+                        <img src={single.stackIcon} />
+                      </div> */}
                       
+<<<<<<< HEAD
                       <span className={styles.fa} aria-hidden="true"> {items.stack} </span>
                       <span onClick={showSelect} className={`${show ? "block" : "hidden"} ml-2`}> + </span>
                       
@@ -77,6 +105,9 @@ function SelectLanguage({handleClick, steps, currentStep}) {
                           <option>4 years</option>
                         </select>
                       </div>
+=======
+                      <span className={styles.fa} aria-hidden="true"> {single.name} </span>
+>>>>>>> c8b9478486b41026fccd6eece5b3469d9df8e75c
                     </div>
                   </label>
                 </li>

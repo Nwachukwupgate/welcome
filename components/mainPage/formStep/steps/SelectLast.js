@@ -1,10 +1,85 @@
-import React,{useState} from 'react'
+import React,{useState,useRef} from 'react'
 import styles from "../../../../styles/check.module.css"
+import EasyHTTP from '../../../../helpers/easyHttp'
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import { useRouter } from 'next/router'
+const simpleHttp =  new EasyHTTP()
+
+
+
+if(process.env.NEXT_PUBLIC_NODE_ENV ==='development'){
+  console.log('here')
+  var api_origin = 'http://localhost:3333'
+}else{
+  var api_origin = 'https://api.droomwork.io'
+}
+let file = null
+let cvFile = null
 
 function SelectLast({handleClick, steps, currentStep}) {
+  const router = useRouter()
+  const imgref = useRef('')
   const [tags, setTags] = React.useState([]);
   const [fileName, setFileName] = useState('')
   const [profileName, setProfileName] = useState('')
+  const [files, setFile] = useState(null);
+  const [spinner, setSpinner] = useState(false)
+  const [uploadState,setuploadState]  = useState(true)
+  
+  const hiddenFileInput = React.useRef(null);
+
+
+//   const handleUploadPhoto = (e)=>{
+//     e.preventDefault()
+//     // filePayload = e.target.files;
+//     file = e.target.files[0]
+//     const fileType = file['type'];
+//     const validImageTypes = ['image/jpg', 'image/jpeg', 'image/png']
+//     if (e.target.files.length > 0) {
+//         if (!validImageTypes.includes(fileType)) {
+//             return toast.error('An Image file needed')
+//         }
+        
+//        imgref.current.src = URL.createObjectURL(file)
+//        setuploadState(false)
+//     }
+
+//     return file
+   
+// }
+
+
+const handleSubmitDevsRegistration = async(e)=>{
+ e.preventDefault()
+ const firstName = e.target.firstName.value
+ const lastName = e.target.lastName.value
+ const phone = e.target.phoneNumber.value
+ //skills
+
+ const data = {
+    phone,lastName,firstName
+  }
+ const res = await simpleHttp.put('/api/v1/dev/updateDevProfile',data)
+ if(res.status == true){
+ router.push('/')
+  }
+  toast.error(res.hint)
+}
+const handleChange=(e)=>{
+  setFile(e.target.files[0])
+  setFileName(e.target.files[0].name)
+  file = e.target.files[0]
+  hiddenFileInput.current.click()
+  
+  var ext = file.name.split('.').pop()
+  if(ext=="png" || ext=="jpeg" || ext=="jpg"){
+  if(file.size >1000000){return toast.error('picture size is too large')}
+  setuploadState(false)  
+  }else{return toast.error('Kindly upload your picture')}
+
+  return file
+}
 
   const[suggest, setSuggest] = useState([
     {
@@ -57,11 +132,20 @@ function SelectLast({handleClick, steps, currentStep}) {
   };
 
 
+const handleCVChange =(e)=>{
+  setFile(e.target.files[0])
+  setFileName(e.target.files[0].name)
+  cvFile = e.target.files[0]
+  hiddenFileInput.current.click()
+  
+  var ext = file.name.split('.').pop()
+  if(ext=="docx" || ext=="doc" || ext=="pdf"){
+  if(file.size >1000000){return toast.error('CV size is too large')}
+  setuploadState(false)  
+  }else{return toast.error('Kindly upload your CV')}
 
-    const handleChange = (event) => {
-      setFileName(event.target.files[0].name)
-      setProfileName(event.target.files[0].name)
-    };
+  return file
+}
 
   const removeTags = indexToRemove => {
 		setTags([...tags.filter((_, index) => index !== indexToRemove)]);
@@ -74,13 +158,17 @@ function SelectLast({handleClick, steps, currentStep}) {
 			event.target.value = "";
 		}
 	};
+
+
+
   return (
     <>
+    <form onSubmit={handleSubmitDevsRegistration}>
       <div className="flex justify-center">
         <div className="space-y-8">
 
           <div className="flex flex-col text-center">
-            <span className="text-2xl font-semibold">Basic Informaion</span>
+            <span className="text-2xl font-semibold">Personal Details</span>
           </div>
           
           <div className="space-y-8">
@@ -90,8 +178,10 @@ function SelectLast({handleClick, steps, currentStep}) {
                 <input 
                   type="file" 
                   placeholder='Select profile pics'
-                  className="w-full py-3 px-4 border border-solid border-gray-400  outline-0 rounded-lg placeholder:text-[#001935]  placeholder:font-bold bg-transparent transition disabled:ring-gray-200 disabled:bg-gray-100 disabled:placeholder-gray-400 invalid:ring-red-400 focus:invalid:outline-none" id="file_input"
+                  className="w-full py-3 px-4 border border-solid border-gray-400  outline-0 rounded-lg placeholder:text-[#001935]  placeholder:font-bold bg-transparent transition disabled:ring-gray-200 disabled:bg-gray-100 disabled:placeholder-gray-400 invalid:ring-red-400 focus:invalid:outline-none" id="myFile"
+                  ref={hiddenFileInput} onChange={handleChange} 
                 />
+                  {/* <button className={styles.file_upload__button} type="button" onClick={handleClick}>Choose File(s)</button> */}
                 <div>
                   {profileName}
                 </div>
@@ -102,6 +192,7 @@ function SelectLast({handleClick, steps, currentStep}) {
                 <input 
                   type="text" 
                   placeholder="First Name"
+                  name="firstName"
                   className="w-full py-3 px-4 border border-solid border-gray-400  outline-0 rounded-lg placeholder:text-[#001935]  placeholder:font-bold bg-transparent transition disabled:ring-gray-200 disabled:bg-gray-100 disabled:placeholder-gray-400 invalid:ring-red-400 focus:invalid:outline-none"
                 />
             </div>
@@ -110,6 +201,7 @@ function SelectLast({handleClick, steps, currentStep}) {
                 <input 
                   type="text" 
                   placeholder="Last Name"
+                  name="lastName"
                   className="w-full py-3 px-4 border border-solid border-gray-400  outline-0 rounded-lg placeholder:text-[#001935]  placeholder:font-bold bg-transparent transition disabled:ring-gray-200 disabled:bg-gray-100 disabled:placeholder-gray-400 invalid:ring-red-400 focus:invalid:outline-none"
                 />
             </div>
@@ -169,11 +261,12 @@ function SelectLast({handleClick, steps, currentStep}) {
                 <input 
                   type="number" 
                   placeholder="Phone Number"
+                  name="phoneNumber"
                   className="w-full py-3 px-4 border border-solid border-gray-400  outline-0 rounded-lg placeholder:text-[#001935]  placeholder:font-bold bg-transparent transition disabled:ring-gray-200 disabled:bg-gray-100 disabled:placeholder-gray-400 invalid:ring-red-400 focus:invalid:outline-none"
                 />
             </div>
 
-            <div>
+            {/* <div>
                 <select 
                   placeholder="Country"
                   className="w-full py-3 px-4 border border-solid border-gray-400  outline-0 rounded-lg bg-white transition"
@@ -185,7 +278,7 @@ function SelectLast({handleClick, steps, currentStep}) {
                   <option>China</option>
                   <option>Nigeria</option>
                 </select>
-            </div>
+            </div> */}
 
             <div className="">
                 <textarea
@@ -209,6 +302,7 @@ function SelectLast({handleClick, steps, currentStep}) {
                     id="exampleFormControlTextarea1"
                     rows="3"
                     placeholder="Write a short description about yourself"
+                    name="shortBio"
                 ></textarea>
             </div>
 
@@ -233,12 +327,13 @@ function SelectLast({handleClick, steps, currentStep}) {
                         />
                     </svg>
                     <div className="flex text-sm text-gray-600">
+               
                         <label
-                        htmlFor="file-upload"
+                        htmlFor="cvFile"
                         className="relative cursor-pointer bg-white rounded-md font-medium text-[#f49038] hover:text-[#f49038] focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-[#f49038]"
                         >
                         <span>Upload CV</span>
-                        <input id="file-upload" name="file-upload" type="file" onChange={(e) => handleChange(e)} className="sr-only" />
+                        <input id="cvFile" name="cvFile" type="file" onChange={(e) => handleChange(e)} className="sr-only" />
                         </label>
                         <p className="pl-1">or drag and drop</p>
                     </div>
@@ -274,7 +369,7 @@ function SelectLast({handleClick, steps, currentStep}) {
             {/*  Next button */}
             
             <button 
-            onClick={() => handleClick("next")}
+            type="submit"
             className="bg-white w-full text-slate-400 uppercase py-2 px-32 rounded-xl font-semibold cursor-pointer border-2 border-slate-300 hover:bg-slate-700 hover:text-white transiion duration-200 ease-in-out inline-flex
             items-center
             justify-center">
@@ -284,6 +379,7 @@ function SelectLast({handleClick, steps, currentStep}) {
             </div>
 
       </div>
+      </form>
     </>
   )
 }
