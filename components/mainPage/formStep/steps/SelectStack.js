@@ -12,15 +12,16 @@ const initFrameworkArray=[]
 function SelectStack({handleClick, steps, currentStep}) {
   const [userFrameworks,setUserFrameworks] = useState([])
   const [selectedFrameworks,setSelectedFrameworks] = useState([])
+  const[show, setShow] = useState(true)
   
   useEffect(() =>{
-    
+
     async function fetchData() {
-    //   if (typeof window !== "undefined"){
-        
-    //  }
-    var userToken = JSON.parse(localStorage.getItem("userToken"))
-        var userStack = JSON.parse(localStorage.getItem("userStack"))
+    if (typeof window !== "undefined"){
+      var userToken = JSON.parse(localStorage.getItem("userToken"))
+      var userStack = JSON.parse(localStorage.getItem("userStack"))
+    }
+   
     console.log(userStack,'userStack')
     const res = await simpleHttp.get(`/api/v1/dev/getFrameworksBasedOnStacks/${userStack}`,userToken)
 
@@ -68,6 +69,20 @@ const handleSelectFramework = async(e)=>{
 
 }
 
+  //   {
+  //     id: 6,
+  //     stack: 'tailwind',
+  //     stackIcon:"https://raw.githubusercontent.com/github/explore/882462b8ecc337fd9c9b2572bc463a1cbc88fb6a/topics/tailwind/tailwind.png",
+  //   },
+  // ])
+
+
+
+  const showSelect = (e)=> {
+    e.preventDefault()
+    setShow(!show)
+  }
+
 const handleSubmitFrameworks = async(e)=>{
   e.preventDefault()
   var userFrameworks = JSON.parse(localStorage.getItem("userFrameworks"))
@@ -77,6 +92,18 @@ const handleSubmitFrameworks = async(e)=>{
   }
   handleClick("next")
 }
+
+const handleSelectFrameworkExp = async(e)=>{
+  e.preventDefault()
+  const frameworkId = e.target.experience.value
+  var userToken = JSON.parse(localStorage.getItem("userToken"))
+  const res = await simpleHttp.put(`/api/v1/dev/enterMyFrameworkExperience`,userToken,frameworkId)
+  if(res.status === true ){
+    console.log('framework experience entered')
+    }else{toast.error(res.message)}
+
+}
+
   return (
     <>
      <ToastContainer
@@ -106,6 +133,21 @@ const handleSubmitFrameworks = async(e)=>{
                   <label className={styles.list_label}>
                     <input type="checkbox" name="" className={styles.inputType} id={single.id} onChange={handleSelectFramework} />
                     <div className={styles.icon_box}>
+
+                    
+                      <span onClick={showSelect} className={`${show ? "block" : "hidden"} ml-2`}> + </span>
+                      
+                      <div className={`${show ? "hidden" : "block"}`}>
+                        <select onChange={handleSelectFrameworkExp} id={single.id} name="experience">
+                          <option value = '1'>1 year</option>
+                          <option value = '2'>2 years</option>
+                          <option value = '3'>3 years</option>
+                          <option value = '4'>4 years</option>
+                          <option value = '5'>5 years</option>
+                          <option value = '6'>6 years</option>
+                          <option value = '7'>7 years</option>
+                        </select>
+                      </div>
                       <span className={styles.fa} aria-hidden="true"> {single.name} </span>
                     </div>
                   </label>

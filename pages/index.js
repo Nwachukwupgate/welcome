@@ -7,8 +7,27 @@ import CompStep from 'components/mainPage/company/CompStep';
 import WhatPage from 'components/mainPage/hirePage/WhatPage';
 import PricingPage from 'components/mainPage/hirePage/PricingPage';
 import HireSteps from 'components/mainPage/hirePage/HireSteps';
+import TestPage from 'components/mainPage/hirePage/TesPage';
+import DevFoot from 'components/mainPage/hirePage/DevFoot';
+import HomeBlog from 'components/mainPage/homePage/homeBlog';
 
-export default function Home() {
+
+if(process.env.APP_env === 'development') {
+    var api_origin = 'https://api.droomwork.io'
+} else {
+    api_origin = 'http://api.droomwork.io'
+// api_origin = 'http://localhost:3000'
+}
+
+if (typeof window !== "undefined") {
+    const urlParams = new URLSearchParams(window.location.search)
+    const TokenAuthless = urlParams.get('enter')
+if(TokenAuthless){localStorage.setItem('authless', JSON.stringify(TokenAuthless))}
+    var Token = JSON.parse(localStorage.getItem("authless"))
+}
+  
+
+export default function Home({blogData}) {
     return(
         <>
             <Head>
@@ -24,7 +43,34 @@ export default function Home() {
             <WhatPage />
             <PricingPage />
             <HireSteps />
+            <TestPage />
+            <HomeBlog shortBlog={blogData} />
+            <DevFoot />
 
         </>
     )
+}
+
+export async function getStaticProps(){
+
+const response = await fetch(`${api_origin}/api/v1/admin/getBlogPosts`, {
+    headers:{
+    'Accept':'application/json',
+    'User-Agent': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.89 Safari/537.36',
+    Accept: "application/json; charset=UTF-8",
+    'Authorization': `Bearer ${Token}`,
+    'Content-type':'application/json',
+    'Access-Control-Allow-Origin':'*'
+    }
+})
+// const data = await JSON.stringify(response.data)
+const data = await response.json()
+// const data = datat.data.data
+
+return{
+    props:{
+    blogData: data
+    },
+    revalidate: 10,
+}
 }
