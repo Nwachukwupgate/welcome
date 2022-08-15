@@ -97,7 +97,7 @@ setSuggest(res.data)
   }
 
   const handleSelectSkill = async(searchedSkill,searchedSkillId) => {
-    setValue(searchedSkill);
+    setValue(searchedSkill)
     tags.push({id:searchedSkillId,name:searchedSkill})
     var userToken = JSON.parse(localStorage.getItem("userToken"))
     const res = await simpleHttp.put(`/api/v1/dev/chooseMySkill/${searchedSkillId}`,userToken)

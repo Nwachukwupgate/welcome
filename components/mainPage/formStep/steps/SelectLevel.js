@@ -43,7 +43,7 @@ function SelectLevel({handleClick, steps, currentStep}) {
     }
     fetchData();
 }, [])
-console.log(myStack,'checkMystackFen')
+
 const handleChooseLevelAndStack = async(e)=>{
 e.preventDefault()
 console.log(myStack,'checkMystackNow')
