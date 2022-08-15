@@ -36,17 +36,18 @@ export default function Home({blogData}) {
                 <link rel="icon" href="/favicon.ico" />
             </Head>
 
-            <HeroPage />
-            <WhySection />
-            <TeamPage />
-            <CompStep />
-            <WhatPage />
-            <PricingPage />
-            <HireSteps />
-            <TestPage />
-            <HomeBlog shortBlog={blogData} />
-            <DevFoot />
-
+            <div className='grid'>
+                <HeroPage />
+                <WhySection />
+                <TeamPage />
+                <CompStep />
+                <WhatPage />
+                <PricingPage />
+                <HireSteps />
+                <TestPage />
+                <HomeBlog shortBlog={blogData} />
+                <DevFoot />
+            </div>
         </>
     )
 }
