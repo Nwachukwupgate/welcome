@@ -1,10 +1,10 @@
 import React, { useState } from 'react'
 import StepperPage from './stepper'
 import StepperControl from './StepperControl'
-import SelectLanguage from './steps/SelectLanguage';
+import SelectLanguage from './steps/SelectFrameworks';
 import SelectLast from './steps/SelectLast';
 import SelectLevel from './steps/SelectLevel';
-import SelectStack from './steps/SelectStack';
+import SelectLanguages from './steps/SelectLanguages';
 import SuccessPage from './steps/success';
 
 function MajorForm() {
@@ -13,8 +13,8 @@ function MajorForm() {
 
     const steps = [
         "Select Level",
-        "Select Framework",
         "Select Language",
+        "Select Framework",
         "Personal Detail",
         "Success"
     ];
@@ -28,7 +28,7 @@ function MajorForm() {
                 handleClick = {handleClick}
                 />
             case 2: 
-            return <SelectStack 
+            return <SelectLanguages 
             currentStep = 
                 {currentStep}
                 steps={steps}

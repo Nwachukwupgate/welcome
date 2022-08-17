@@ -28,6 +28,7 @@ function SelectLast({handleClick, steps, currentStep}) {
   const [uploadState,setuploadState]  = useState(true)
   const[value, setValue] = useState("")
   const[suggest, setSuggest] = useState([])
+
   
   const hiddenFileInput = React.useRef(null);
 
@@ -38,6 +39,7 @@ function SelectLast({handleClick, steps, currentStep}) {
 
 const handleSubmitDevsRegistration = async(e)=>{
   e.preventDefault()
+  setSpinner(true)
   var formData = new FormData()
   formData.append('cv', cvFile)
   formData.append('profilePicture', file)
@@ -47,6 +49,15 @@ const handleSubmitDevsRegistration = async(e)=>{
   formData.append('short_bio',e.target.shortBio.value)
   formData.append('continent',e.target.continent.value)
   formData.append('language','english')
+
+  console.log(cvFile,'cvFile')
+  console.log(file,'file')
+  console.log(e.target.firstName.value,'firstName')
+  console.log(e.target.phoneNumber.value,'phone')
+  console.log(e.target.lastName.value,'lastname')
+  console.log(e.target.shortBio.value,'shortBio')
+  console.log(e.target.continent.value,'continent')
+  
   
   var userToken = JSON.parse(localStorage.getItem("userToken"))
 
@@ -60,8 +71,12 @@ const handleSubmitDevsRegistration = async(e)=>{
       response => response.json()
     ).then((result)=>{
         if(result.status==true){
-        //here
-        handleClick("next")
+          handleClick("next")
+          localStorage.removeItem("userToken")
+          localStorage.removeItem("userStack")
+          localStorage.removeItem("userFrameworks")
+          localStorage.removeItem("userLanguages")
+        
         }else{toast.error(result.message)}
     })
 }
@@ -165,6 +180,7 @@ const handleCVChange =(e)=>{
                 <label class="block mb-1 text-sm font-medium text-gray-900 dark:text-gray-300" htmlFor="file_input">Upload Picture</label>
                 <input 
                   type="file" 
+                  required
                   placeholder='Select profile pics'
                   className="w-full py-3 px-4 border border-solid border-gray-400  outline-0 rounded-lg placeholder:text-[#001935]  placeholder:font-bold bg-transparent transition disabled:ring-gray-200 disabled:bg-gray-100 disabled:placeholder-gray-400 invalid:ring-red-400 focus:invalid:outline-none" id="myFile"
                   ref={hiddenFileInput} onChange={handleChange} 
@@ -181,6 +197,7 @@ const handleCVChange =(e)=>{
                   type="text" 
                   placeholder="First Name"
                   name="firstName"
+                  required
                   className="w-full py-3 px-4 border border-solid border-gray-400  outline-0 rounded-lg placeholder:text-[#001935]  placeholder:font-bold bg-transparent transition disabled:ring-gray-200 disabled:bg-gray-100 disabled:placeholder-gray-400 invalid:ring-red-400 focus:invalid:outline-none"
                 />
             </div>
@@ -190,6 +207,7 @@ const handleCVChange =(e)=>{
                   type="text" 
                   placeholder="Last Name"
                   name="lastName"
+                  required
                   className="w-full py-3 px-4 border border-solid border-gray-400  outline-0 rounded-lg placeholder:text-[#001935]  placeholder:font-bold bg-transparent transition disabled:ring-gray-200 disabled:bg-gray-100 disabled:placeholder-gray-400 invalid:ring-red-400 focus:invalid:outline-none"
                 />
             </div>
@@ -239,6 +257,7 @@ const handleCVChange =(e)=>{
                   type="number" 
                   placeholder="Phone Number"
                   name="phoneNumber"
+                  required
                   className="w-full py-3 px-4 border border-solid border-gray-400  outline-0 rounded-lg placeholder:text-[#001935]  placeholder:font-bold bg-transparent transition disabled:ring-gray-200 disabled:bg-gray-100 disabled:placeholder-gray-400 invalid:ring-red-400 focus:invalid:outline-none"
                 />
             </div>
@@ -247,6 +266,7 @@ const handleCVChange =(e)=>{
                 <select 
                   placeholder="Location"
                   name="continent"
+                  required
                   className="w-full py-3 px-4 border border-solid border-gray-400  outline-0 rounded-lg bg-white transition"
                 >
                   <option disabled selected hidden >Location</option>
@@ -263,7 +283,7 @@ const handleCVChange =(e)=>{
 
             <div className="">
                 <textarea
-                    class="
+                    className="
                         form-control
                         block
                         w-full
@@ -284,6 +304,7 @@ const handleCVChange =(e)=>{
                     rows="3"
                     placeholder="Write a short description about yourself"
                     name="shortBio"
+                    required
                 ></textarea>
             </div>
 
@@ -342,7 +363,7 @@ const handleCVChange =(e)=>{
             
             <button 
               onClick={()=>handleClick("")}
-              className={`bg-[#001935] inline-flex items-center justify-center w-full uppercase text-center text-white py-2 px-32 rounded-xl font-semibold cursor-pointer border-2 border-slate-300 hover:bg-slate-700 hover:text-white transiion duration-200 ease-in-out ${currentStep === 1 ? "opacity-50 cursor-not-allowed" : "" }`} style={{color: "gray"}}>
+              className={`bg-[#001935] inline-flex items-center justify-center w-fit  text-center text-white py-2 px-28 rounded-xl font-semibold cursor-pointer border-2 border-slate-300 hover:bg-slate-700 hover:text-white transiion duration-200 ease-in-out ${currentStep === 1 ? "opacity-50 cursor-not-allowed" : "" }`} style={{color: "gray"}}>
                 Previous
             </button>
             
@@ -350,12 +371,13 @@ const handleCVChange =(e)=>{
             {/*  Next button */}
             
             <button 
-            type="submit"
-            className="bg-white w-full text-slate-400 uppercase py-2 px-32 rounded-xl font-semibold cursor-pointer border-2 border-slate-300 hover:bg-slate-700 hover:text-white transiion duration-200 ease-in-out inline-flex
-            items-center
-            justify-center">
-                {currentStep === steps.length - 1 ? "Confirm" : "Next"}
-            </button>
+                type="submit"
+                className="bg-[#001935] inline-flex items-center justify-center  text-center text-white w-fit py-2 px-24 rounded-xl font-semibold cursor-pointer border-2 border-slate-300 hover:bg-slate-700 hover:text-white transiion duration-200 
+                ease-in-out">
+                {spinner && <svg class="inline  w-6 h-6 text-white animate-spin dark:text-gray-600 fill-gray-600 dark:fill-gray-300" viewBox="0 0 100 101" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M100 50.5908C100 78.2051 77.6142 100.591 50 100.591C22.3858 100.591 0 78.2051 0 50.5908C0 22.9766 22.3858 0.59082 50 0.59082C77.6142 0.59082 100 22.9766 100 50.5908ZM9.08144 50.5908C9.08144 73.1895 27.4013 91.5094 50 91.5094C72.5987 91.5094 90.9186 73.1895 90.9186 50.5908C90.9186 27.9921 72.5987 9.67226 50 9.67226C27.4013 9.67226 9.08144 27.9921 9.08144 50.5908Z" fill="currentColor"/><path d="M93.9676 39.0409C96.393 38.4038 97.8624 35.9116 97.0079 33.5539C95.2932 28.8227 92.871 24.3692 89.8167 20.348C85.8452 15.1192 80.8826 10.7238 75.2124 7.41289C69.5422 4.10194 63.2754 1.94025 56.7698 1.05124C51.7666 0.367541 46.6976 0.446843 41.7345 1.27873C39.2613 1.69328 37.813 4.19778 38.4501 6.62326C39.0873 9.04874 41.5694 10.4717 44.0505 10.1071C47.8511 9.54855 51.7191 9.52689 55.5402 10.0491C60.8642 10.7766 65.9928 12.5457 70.6331 15.2552C75.2735 17.9648 79.3347 21.5619 82.5849 25.841C84.9175 28.9121 86.7997 32.2913 88.1811 35.8758C89.083 38.2158 91.5421 39.6781 93.9676 39.0409Z" fill="currentFill"/></svg>}
+                {!spinner && currentStep === steps.length - 1 ? "Submit"
+    :"  submitting.."}
+                </button>
             
             </div>
 

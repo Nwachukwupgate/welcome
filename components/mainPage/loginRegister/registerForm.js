@@ -99,7 +99,7 @@ function RegisterForm() {
                                             </div>
 
                                             <button type="submit"
-                                                className="w-full py-3 px-6 rounded-md font-semibold text-gray-100 transition-colors duration-200 transform bg-[#001935] hover:bg-white hover:text-[#001935] hover:border-2 hover:border-solid hover:border-[#001935]">
+                                                className="w-full py-3 px-6 rounded-md font-semibold text-gray-100 transition-colors  transform bg-[#001935] hover:bg-white hover:text-[#001935] hover:border-2 hover:border-solid hover:border-[#001935]">
                                                 <span>Sign up</span>
                                             </button>
 
