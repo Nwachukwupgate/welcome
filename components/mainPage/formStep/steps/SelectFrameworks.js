@@ -4,7 +4,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import EasyHTTP from '../../../../helpers/easyHttp'
 const simpleHttp =  new EasyHTTP()
-const initLanguageArray=[]
+const initFrameworkArray=[]
 
 function SelectLanguage({handleClick, steps, currentStep}) {
   const[state, setState] = useState([
@@ -64,14 +64,14 @@ function SelectLanguage({handleClick, steps, currentStep}) {
         var userLanguagess = JSON.parse(localStorage.getItem("userLanguagess"))
      }
       const res = await simpleHttp.get(`/api/v1/dev/getFrameworksBasedOnLanguages/${userLanguagess[0]}/${userLanguagess[1]}/${userLanguagess[2]}/${userLanguagess[3]}/${userLanguagess[4]}/${userLanguagess[5]}`,userToken)
-      console.log(res,'fensRes')
+   
       if(res.status == true){setUserFrameworks(res.data)}else{toast.error(res.error.message)}
  
     }
     fetchData();
 }, [])
 
-console.log(userFrameworks,'userFrameworks')
+
 
 
 
@@ -81,8 +81,8 @@ const handleSelectLanguage = async(e)=>{
   //unselect and check that user has selceted at least one framework
 
   function checkIfClicked(single) {return single == singleId}
-  const checked = initLanguageArray.find(checkIfClicked)
-  console.log(checked, 'Has been clicked?')
+  const checked = initFrameworkArray.find(checkIfClicked)
+ 
   if (checked !== undefined) { // has been checked before, remove id from state
   //unselect language & remove from localstorage
  
@@ -93,17 +93,22 @@ const handleSelectLanguage = async(e)=>{
   })
 
   window.localStorage.setItem('userFrameworks', JSON.stringify(updatedFrameworks))
+  initFrameworkArray.length = 0 //clears array
+  updatedFrameworks.map((single)=>{
+   return initFrameworkArray.push(single)
+  })
+
   var userToken = JSON.parse(localStorage.getItem("userToken"))
-  const res = await simpleHttp.put(`/api/v1/dev/UnchooseMyFrameworks/${singleId}`,userToken)
+  const res = await simpleHttp.put(`/api/v1/dev/UnchooseMyFramework/${singleId}`,userToken)
   if(res.status == true){}else{toast.error(res.error.message)}
   }else{
-    initLanguageArray.push(parseInt(singleId))
-    localStorage.setItem('userFrameworks', JSON.stringify(initLanguageArray))
-    console.log(initLanguageArray,'initLanguageArray')
+    initFrameworkArray.push(parseInt(singleId))
+    localStorage.setItem('userFrameworks', JSON.stringify(initFrameworkArray))
+ 
     var userToken = JSON.parse(localStorage.getItem("userToken"))
-    const res = await simpleHttp.put(`/api/v1/dev/chooseMyFrameworks/${singleId}`,userToken)
+    const res = await simpleHttp.put(`/api/v1/dev/chooseMyFramework/${singleId}`,userToken)
     if(res.status === true ){
-      console.log('language selected')
+    
       }else{toast.error(res.message)}
   }
   

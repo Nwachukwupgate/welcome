@@ -103,10 +103,10 @@ function RegisterForm() {
                                                 <span>Sign up</span>
                                             </button>
 
-                                            <p className="border-t pt-6 text-sm">
+                                            {/* <p className="border-t pt-6 text-sm">
                                                 Already have an account?
                                                 <a href="#" className="text-[#F49038]">Sign in</a>
-                                            </p>
+                                            </p> */}
                                         </form>
                                     </div>
 

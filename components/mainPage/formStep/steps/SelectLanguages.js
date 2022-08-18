@@ -36,24 +36,27 @@ const handleSelectLanguages = async(e)=>{
   //max number is 6
   function checkIfClicked(single) {return single == singleId}
   const checked = initLanguagesArray.find(checkIfClicked)
-  if (checked !== undefined) { // has been checked before, remove id from state
+  if (checked !== undefined) {// has been checked before, remove id from state
+   
   var selectedLanguagess = JSON.parse(localStorage.getItem("userLanguagess"))
   let updatedLanguagess = selectedLanguagess.filter((id) => 
   {return id !== parseInt(singleId)})
   window.localStorage.setItem('userLanguagess', JSON.stringify(updatedLanguagess))
+//after filtering, i need to update initLanguageArray
 
   //unchooseFramwork
   var userToken = JSON.parse(localStorage.getItem("userToken"))
   const res = await simpleHttp.put(`/api/v1/dev/UnchooseMyLanguages/${singleId}`,userToken)
   if(res.status == true){}else{toast.error(res.error.message)}
   }else{
+
     initLanguagesArray.push(parseInt(singleId))
     localStorage.setItem('userLanguagess', JSON.stringify(initLanguagesArray))
-    console.log(initLanguagesArray,'initLanguagesArray')
+
     var userToken = JSON.parse(localStorage.getItem("userToken"))
     const res = await simpleHttp.put(`/api/v1/dev/chooseMyLanguages/${singleId}`,userToken)
     if(res.status === true ){
-      console.log('Languages selected')
+
       }else{toast.error(res.message)}
   }
   

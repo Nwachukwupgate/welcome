@@ -9,7 +9,6 @@ const simpleHttp =  new EasyHTTP()
 
 
 if(process.env.NEXT_PUBLIC_NODE_ENV ==='development'){
-  console.log('here')
   var api_origin = 'http://localhost:3333'
 }else{
   var api_origin = 'https://api.droomwork.io'
@@ -50,15 +49,7 @@ const handleSubmitDevsRegistration = async(e)=>{
   formData.append('continent',e.target.continent.value)
   formData.append('language','english')
 
-  console.log(cvFile,'cvFile')
-  console.log(file,'file')
-  console.log(e.target.firstName.value,'firstName')
-  console.log(e.target.phoneNumber.value,'phone')
-  console.log(e.target.lastName.value,'lastname')
-  console.log(e.target.shortBio.value,'shortBio')
-  console.log(e.target.continent.value,'continent')
-  
-  
+
   var userToken = JSON.parse(localStorage.getItem("userToken"))
 
   fetch(`${api_origin}/api/v1/dev/enterBasicInfo `, {
@@ -77,13 +68,16 @@ const handleSubmitDevsRegistration = async(e)=>{
           localStorage.removeItem("userFrameworks")
           localStorage.removeItem("userLanguages")
         
-        }else{toast.error(result.message)}
+        }else{
+          setSpinner(false)
+          toast.error(result.message)
+        }
     })
 }
 const handleChange=(e)=>{
   setFile(e.target.files[0])
   file = e.target.files[0]
-  hiddenFileInput.current.click()
+  // hiddenFileInput.current.click()
   
   var ext = file.name.split('.').pop()
  
@@ -93,6 +87,22 @@ const handleChange=(e)=>{
   }else{return toast.error('Kindly upload your picture')}
 
   return file
+}
+
+const handleCVChange =(e)=>{
+  setFile(e.target.files[0])
+  setCvName(e.target.files[0].name)
+  cvFile = e.target.files[0]
+  // hiddenFileInput.current.click()
+  
+  var ext = cvFile.name.split('.').pop()
+  if(ext=="docx" || ext=="doc" || ext=="pdf"){
+  if(cvFile.size >1000000){
+    return toast.error('CV size is too large')}
+    
+  }else{return toast.error('Kindly upload your CV')}
+
+  return cvFile
 }
 
 
@@ -116,32 +126,17 @@ setSuggest(res.data)
     tags.push({id:searchedSkillId,name:searchedSkill})
     var userToken = JSON.parse(localStorage.getItem("userToken"))
     const res = await simpleHttp.put(`/api/v1/dev/chooseMySkill/${searchedSkillId}`,userToken)
-    if(res.status === true ){console.log('Skill selected')}else{toast.error(res.message)}
+    if(res.status === true ){}else{toast.error(res.message)}
   }
 
 
-const handleCVChange =(e)=>{
-  setFile(e.target.files[0])
-  setCvName(e.target.files[0].name)
-  cvFile = e.target.files[0]
-  hiddenFileInput.current.click()
-  
-  var ext = cvFile.name.split('.').pop()
-  console.log(ext,'file cv ext')
-  if(ext=="docx" || ext=="doc" || ext=="pdf"){
-  if(cvFile.size >1000000){
-    return toast.error('CV size is too large')}
-    
-  }else{return toast.error('Kindly upload your CV')}
 
-  return cvFile
-}
 
   const removeTags = async(indexToRemove,skillId) => {
 		setTags([...tags.filter((_, index) => index !== indexToRemove)])
     var userToken = JSON.parse(localStorage.getItem("userToken"))
     const res = await simpleHttp.put(`/api/v1/dev/UnchooseMySkill/${skillId}`,userToken)
-    if(res.status === true ){console.log('Skill Unselected')}else{toast.error(res.message)}
+    if(res.status === true ){}else{toast.error(res.message)}
 	};
 
   const addTags = event => {
@@ -183,8 +178,9 @@ const handleCVChange =(e)=>{
                   required
                   placeholder='Select profile pics'
                   className="w-full py-3 px-4 border border-solid border-gray-400  outline-0 rounded-lg placeholder:text-[#001935]  placeholder:font-bold bg-transparent transition disabled:ring-gray-200 disabled:bg-gray-100 disabled:placeholder-gray-400 invalid:ring-red-400 focus:invalid:outline-none" id="myFile"
-                  ref={hiddenFileInput} onChange={handleChange} 
+                  onChange={handleChange} 
                 />
+                 {/* ref={hiddenFileInput} */}
                   {/* <button className={styles.file_upload__button} type="button" onClick={handleClick}>Choose File(s)</button> */}
                 <div>
                   {profileName}
@@ -339,7 +335,7 @@ const handleCVChange =(e)=>{
                         </label>
                         <p className="pl-1">or drag and drop</p>
                     </div>
-                    <p className="text-xs text-gray-500">.doc, .pnt less than 1MB</p>
+                    <p className="text-xs text-gray-500">.pdf only less than 1MB</p>
                     </div>
                 </div>
   

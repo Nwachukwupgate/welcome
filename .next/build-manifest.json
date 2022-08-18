@@ -25,10 +25,10 @@
       "static/chunks/main.js",
       "static/chunks/pages/_error.js"
     ],
-    "/companyStep": [
+    "/register": [
       "static/chunks/webpack.js",
       "static/chunks/main.js",
-      "static/chunks/pages/companyStep.js"
+      "static/chunks/pages/register.js"
     ],
     "/stepForm": [
       "static/chunks/webpack.js",

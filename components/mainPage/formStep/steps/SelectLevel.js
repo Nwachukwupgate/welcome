@@ -20,7 +20,7 @@ function SelectLevel({handleClick, steps, currentStep}) {
   function onChangeValue(event) {
     setIsLevelSelected(true)
     setMylevel(event.target.value);
-    console.log(event.target.value);
+    
   }
 
  
@@ -51,7 +51,7 @@ function SelectLevel({handleClick, steps, currentStep}) {
 const handleChooseLevelAndStack = async(e)=>{
 e.preventDefault()
 if(isLevelSelected == true && myStack !== ''){
-  console.log(myStack,'checkMystackNow')
+  
   localStorage.setItem('userStack', JSON.stringify(myStack))
   var userToken = JSON.parse(localStorage.getItem("userToken"))
   const res = await simpleHttp.put(`/api/v1/dev/chooseMyStacks/${myStack}`,userToken)
@@ -59,7 +59,7 @@ if(isLevelSelected == true && myStack !== ''){
   if(res.status === true && response.status === true ){
   handleClick("next")
   }else{
-    console.log('here man')
+    
     toast.error(res.message)
   }
 }else{ toast.error('Select Level & Stack')}
@@ -94,9 +94,9 @@ if(isLevelSelected == true && myStack !== ''){
           <div onChange={onChangeValue}>
         {userLevels.map((single)=>{
            return <>
-            <div class="flex items-center" key={single.id}>
-              <input id="orange-radio" type="radio" value={single.id} name="colored-radio" class="w-4 h-4 text-orange-500 bg-gray-100 border-gray-300 focus:ring-orange-500 dark:focus:ring-orange-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" onChange={(e)=> setRadio(e.target.value)} />
-              <label for="orange-radio" class="ml-2 text-lg text-gray-900 dark:text-gray-300">{single.name}</label>
+            <div className="flex items-center" key={single.id}>
+              <input id="orange-radio" type="radio" value={single.id} name="colored-radio" className="w-4 h-4 text-orange-500 bg-gray-100 border-gray-300 focus:ring-orange-500 dark:focus:ring-orange-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" onChange={(e)=> setRadio(e.target.value)} />
+              <label for="orange-radio" className="ml-2 text-lg text-gray-900 dark:text-gray-300">{single.name}</label>
             </div>
             </>
           })}
@@ -135,7 +135,7 @@ if(isLevelSelected == true && myStack !== ''){
                       </select>
                  
                     
-                      <span class="
+                      <span className="
                         absolute
                         right-4
                         top-1/2

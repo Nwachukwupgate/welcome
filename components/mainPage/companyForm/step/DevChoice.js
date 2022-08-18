@@ -11,6 +11,7 @@ if(process.env.NEXT_PUBLIC_NODE_ENV ==='development'){var api_origin = 'http://l
 
 
 const initLanguageArray=[]
+const initFrameworkArray=[]
 let file = null
 
 function DevChoice({handleClick, steps, currentStep}) {
@@ -19,7 +20,9 @@ function DevChoice({handleClick, steps, currentStep}) {
   const[state, setState] = useState([])
   const[showLanguage, setShowLanguage] = useState(false)
   const[showPrice, setShowPrice] = useState(false)
+  const[showFramework, setShowFramework] = useState(false)
   const[Language, setLanguage] = useState([])
+  const[Framework, setFramework] = useState([])
   const[level, setLevel] = useState('')
   const[price, setPrice] = useState([])
   const[suggest, setSuggest] = useState([])
@@ -31,6 +34,10 @@ function DevChoice({handleClick, steps, currentStep}) {
   const [isLanguageSelected,setIsLanguageSelected] = useState(false)
   const [isSkillSelected,setIssKillSelected] = useState(false)
   const [isPriceSelected,setIsPriceSelected] = useState(false)
+  const [isFrameworkSelected,setIsFrameworkSelected] = useState(false)
+  const [updatedLanguageArray,setUpdatedLanguageArray] = useState([])
+  
+  //
   
 
 
@@ -42,6 +49,7 @@ function DevChoice({handleClick, steps, currentStep}) {
       var formData = new FormData()
       var compInfoObj = JSON.parse(localStorage.getItem("compInfoObj"))
       var userLanguages = JSON.parse(localStorage.getItem("userLanguages"))
+      var userFrameworks = JSON.parse(localStorage.getItem("userFrameworks"))
       var userSkills = JSON.parse(localStorage.getItem("userSkills"))
       var companyLocation = JSON.parse(localStorage.getItem("location"))
       formData.append('companyName',compInfoObj.companyName)
@@ -49,9 +57,31 @@ function DevChoice({handleClick, steps, currentStep}) {
       formData.append('email',compInfoObj.email)
       
       if(isLanguageSelected == true){
-        if(userLanguages[0] !== undefined){formData.append('language1',userLanguages[0])}
-        if(userLanguages[1] !== undefined){ formData.append('language2',userLanguages[1])}
-        if(userLanguages[2] !== undefined){formData.append('language3',userLanguages[2])}
+        console.log(userLanguages[0],'userLanguages[0]')
+        if(userLanguages[0] !== undefined){
+          var langId1 =  Object.values(userLanguages[0])[0]
+          formData.append('language1',langId1)
+        }
+        if(userLanguages[1] !== undefined){
+          var langId2 = Object.values(userLanguages[1])[0]
+          formData.append('language2',langId2)}
+        if(userLanguages[2] !== undefined){
+          var langId3 = Object.values(userLanguages[2])[0]
+          formData.append('language3',langId3)}
+      }
+
+      if(isFrameworkSelected == true){
+        if(userFrameworks[0] !== undefined){
+          var frameId1 =  Object.values(userFrameworks[0])[0]
+          formData.append('framework1',frameId1)
+        }
+        if(userFrameworks[1] !== undefined){
+          var frameId2 =  Object.values(userFrameworks[1])[0]
+          formData.append('framework2',frameId2)
+        }
+        if(userFrameworks[2] !== undefined){
+          var frameId3 =  Object.values(userFrameworks[2])[0]
+          formData.append('framework3',frameId3)}
       }
       
       if(isSkillSelected==true){
@@ -81,7 +111,11 @@ function DevChoice({handleClick, steps, currentStep}) {
             localStorage.removeItem("compInfoObj")
             localStorage.removeItem("userLanguages")
             localStorage.removeItem("userSkills")
-            }else{toast.error(result.message)}
+            localStorage.removeItem("userFrameworks")
+            }else{
+              toast.error(result.message)
+              setSpinner(false)
+            }
         })
   
     }else{toast.error('Select Price')}
@@ -164,7 +198,7 @@ const handleSelectStack = async(e)=>{
   const stackId = e.target.value
   const stackName = e.target.id
   const res = await simpleHttp.get(`/api/v1/comp/getLanguagesBasedOnStacks/${stackId}`)
-  if(res.status == true){
+  if(res.status == true){   
     setLanguage(res.data)
     setShowLanguage(true)
   }else{toast.error(res.error.message)}
@@ -172,6 +206,7 @@ const handleSelectStack = async(e)=>{
   const location = JSON.parse(localStorage.getItem("location"))
   const ress = await simpleHttp.get(`/api/v1/all/getPrice/${location}/${stackId}`)
   if(ress.status == true){
+    // console.log(ress.data,'price')
     setPrice(ress.data)
     setShowPrice(true)
   }else{toast.error(ress.error.message)}
@@ -198,19 +233,79 @@ const handleSelectLanguage = async(e)=>{
   const singleId = e.target.id
   const LanguageName = e.target.value
   //max number is 3
-  function checkIfClicked(single) {return single == LanguageName}
+  function checkIfClicked(single) {
+    return Object.values(single)[0] == LanguageName
+  }
   const checked = initLanguageArray.find(checkIfClicked)
- 
+  console.log(checked,'checked')
   if (checked !== undefined) { // has been checked before, remove id from stat
   var selectedLanguages = JSON.parse(localStorage.getItem("userLanguages"))
-  let updatedLanguages = selectedLanguages.filter((id) => 
-  {return id !== LanguageName})
+  let updatedLanguages = selectedLanguages.filter((id) => {
+  return Object.values(id)[0] !== LanguageName})
+
   localStorage.setItem('userLanguages', JSON.stringify(updatedLanguages))
+  console.log(initLanguageArray,'b4 updated',updatedLanguages,'updatedLanguages')
+  initLanguageArray.length = 0 //clears array
+  console.log(initLanguageArray,'see the cleared state')
+
+  updatedLanguages.map((single)=>{
+   return initLanguageArray.push(single)
+  })
+  console.log(initLanguageArray,'true updated intiarray')
 
   }else{
     // initLanguageArray.push(parseInt(singleId))
-    initLanguageArray.push(LanguageName)
+
+    var key =parseInt(singleId),
+    obj = {[key]:LanguageName}
+    initLanguageArray.push(obj)
     localStorage.setItem('userLanguages', JSON.stringify(initLanguageArray))
+    var userLanguagess = JSON.parse(localStorage.getItem("userLanguages"))
+    for ( var key in userLanguagess[0] ) {var langId1 = key}
+    for ( var key in userLanguagess[1] ) {var langId2 = key}
+    for ( var key in userLanguagess[2] ) {var langId3 = key}
+    for ( var key in userLanguagess[3] ) {var langId4 = key}
+    for ( var key in userLanguagess[4] ) {var langId5 = key}
+    for ( var key in userLanguagess[5] ) {var langId6 = key}
+
+    const res = await simpleHttp.getNoAuth(`/api/v1/comp/getFrameworksBasedOnLanguages/${langId1}/${langId2}/${langId3}/${langId4}/${langId5}/${langId6}`)
+    if(res.status == true){  
+    
+      setFramework(res.data)
+      setShowFramework(true)
+    }else{toast.error(res.error.message)}
+  }
+  
+}
+
+
+const handleSelectFramework = async(e)=>{
+setIsFrameworkSelected(true)
+  const singleId = e.target.id
+  const FrameworkName = e.target.value
+  //max number is 3
+  function checkIfClicked(single) {return Object.values(single)[0] == FrameworkName}
+  const checked = initFrameworkArray.find(checkIfClicked)
+  if (checked !== undefined) { // has been checked before, remove id from stat
+  var selectedFrameworks = JSON.parse(localStorage.getItem("userFrameworks"))
+  let updatedFrameworks = selectedFrameworks.filter((id) => 
+  {return Object.values(id)[0] !== FrameworkName})
+  localStorage.setItem('userFrameworks', JSON.stringify(updatedFrameworks))
+
+  console.log(initFrameworkArray,'b4 updated',updatedFrameworks,'updatedLanguages')
+  initFrameworkArray.length = 0 //clears array
+  console.log(initFrameworkArray,'see the cleared state')
+
+  updatedFrameworks.map((single)=>{
+   return initFrameworkArray.push(single)
+  })
+  console.log(initFrameworkArray,'true updated intiarray')
+
+  }else{
+    var key =parseInt(singleId),
+    obj = {[key]:FrameworkName}
+    initFrameworkArray.push(obj)
+    localStorage.setItem('userFrameworks', JSON.stringify(initFrameworkArray))
   }
   
 }
@@ -287,6 +382,25 @@ const handleGetSkills = async(e) => {
           </div>
 )}
 
+{showFramework && (
+  <div>
+            <p className="text-[#001935] font-bold">Choose Frameworks</p>
+            <div className={styles.main_container}>
+              <ul className={styles.main_list}>
+                {Framework && Framework.map((items => (
+                  <li className={styles.single_list} key={items.id}>
+                    <label className={styles.list_label}>
+                      <input type="checkbox" name="" className={styles.inputType} id={items.id} value={items.name} onChange={handleSelectFramework}  />
+                      <div className={styles.icon_box}>
+                        <span className={styles.fa} aria-hidden="true"> {items.name} </span>
+                      </div>
+                    </label>
+                  </li>
+                )))}
+              </ul>
+            </div>
+          </div>
+)}
           <div className="relative">
               <div className={styles.tags_input}>
                 <ul className={styles.tags}>
@@ -414,7 +528,7 @@ const handleGetSkills = async(e) => {
                     </label>
                     <p className="pl-1">or drag and drop</p>
                 </div>
-                <p className="text-xs text-gray-500">.docx, .pdf less than 10MB</p>
+                <p className="text-xs text-gray-500">.pdf only less than 10MB</p>
                 </div>
             </div>
           
