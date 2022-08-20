@@ -6,6 +6,7 @@ import NextNProgress from 'nextjs-progressbar';
 import { Provider } from 'react-redux'
 import {store} from 'reactWrapper/redux/store'
 
+
 function MyApp({ Component, pageProps }) {
 
   if (Component.getLayout) {

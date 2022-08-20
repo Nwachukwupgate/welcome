@@ -9,14 +9,18 @@ const simpleHttp =  new EasyHTTP()
 function SelectLevel({handleClick, steps, currentStep}) {
   const router = useRouter()
   const [myStack, setMyStack] = useState('');
-  const [myLevel, setMylevel] = useState("Entry")
+  const [myLevel, setMylevel] = useState("")
   const [userLevels, setUserLevels] = useState([])
   const [userStacks, setUserStacks] = useState([])
   const [radio, setRadio] = useState(null)
+  const [isLevelSelected,setIsLevelSelected] = useState(false)
+  
+
 
   function onChangeValue(event) {
+    setIsLevelSelected(true)
     setMylevel(event.target.value);
-    console.log(event.target.value);
+    
   }
 
  
@@ -46,17 +50,20 @@ function SelectLevel({handleClick, steps, currentStep}) {
 
 const handleChooseLevelAndStack = async(e)=>{
 e.preventDefault()
-console.log(myStack,'checkMystackNow')
-localStorage.setItem('userStack', JSON.stringify(myStack))
-var userToken = JSON.parse(localStorage.getItem("userToken"))
-const res = await simpleHttp.put(`/api/v1/dev/chooseMyStacks/${myStack}`,userToken)
-const response = await simpleHttp.put(`/api/v1/dev/chooseMyLevel/${radio}`,userToken)
-if(res.status === true && response.status === true ){
-handleClick("next")
-}else{
-  console.log('here man')
-  toast.error(res.message)
-}
+if(isLevelSelected == true && myStack !== ''){
+  
+  localStorage.setItem('userStack', JSON.stringify(myStack))
+  var userToken = JSON.parse(localStorage.getItem("userToken"))
+  const res = await simpleHttp.put(`/api/v1/dev/chooseMyStacks/${myStack}`,userToken)
+  const response = await simpleHttp.put(`/api/v1/dev/chooseMyLevel/${radio}`,userToken)
+  if(res.status === true && response.status === true ){
+  handleClick("next")
+  }else{
+    
+    toast.error(res.message)
+  }
+}else{ toast.error('Select Level & Stack')}
+
 
 }
 
@@ -81,26 +88,26 @@ handleClick("next")
 
           <div className="flex flex-col text-center">
             <span className="text-2xl font-semibold">Welcome to Droomwork</span>
-            <span className="text-lg" >Select your Level and Stack</span>
+            <span className="text-lg" >Select Level & Stack You Will Be Vetted On</span>
           </div>
 
           <div onChange={onChangeValue}>
         {userLevels.map((single)=>{
            return <>
-            <div class="flex items-center" key={single.id}>
-              <input id="orange-radio" type="radio" value={single.id} name="colored-radio" class="w-4 h-4 text-orange-500 bg-gray-100 border-gray-300 focus:ring-orange-500 dark:focus:ring-orange-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" onChange={(e)=> setRadio(e.target.value)} />
-              <label for="orange-radio" class="ml-2 text-lg text-gray-900 dark:text-gray-300">{single.name}</label>
+            <div className="flex items-center" key={single.id}>
+              <input id="orange-radio" type="radio" value={single.id} name="colored-radio" className="w-4 h-4 text-orange-500 bg-gray-100 border-gray-300 focus:ring-orange-500 dark:focus:ring-orange-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" onChange={(e)=> setRadio(e.target.value)} />
+              <label for="orange-radio" className="ml-2 text-lg text-gray-900 dark:text-gray-300">{single.name}</label>
             </div>
             </>
           })}
           </div>
 
-          <div class="flex flex-wrap -mx-4">
-            <div class="w-full">
-                <div class="">
-                  <div class="relative">
+          <div className="flex flex-wrap -mx-4">
+            <div className="w-full">
+                <div className="">
+                  <div className="relative">
                
-                   <select class="
+                   <select className="
                         w-full
                         border-[1.5px] border-form-stroke
                         rounded-lg
@@ -118,6 +125,7 @@ handleClick("next")
                         "
                        
                         onChange={(e)=> setMyStack(e.target.value)}>
+                        <option disabled selected hidden>Select Stack</option>
                        {userStacks.map((single)=>{
                          return <>
                          <option value={single.id} key={single.id}>{single.name}</option>
@@ -127,7 +135,7 @@ handleClick("next")
                       </select>
                  
                     
-                      <span class="
+                      <span className="
                         absolute
                         right-4
                         top-1/2
@@ -154,18 +162,18 @@ handleClick("next")
             {/* Back button */}
 
             
-            <button 
+            {/* <button 
               onClick={()=>handleClick("")}
               className={`bg-[#001935] inline-flex items-center justify-center w-full uppercase text-center text-white py-2 px-32 rounded-xl font-semibold cursor-pointer border-2 border-slate-300 hover:bg-slate-700 hover:text-white transiion duration-200 ease-in-out ${currentStep === 1 ? "opacity-50 cursor-not-allowed" : "" }`} style={{color: "gray"}}>
                 Previous
-            </button>
+            </button> */}
             
 
             {/*  Next button */}
             
             <button 
             type='submit'
-            className="bg-white w-full text-slate-400 uppercase py-2 px-32 rounded-xl font-semibold cursor-pointer border-2 border-slate-300 hover:bg-slate-700 hover:text-white transiion duration-200 ease-in-out inline-flex
+            className="bg-[#001935] w-full text-slate-400 uppercase py-2 px-32 rounded-xl font-semibold cursor-pointer border-2 border-slate-300 hover:bg-slate-700 hover:text-white transiion duration-200 ease-in-out inline-flex
             items-center
             justify-center">
                 {currentStep === steps.length - 1 ? "Confirm" : "Next"}

@@ -6,33 +6,129 @@ import 'react-toastify/dist/ReactToastify.css';
 import { useRouter } from 'next/router'
 
 const simpleHttp =  new EasyHTTP()
-const initFrameworkArray=[]
-let file = null
-
 
 if(process.env.NEXT_PUBLIC_NODE_ENV ==='development'){var api_origin = 'http://localhost:3333'}else{var api_origin = 'https://api.droomwork.io'}
+
+
+const initLanguageArray=[]
+const initFrameworkArray=[]
+let file = null
 
 function DevChoice({handleClick, steps, currentStep}) {
   const [tags, setTags] = React.useState([])
   const[display, setDisplay] = useState(false)
   const[state, setState] = useState([])
-  const[showFramework, setShowFramework] = useState(false)
+  const[showLanguage, setShowLanguage] = useState(false)
   const[showPrice, setShowPrice] = useState(false)
-  const[frameWork, setFramework] = useState([])
-  const[languages, setLanguages] = useState([])
+  const[showFramework, setShowFramework] = useState(false)
+  const[Language, setLanguage] = useState([])
+  const[Framework, setFramework] = useState([])
+  const[level, setLevel] = useState('')
   const[price, setPrice] = useState([])
   const[suggest, setSuggest] = useState([])
   const[value, setValue] = useState("")
   const [fileName, setFileName] = useState('')
+  const [selectedPrice,setSelectedPrice] = useState('')
+  const [spinner, setSpinner] = useState(false)
+  const [location,setLocation] = useState('')
+  const [isLanguageSelected,setIsLanguageSelected] = useState(false)
+  const [isSkillSelected,setIssKillSelected] = useState(false)
+  const [isPriceSelected,setIsPriceSelected] = useState(false)
+  const [isFrameworkSelected,setIsFrameworkSelected] = useState(false)
+  const [updatedLanguageArray,setUpdatedLanguageArray] = useState([])
+  
+  //
+  
+
+
+
+  const submitHireDetails = async(e)=>{
+    e.preventDefault()
+    if(isPriceSelected == true){
+      setSpinner(true)
+      var formData = new FormData()
+      var compInfoObj = JSON.parse(localStorage.getItem("compInfoObj"))
+      var userLanguages = JSON.parse(localStorage.getItem("userLanguages"))
+      var userFrameworks = JSON.parse(localStorage.getItem("userFrameworks"))
+      var userSkills = JSON.parse(localStorage.getItem("userSkills"))
+      var companyLocation = JSON.parse(localStorage.getItem("location"))
+      formData.append('companyName',compInfoObj.companyName)
+      formData.append('phone',compInfoObj.phone)
+      formData.append('email',compInfoObj.email)
+      
+      if(isLanguageSelected == true){
+        console.log(userLanguages[0],'userLanguages[0]')
+        if(userLanguages[0] !== undefined){
+          var langId1 =  Object.values(userLanguages[0])[0]
+          formData.append('language1',langId1)
+        }
+        if(userLanguages[1] !== undefined){
+          var langId2 = Object.values(userLanguages[1])[0]
+          formData.append('language2',langId2)}
+        if(userLanguages[2] !== undefined){
+          var langId3 = Object.values(userLanguages[2])[0]
+          formData.append('language3',langId3)}
+      }
+
+      if(isFrameworkSelected == true){
+        if(userFrameworks[0] !== undefined){
+          var frameId1 =  Object.values(userFrameworks[0])[0]
+          formData.append('framework1',frameId1)
+        }
+        if(userFrameworks[1] !== undefined){
+          var frameId2 =  Object.values(userFrameworks[1])[0]
+          formData.append('framework2',frameId2)
+        }
+        if(userFrameworks[2] !== undefined){
+          var frameId3 =  Object.values(userFrameworks[2])[0]
+          formData.append('framework3',frameId3)}
+      }
+      
+      if(isSkillSelected==true){
+        if(userSkills[0] !== undefined){ formData.append('skill1',userSkills[0].name)}
+        if(userSkills[1] !== undefined){ formData.append('skill2',userSkills[1].name)}
+        if(userSkills[2] !== undefined){ formData.append('skill3',userSkills[2].name)}
+      }
+      
+  
+      formData.append('salary_range',selectedPrice)
+      formData.append('stack',compInfoObj.stack)
+      formData.append('jobDescription', file)
+      formData.append('no_of_devs', e.target.noOfDevs.value)
+      formData.append('jobLocation1',location)
+      formData.append('workType','Contact')
+      formData.append('level',level)
+      formData.append('companyLocation',companyLocation)
+  
+      fetch(`${api_origin}/api/v1/comp/hireContact`, {
+          method: 'POST',
+          body: formData
+        }).then(
+          response => response.json()
+        ).then((result)=>{
+            if(result.status==true){
+            handleClick("next")
+            localStorage.removeItem("compInfoObj")
+            localStorage.removeItem("userLanguages")
+            localStorage.removeItem("userSkills")
+            localStorage.removeItem("userFrameworks")
+            }else{
+              toast.error(result.message)
+              setSpinner(false)
+            }
+        })
+  
+    }else{toast.error('Select Price')}
+  
+  }
 
 
   const handleJDChange = (e) => {
       setFileName(e.target.files[0].name)
-      const file = e.target.files[0]
+      file = e.target.files[0]
       
       // hiddenFileInput.current.click()
       var ext = file.name.split('.').pop()
-      console.log(ext,'file cv ext')
       if(ext=="docx" || ext=="doc" || ext=="pdf"){
       if(file.size >1000000){
         return toast.error('CV size is too large')}
@@ -57,9 +153,9 @@ function DevChoice({handleClick, steps, currentStep}) {
   //   tags.push(searchTerm)
   // };
   const handleSelectSkill = async(searchedSkill,searchedSkillId) => {
+    setIssKillSelected(true)
     setValue(searchedSkill)
     const numberOfSkill = tags.length
-    console.log(numberOfSkill,'length')
     if(numberOfSkill >=3 ){
      return  toast.error('Max Number of skill is 3')
     }else{
@@ -74,11 +170,12 @@ function DevChoice({handleClick, steps, currentStep}) {
     setDisplay(!display)
   }
 
-  const removeTags = indexToRemove => {
+  const removeTags = (indexToRemove,tId) => {
 		setTags([...tags.filter((_, index) => index !== indexToRemove)])
-    localStorage.setItem('userSkills', JSON.stringify(tags))
-  
-	};
+    const skills = JSON.parse(localStorage.getItem("userSkills"))
+    const updatedSkills =  skills.filter((single) => {return single.id !== tId})
+    localStorage.setItem('userSkills', JSON.stringify(updatedSkills))
+	}
 
   const addTags = event => {
 		if (event.target.value !== "") {
@@ -99,46 +196,115 @@ function DevChoice({handleClick, steps, currentStep}) {
 const handleSelectStack = async(e)=>{
   //if stack selected b4 just update
   const stackId = e.target.value
-  const res = await simpleHttp.get(`/api/v1/comp/getFrameworksBasedOnStacks/${stackId}`)
-  if(res.status == true){
-    setFramework(res.data)
-    setShowFramework(true)
+  const stackName = e.target.id
+  const res = await simpleHttp.get(`/api/v1/comp/getLanguagesBasedOnStacks/${stackId}`)
+  if(res.status == true){   
+    setLanguage(res.data)
+    setShowLanguage(true)
   }else{toast.error(res.error.message)}
 
   const location = JSON.parse(localStorage.getItem("location"))
   const ress = await simpleHttp.get(`/api/v1/all/getPrice/${location}/${stackId}`)
   if(ress.status == true){
+    // console.log(ress.data,'price')
     setPrice(ress.data)
     setShowPrice(true)
   }else{toast.error(ress.error.message)}
-  setShowFramework(true)
+  setShowLanguage(true)
   const availableCompInfoObj = JSON.parse(localStorage.getItem("compInfoObj"))
-  const updatedCompInfoObj = Object.assign(availableCompInfoObj,{'stack':stackId})
-  console.log(updatedCompInfoObj,'updatedInfo')
+  const updatedCompInfoObj = Object.assign(availableCompInfoObj,{'stack':stackName})
   localStorage.setItem('compInfoObj', JSON.stringify(updatedCompInfoObj))
 }
 
 const handleSelectPrice = async(e)=>{
-  const priceRange = e.target.value
+  setIsPriceSelected(true)
+  const priceRange = e.target.getAttribute('data-id')
+  const seniority = e.target.id
+  if(seniority =='junior'){setLevel('Junior')}
+  if(seniority =='mid'){setLevel('Mid-Level')}
+  if(seniority =='senior'){setLevel('Senior')}
   const availableCompInfoObj = JSON.parse(localStorage.getItem("compInfoObj"))
   const updatedCompInfoObj = Object.assign(availableCompInfoObj,{'salary_range':priceRange})
-  console.log(updatedCompInfoObj,'updatedInfo')
   localStorage.setItem('compInfoObj', JSON.stringify(updatedCompInfoObj))
+   setSelectedPrice(priceRange)
 }
-const handleSelectFramework = async(e)=>{
+const handleSelectLanguage = async(e)=>{
+  setIsLanguageSelected(true)
   const singleId = e.target.id
+  const LanguageName = e.target.value
   //max number is 3
-  function checkIfClicked(single) {return single == singleId}
+  function checkIfClicked(single) {
+    return Object.values(single)[0] == LanguageName
+  }
+  const checked = initLanguageArray.find(checkIfClicked)
+  console.log(checked,'checked')
+  if (checked !== undefined) { // has been checked before, remove id from stat
+  var selectedLanguages = JSON.parse(localStorage.getItem("userLanguages"))
+  let updatedLanguages = selectedLanguages.filter((id) => {
+  return Object.values(id)[0] !== LanguageName})
+
+  localStorage.setItem('userLanguages', JSON.stringify(updatedLanguages))
+  console.log(initLanguageArray,'b4 updated',updatedLanguages,'updatedLanguages')
+  initLanguageArray.length = 0 //clears array
+  console.log(initLanguageArray,'see the cleared state')
+
+  updatedLanguages.map((single)=>{
+   return initLanguageArray.push(single)
+  })
+  console.log(initLanguageArray,'true updated intiarray')
+
+  }else{
+    // initLanguageArray.push(parseInt(singleId))
+
+    var key =parseInt(singleId),
+    obj = {[key]:LanguageName}
+    initLanguageArray.push(obj)
+    localStorage.setItem('userLanguages', JSON.stringify(initLanguageArray))
+    var userLanguagess = JSON.parse(localStorage.getItem("userLanguages"))
+    for ( var key in userLanguagess[0] ) {var langId1 = key}
+    for ( var key in userLanguagess[1] ) {var langId2 = key}
+    for ( var key in userLanguagess[2] ) {var langId3 = key}
+    for ( var key in userLanguagess[3] ) {var langId4 = key}
+    for ( var key in userLanguagess[4] ) {var langId5 = key}
+    for ( var key in userLanguagess[5] ) {var langId6 = key}
+
+    const res = await simpleHttp.getNoAuth(`/api/v1/comp/getFrameworksBasedOnLanguages/${langId1}/${langId2}/${langId3}/${langId4}/${langId5}/${langId6}`)
+    if(res.status == true){  
+    
+      setFramework(res.data)
+      setShowFramework(true)
+    }else{toast.error(res.error.message)}
+  }
+  
+}
+
+
+const handleSelectFramework = async(e)=>{
+setIsFrameworkSelected(true)
+  const singleId = e.target.id
+  const FrameworkName = e.target.value
+  //max number is 3
+  function checkIfClicked(single) {return Object.values(single)[0] == FrameworkName}
   const checked = initFrameworkArray.find(checkIfClicked)
-  console.log(checked, 'Has been clicked?')
   if (checked !== undefined) { // has been checked before, remove id from stat
   var selectedFrameworks = JSON.parse(localStorage.getItem("userFrameworks"))
   let updatedFrameworks = selectedFrameworks.filter((id) => 
-  {return id !== parseInt(singleId)})
+  {return Object.values(id)[0] !== FrameworkName})
   localStorage.setItem('userFrameworks', JSON.stringify(updatedFrameworks))
 
+  console.log(initFrameworkArray,'b4 updated',updatedFrameworks,'updatedLanguages')
+  initFrameworkArray.length = 0 //clears array
+  console.log(initFrameworkArray,'see the cleared state')
+
+  updatedFrameworks.map((single)=>{
+   return initFrameworkArray.push(single)
+  })
+  console.log(initFrameworkArray,'true updated intiarray')
+
   }else{
-    initFrameworkArray.push(parseInt(singleId))
+    var key =parseInt(singleId),
+    obj = {[key]:FrameworkName}
+    initFrameworkArray.push(obj)
     localStorage.setItem('userFrameworks', JSON.stringify(initFrameworkArray))
   }
   
@@ -157,45 +323,6 @@ const handleGetSkills = async(e) => {
   }}
 
 
-  const submitHireDetails = async(e)=>{
-    e.preventDefault()
-    var compInfoObj = JSON.parse(localStorage.getItem("compInfoObj"))
-    var userFrameworks = JSON.parse(localStorage.getItem("userFrameworks"))
-    var userSkills = JSON.parse(localStorage.getItem("userSkills"))
-    var formData = new FormData()
-    console.log(userFrameworks[2],'see something')
-    formData.append('companyName',compInfoObj.companyName)
-    formData.append('phone',compInfoObj.phone)
-    formData.append('email',compInfoObj.email)
-    formData.append('framework1',userFrameworks[0])
-    if(userFrameworks[1] !== undefined){  formData.append('framework2',userFrameworks[1])}
-    if(userFrameworks[2] !== undefined){  formData.append('framework3',userFrameworks[2])}
-    
-    formData.append('skill1',userSkills[0].name)
-    if(userSkills[1] !== undefined){  formData.append('skill2',userSkills[1].name)}
-    if(userSkills[2] !== undefined){  formData.append('skill3',userSkills[2].name)}
-
-    formData.append('salary_range',compInfoObj.fundingLevel)
-    formData.append('stack',compInfoObj.stack)
-    console.log(file,'see file')
-    formData.append('jobDescription', file)
-    formData.append('no_of_devs', e.target.noOfDevs.value)
-    formData.append('jobLocation1', e.target.jobLocation.value)
-    formData.append('workType','Contact')
-
-    fetch(`${api_origin}/api/v1/comp/hireContact`, {
-        method: 'POST',
-        body: formData
-      }).then(
-        response => response.json()
-      ).then((result)=>{
-          if(result.status==true){
-          handleClick("next")
-          }else{toast.error(result.message)}
-      })
-
- 
-  }
   return (
     <>
       <ToastContainer
@@ -221,7 +348,7 @@ const handleGetSkills = async(e) => {
                   <li className={styles.single_list} key={items.id}>
                     <label className={styles.list_label}>
                     
-                      <input id="orange-radio" type="radio" required value={items.id} name="colored-radio" class="w-4 h-4 hidden text-orange-500 bg-gray-100 border-gray-300 focus:ring-orange-500 dark:focus:ring-orange-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" onChange={handleSelectStack} />
+                      <input id={items.name} type="radio" required value={items.id} name="colored-radio" class="w-4 h-4 hidden text-orange-500 bg-gray-100 border-gray-300 focus:ring-orange-500 dark:focus:ring-orange-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" onChange={handleSelectStack} />
                       <div className={styles.icon_box}>
                         {/* <div className={styles.fab}>
                           <img src={items.stackIcon} />
@@ -235,15 +362,15 @@ const handleGetSkills = async(e) => {
               </ul>
             </div>
           </div>
-{showFramework && (
+{showLanguage && (
   <div>
-            <p className="text-[#001935] font-bold">Choose Framework</p>
+            <p className="text-[#001935] font-bold">Choose Language</p>
             <div className={styles.main_container}>
               <ul className={styles.main_list}>
-                {frameWork && frameWork.map((items => (
+                {Language && Language.map((items => (
                   <li className={styles.single_list} key={items.id}>
                     <label className={styles.list_label}>
-                      <input type="checkbox" name="" className={styles.inputType} id={items.id} onChange={handleSelectFramework}  />
+                      <input type="checkbox" name="" className={styles.inputType} id={items.id} value={items.name} onChange={handleSelectLanguage}  />
                       <div className={styles.icon_box}>
                         <span className={styles.fa} aria-hidden="true"> {items.name} </span>
                       </div>
@@ -255,6 +382,25 @@ const handleGetSkills = async(e) => {
           </div>
 )}
 
+{showFramework && (
+  <div>
+            <p className="text-[#001935] font-bold">Choose Frameworks</p>
+            <div className={styles.main_container}>
+              <ul className={styles.main_list}>
+                {Framework && Framework.map((items => (
+                  <li className={styles.single_list} key={items.id}>
+                    <label className={styles.list_label}>
+                      <input type="checkbox" name="" className={styles.inputType} id={items.id} value={items.name} onChange={handleSelectFramework}  />
+                      <div className={styles.icon_box}>
+                        <span className={styles.fa} aria-hidden="true"> {items.name} </span>
+                      </div>
+                    </label>
+                  </li>
+                )))}
+              </ul>
+            </div>
+          </div>
+)}
           <div className="relative">
               <div className={styles.tags_input}>
                 <ul className={styles.tags}>
@@ -308,11 +454,11 @@ const handleGetSkills = async(e) => {
           <div className="flex gap-x-2">
             <div class="flex items-center pl-4 rounded border border-gray-200 dark:border-gray-700">
                 <input id="bordered-radio-1" type="radio" value="" name="bordered-radio" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" onClick={(e) => {setDisplay(false)}} />
-                <label for="bordered-radio-1" class="py-4 ml-2 w-full text-sm font-medium text-gray-900 dark:text-gray-300">No</label>
+                <label htmlFor="bordered-radio-1" class="py-4 ml-2 w-full text-sm font-medium text-gray-900 dark:text-gray-300">No</label>
             </div>
             <div class="flex items-center pl-4 rounded border border-gray-200 dark:border-gray-700">
                 <input id="bordered-radio-2" type="radio" value="" name="bordered-radio" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" onClick={showClick} />
-                <label for="bordered-radio-2" class="py-4 ml-2 w-full text-sm font-medium text-gray-900 dark:text-gray-300">Yes</label>
+                <label htmlFor="bordered-radio-2" class="py-4 ml-2 w-full text-sm font-medium text-gray-900 dark:text-gray-300">Yes</label>
             </div>
           </div>
 
@@ -321,6 +467,7 @@ const handleGetSkills = async(e) => {
               <select 
                 className="w-full py-3 px-4 border border-solid border-gray-400  outline-0 rounded-lg bg-white transition"
                 name="jobLocation"
+                onChange={(e)=> setLocation(e.target.value)}
               >
                 <option disabled selected hidden>Select Continent</option>
                 <option value="Africa">Africa</option>
@@ -341,15 +488,9 @@ const handleGetSkills = async(e) => {
                 {price && price.map((items => (
                   <li className={styles.single_list} key={items.id}>
                     <label className={styles.list_label}>
-                     
-                      <input id="orange-radio" type="radio" value={`$${items.lower_price} - $${items.higher_price}`} name="colored-radio" class="w-4 h-4 hidden text-orange-500 bg-gray-100 border-gray-300 focus:ring-orange-500 dark:focus:ring-orange-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"  onChange={handleSelectPrice} required/>
-                   
+                      <input  id={items.seniority} type="radio" data-id={`$${items.lower_price} - $${items.higher_price}`} name="colored-radio" className='hidden'  onChange={handleSelectPrice} required  />
                       <div className={styles.icon_box}>
-                        <div className={styles.fab}>
-                          {items.stackIcon}
-                        </div>
-                        
-                        <span className={styles.fa} aria-hidden="true"> {`$${items.lower_price} - $${items.higher_price}`} </span>
+                        <span className={styles.fa} aria-hidden="true" required> {`$${items.lower_price} - $${items.higher_price}`} </span>
                       </div>
                     </label>
                   </li>
@@ -387,7 +528,7 @@ const handleGetSkills = async(e) => {
                     </label>
                     <p className="pl-1">or drag and drop</p>
                 </div>
-                <p className="text-xs text-gray-500">.doc, .pnt less than 10MB</p>
+                <p className="text-xs text-gray-500">.pdf only less than 10MB</p>
                 </div>
             </div>
           
@@ -405,7 +546,7 @@ const handleGetSkills = async(e) => {
                 {/* Back button */}
                 <button 
                 onClick={()=>handleClick("")}
-                className={`bg-[#001935] inline-flex items-center justify-center uppercase text-center text-white w-fit py-2 px-5 rounded-xl font-semibold cursor-pointer border-2 border-slate-300 hover:bg-slate-700 hover:text-white transiion duration-200 
+                className={`bg-[#001935] inline-flex items-center justify-center  text-center text-white w-fit py-2 px-5 rounded-xl font-semibold cursor-pointer border-2 border-slate-300 hover:bg-slate-700 hover:text-white transiion duration-200 
                 ease-in-out ${currentStep === 1 ? "opacity-50 cursor-not-allowed" : "" }`}>
                     Previous
                 </button>
@@ -413,11 +554,15 @@ const handleGetSkills = async(e) => {
                 {/* Next button */}
                 <button 
                 type="submit"
-                className="bg-[#001935] inline-flex items-center justify-center uppercase text-center text-white w-fit py-2 px-5 rounded-xl font-semibold cursor-pointer border-2 border-slate-300 hover:bg-slate-700 hover:text-white transiion duration-200 
+                className="bg-[#001935] inline-flex items-center justify-center  text-center text-white w-fit py-2 px-5 rounded-xl font-semibold cursor-pointer border-2 border-slate-300 hover:bg-slate-700 hover:text-white transiion duration-200 
                 ease-in-out">
-                    {currentStep === steps.length - 1 ? "Confirm" : "Next"}
+                {spinner && <svg class="inline  w-6 h-6 text-white animate-spin dark:text-gray-600 fill-gray-600 dark:fill-gray-300" viewBox="0 0 100 101" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M100 50.5908C100 78.2051 77.6142 100.591 50 100.591C22.3858 100.591 0 78.2051 0 50.5908C0 22.9766 22.3858 0.59082 50 0.59082C77.6142 0.59082 100 22.9766 100 50.5908ZM9.08144 50.5908C9.08144 73.1895 27.4013 91.5094 50 91.5094C72.5987 91.5094 90.9186 73.1895 90.9186 50.5908C90.9186 27.9921 72.5987 9.67226 50 9.67226C27.4013 9.67226 9.08144 27.9921 9.08144 50.5908Z" fill="currentColor"/><path d="M93.9676 39.0409C96.393 38.4038 97.8624 35.9116 97.0079 33.5539C95.2932 28.8227 92.871 24.3692 89.8167 20.348C85.8452 15.1192 80.8826 10.7238 75.2124 7.41289C69.5422 4.10194 63.2754 1.94025 56.7698 1.05124C51.7666 0.367541 46.6976 0.446843 41.7345 1.27873C39.2613 1.69328 37.813 4.19778 38.4501 6.62326C39.0873 9.04874 41.5694 10.4717 44.0505 10.1071C47.8511 9.54855 51.7191 9.52689 55.5402 10.0491C60.8642 10.7766 65.9928 12.5457 70.6331 15.2552C75.2735 17.9648 79.3347 21.5619 82.5849 25.841C84.9175 28.9121 86.7997 32.2913 88.1811 35.8758C89.083 38.2158 91.5421 39.6781 93.9676 39.0409Z" fill="currentFill"/></svg>}
+                {!spinner && currentStep === steps.length - 1 ? "Submit"
+    :" submitting.."}
                 </button>
-
+                
+                
+               
             </div>
           </div>
 
