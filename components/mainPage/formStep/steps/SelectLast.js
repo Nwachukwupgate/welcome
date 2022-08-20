@@ -21,134 +21,112 @@ function SelectLast({handleClick, steps, currentStep}) {
   const router = useRouter()
   const imgref = useRef('')
   const [tags, setTags] = React.useState([]);
-  const [fileName, setFileName] = useState('')
+  const [cvName, setCvName] = useState('')
   const [profileName, setProfileName] = useState('')
   const [files, setFile] = useState(null);
   const [spinner, setSpinner] = useState(false)
   const [uploadState,setuploadState]  = useState(true)
+  const[value, setValue] = useState("")
+  const[suggest, setSuggest] = useState([])
   
   const hiddenFileInput = React.useRef(null);
 
 
-//   const handleUploadPhoto = (e)=>{
-//     e.preventDefault()
-//     // filePayload = e.target.files;
-//     file = e.target.files[0]
-//     const fileType = file['type'];
-//     const validImageTypes = ['image/jpg', 'image/jpeg', 'image/png']
-//     if (e.target.files.length > 0) {
-//         if (!validImageTypes.includes(fileType)) {
-//             return toast.error('An Image file needed')
-//         }
-        
-//        imgref.current.src = URL.createObjectURL(file)
-//        setuploadState(false)
-//     }
 
-//     return file
-   
-// }
+
 
 
 const handleSubmitDevsRegistration = async(e)=>{
- e.preventDefault()
- const firstName = e.target.firstName.value
- const lastName = e.target.lastName.value
- const phone = e.target.phoneNumber.value
- //skills
+  e.preventDefault()
+  var formData = new FormData()
+  formData.append('cv', cvFile)
+  formData.append('profilePicture', file)
+  formData.append('firstname',e.target.firstName.value)
+  formData.append('phone',e.target.phoneNumber.value)
+  formData.append('lastname',e.target.lastName.value)
+  formData.append('short_bio',e.target.shortBio.value)
+  formData.append('continent',e.target.continent.value)
+  formData.append('language','english')
+  
+  var userToken = JSON.parse(localStorage.getItem("userToken"))
 
- const data = {
-    phone,lastName,firstName
-  }
- const res = await simpleHttp.put('/api/v1/dev/updateDevProfile',data)
- if(res.status == true){
- router.push('/')
-  }
-  toast.error(res.hint)
+  fetch(`${api_origin}/api/v1/dev/enterBasicInfo `, {
+      method: 'PUT',
+      headers: {
+        'Authorization':`Bearer ${userToken}`
+      },
+      body: formData
+    }).then(
+      response => response.json()
+    ).then((result)=>{
+        if(result.status==true){
+        //here
+        handleClick("next")
+        }else{toast.error(result.message)}
+    })
 }
 const handleChange=(e)=>{
   setFile(e.target.files[0])
-  setFileName(e.target.files[0].name)
   file = e.target.files[0]
   hiddenFileInput.current.click()
   
   var ext = file.name.split('.').pop()
+ 
   if(ext=="png" || ext=="jpeg" || ext=="jpg"){
   if(file.size >1000000){return toast.error('picture size is too large')}
-  setuploadState(false)  
+  
   }else{return toast.error('Kindly upload your picture')}
 
   return file
 }
 
-  const[suggest, setSuggest] = useState([
-    {
-      id: 1,
-      suggestDetail: 'abacus',
-    },
 
-    {
-      id: 2,
-      suggestDetail: 'arabacus',
-    },
 
-    {
-      id: 3,
-      suggestDetail: 'aaculus',
-    },
 
-    {
-      id: 4,
-      suggestDetail: 'Bvacf',
-    },
+const handleGetSkills = async(e) => {
+setValue(e.target.value)
+var userToken = JSON.parse(localStorage.getItem("userToken"))
+const name = e.target.value
+const data = {name}
+const res = await simpleHttp.post(`/api/v1/dev/searchForMySkills`,data,userToken)
+if(res.status == true){
+setSuggest(res.data)
+}else{
+  toast.error(res.message)
+}
+  }
 
-    {
-      id: 5,
-      suggestDetail: 'cvacf',
-    },
-
-    {
-      id: 6,
-      suggestDetail: 'bbvacf',
-    },
-
-    {
-      id: 7,
-      suggestDetail: 'bacf',
-    },
-
-  ])
-
-  const[value, setValue] = useState("")
-
-  const onChange = (event) => {
-    setValue(event.target.value);
-  };
-
-  const onSearch = (searchTerm) => {
-    setValue(searchTerm);
-    console.log("search ", searchTerm);
-    tags.push(searchTerm)
-  };
+  const handleSelectSkill = async(searchedSkill,searchedSkillId) => {
+    setValue(searchedSkill)
+    tags.push({id:searchedSkillId,name:searchedSkill})
+    var userToken = JSON.parse(localStorage.getItem("userToken"))
+    const res = await simpleHttp.put(`/api/v1/dev/chooseMySkill/${searchedSkillId}`,userToken)
+    if(res.status === true ){console.log('Skill selected')}else{toast.error(res.message)}
+  }
 
 
 const handleCVChange =(e)=>{
   setFile(e.target.files[0])
-  setFileName(e.target.files[0].name)
+  setCvName(e.target.files[0].name)
   cvFile = e.target.files[0]
   hiddenFileInput.current.click()
   
-  var ext = file.name.split('.').pop()
+  var ext = cvFile.name.split('.').pop()
+  console.log(ext,'file cv ext')
   if(ext=="docx" || ext=="doc" || ext=="pdf"){
-  if(file.size >1000000){return toast.error('CV size is too large')}
-  setuploadState(false)  
+  if(cvFile.size >1000000){
+    return toast.error('CV size is too large')}
+    
   }else{return toast.error('Kindly upload your CV')}
 
-  return file
+  return cvFile
 }
 
-  const removeTags = indexToRemove => {
-		setTags([...tags.filter((_, index) => index !== indexToRemove)]);
+  const removeTags = async(indexToRemove,skillId) => {
+		setTags([...tags.filter((_, index) => index !== indexToRemove)])
+    var userToken = JSON.parse(localStorage.getItem("userToken"))
+    const res = await simpleHttp.put(`/api/v1/dev/UnchooseMySkill/${skillId}`,userToken)
+    if(res.status === true ){console.log('Skill Unselected')}else{toast.error(res.message)}
 	};
 
   const addTags = event => {
@@ -158,11 +136,21 @@ const handleCVChange =(e)=>{
 			event.target.value = "";
 		}
 	};
-
-
+ 
 
   return (
     <>
+      <ToastContainer
+      position="top-right"
+      autoClose={10000}
+      hideProgressBar={false}
+      newestOnTop={false}
+      closeOnClick
+      rtl={false}
+      pauseOnFocusLoss
+      draggable
+      pauseOnHover
+      />
     <form onSubmit={handleSubmitDevsRegistration}>
       <div className="flex justify-center">
         <div className="space-y-8">
@@ -174,7 +162,7 @@ const handleCVChange =(e)=>{
           <div className="space-y-8">
 
             <div>
-                <label class="block mb-1 text-sm font-medium text-gray-900 dark:text-gray-300" for="file_input">Upload Picture</label>
+                <label class="block mb-1 text-sm font-medium text-gray-900 dark:text-gray-300" htmlFor="file_input">Upload Picture</label>
                 <input 
                   type="file" 
                   placeholder='Select profile pics'
@@ -185,7 +173,7 @@ const handleCVChange =(e)=>{
                 <div>
                   {profileName}
                 </div>
-                <p class="mt-1 text-sm text-gray-500 dark:text-gray-300" id="file_input_help">SVG, PNG, JPG or GIF (MAX. 1mb).</p>
+                <p class="mt-1 text-sm text-gray-500 dark:text-gray-300" id="file_input_help">PNG, JPG(MAX. 1mb).</p>
             </div>
 
             <div>
@@ -211,9 +199,9 @@ const handleCVChange =(e)=>{
                 <ul className={styles.tags}>
                   {tags.map((tag, index) => (
                     <li key={index} className={styles.tag}>
-                      <span className={styles.tag_title}>{tag}</span>
-                      <span className={styles.tag_closes_icon}
-                        onClick={() => removeTags(index)}
+                      <span className={styles.tag_title}>{tag.name}</span>
+                      <span className={styles.tag_closes_icon} id ={index}
+                        onClick={()=>{ removeTags(index,tag.id)}}
                       >
                         x
                       </span>
@@ -225,31 +213,20 @@ const handleCVChange =(e)=>{
                   type="text"
                   onKeyDown={event => event.key === "Enter" ? addTags(event) : null}
                   // onKeyUpCapture={showKeys}
-                  placeholder="Press enter to add skills"
-                  onChange={onChange}
+                  placeholder="enter skills eg:git"
+                  onChange={handleGetSkills}
                 />
               </div>
 
               <div class="absolute left-0 z-20 w-full max-h-52 overflow-y-auto py-1 overflow-hidden bg-white rounded-md shadow-xl dark:bg-gray-800"> 
               {suggest
-                .filter((item) => {
-                  const searchTerm = value.toLowerCase();
-                  const fullName = item.suggestDetail.toLowerCase();
-
-                  return (
-                    searchTerm &&
-                    fullName.startsWith(searchTerm) &&
-                    fullName !== searchTerm
-                  );
-                })
-
-                .slice(0, 10)
+            
                 .map((item) => (
                                
                     <p class="block px-4 py-3 text-sm text-gray-600 capitalize transition-colors duration-200 transform dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 dark:hover:text-white cursor-pointer"
-                    onClick={() => onSearch(item.suggestDetail)}
+                    onClick={() => handleSelectSkill(item.name,item.id)}
                     key={item.id}>
-                        {item.suggestDetail}
+                        {item.name}
                     </p>
                 
                 ))
@@ -266,19 +243,23 @@ const handleCVChange =(e)=>{
                 />
             </div>
 
-            {/* <div>
+            <div>
                 <select 
-                  placeholder="Country"
+                  placeholder="Location"
+                  name="continent"
                   className="w-full py-3 px-4 border border-solid border-gray-400  outline-0 rounded-lg bg-white transition"
                 >
-                  <option disabled selected hidden>Country</option>
-                  <option>Togo</option>
-                  <option>India</option>
-                  <option>Mali</option>
-                  <option>China</option>
-                  <option>Nigeria</option>
+                  <option disabled selected hidden >Location</option>
+                  <option value="Africa">Africa</option>
+                  <option value="Asia">Asia</option>
+                  <option value="Europe">Europe</option>
+                  <option value="North America">North America</option>
+                  <option value="South America">South America</option>
+                  <option value="Oceania/Australia">Australia/Oceania</option>
+                  <option value="Antarctica">Antarctica</option>
+                  
                 </select>
-            </div> */}
+            </div>
 
             <div className="">
                 <textarea
@@ -309,7 +290,7 @@ const handleCVChange =(e)=>{
             <div className="">
             <label className="block text-base font-base text-gray-700">File</label>
 
-            {fileName === "" ? 
+           
                 <div className="mt-1 flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 border-dashed rounded-md">
                     <div className="space-y-1 text-center">
                     <svg
@@ -333,20 +314,20 @@ const handleCVChange =(e)=>{
                         className="relative cursor-pointer bg-white rounded-md font-medium text-[#f49038] hover:text-[#f49038] focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-[#f49038]"
                         >
                         <span>Upload CV</span>
-                        <input id="cvFile" name="cvFile" type="file" onChange={(e) => handleChange(e)} className="sr-only" />
+              <input id="cvFile" name="cvFile" type="file" onChange={handleCVChange} className="sr-only" />
                         </label>
                         <p className="pl-1">or drag and drop</p>
                     </div>
                     <p className="text-xs text-gray-500">.doc, .pnt less than 1MB</p>
                     </div>
                 </div>
-            : 
+  
                 <div>
-                    <p>
-                        <span>Attached file</span> <span className="font-bold">{fileName}</span>  <span className="text-red-600 cursor-pointer" onClick={cancelFile}>X</span>
+                    <p className="font-bold text-center">
+                       <span >{cvName}</span>  
                     </p>
                 </div>
-            }
+            
             </div>
 
             </div>

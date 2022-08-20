@@ -1,11 +1,50 @@
 import React from 'react'
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import { useRouter } from 'next/router'
+import EasyHTTP from '../../../helpers/easyHttp'
+
+const simpleHttp =  new EasyHTTP()
 
 function LoginForm() {
+const router = useRouter()
 
+const handleLogin = async(e)=>{
+try {
+ e.preventDefault()
+ const email =   e.target.email.value
+ const password =   e.target.password.value
+ const data = {email,password} 
+ const res = await simpleHttp.postNoAuth('/api/v1/all/login',data)
+ if(res.status == true){
+
+e.target.email.value = null
+e.target.password.value = null
+   //handle confirmation here
+   router.push(`/stepForm/?welcome=${res.token.token}`)
+   }else{toast.error(res.message)}
+    
+} catch (error) {
+    const message =  error.message
+    toast.dark(`${message}, check your Internet Connection`) 
+}
+}
 
 
   return (
     <>
+       <ToastContainer
+      position="top-right"
+      autoClose={10000}
+      hideProgressBar={false}
+      newestOnTop={false}
+      closeOnClick
+      rtl={false}
+      pauseOnFocusLoss
+      draggable
+      pauseOnHover
+      />
+   
         <div className="h-full m-0 grid">
         <div className="relative pt-4 pb-2
                         before:absolute before:inset-0 before:w-full before:h-[50%] before:bg-gray-200">
@@ -19,9 +58,9 @@ function LoginForm() {
                             </div>
                             <div className="p-6 sm:p-16">
                                 <h2 className="mb-8 text-2xl text-[#001935] font-bold">Sign in to your account</h2>
-                                <form action="" className="space-y-8">
+                                <form onSubmit={handleLogin} className="space-y-8">
                                     <div className="space-y-2">
-                                        <label for="email" className="text-gray-700">Email</label>
+                                        <label htmlFor="email" className="text-gray-700">Email</label>
                                         <input  type="email" name="email" id="email" 
                                             className="block w-full px-4 py-3 rounded-md border border-gray-300 text-gray-600 transition duration-300
                                             focus:ring-2 focus:ring-sky-300 focus:outline-none
@@ -36,7 +75,7 @@ function LoginForm() {
                                                 <span className="text-sm text-[#F49038]">Forgot your password ?</span>
                                             </button>
                                         </div>
-                                        <input  type="password" name="pwd" id="pwd" 
+                                        <input  type="password" name="password" id="pwd" 
                                                 className="block w-full px-4 py-3 rounded-md border border-gray-300 text-gray-600 transition duration-300
                                                     focus:ring-2 focus:ring-sky-300 focus:outline-none
                                                     invalid:ring-2 invalid:ring-red-400"
@@ -44,7 +83,7 @@ function LoginForm() {
                                     </div>
 
                                     <button type="submit" 
-                                            className="w-full py-3 px-6 rounded-md font-semibold text-gray-100 transition-colors duration-200 transform bg-[#001935] rounded-md hover:bg-white hover:text-[#001935] hover:border-2 hover:border-solid hover:border-[#001935]">
+                                            className="w-full py-3 px-6  font-semibold text-gray-100 transition-colors duration-200 transform bg-[#001935] rounded-md hover:bg-white hover:text-[#001935] hover:border-2 hover:border-solid hover:border-[#001935]">
                                         <span>Sign in</span>
                                     </button>
 
@@ -65,7 +104,7 @@ function LoginForm() {
             </div>
         </div> 
         </div>
-                                
+                             
     </>
   )
 }

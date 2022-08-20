@@ -14,8 +14,8 @@
 
 
  if(process.env.NEXT_PUBLIC_NODE_ENV ==='development'){
-    var api_origin = 'http://localhost:3333'
-    // var api_origin = 'https://api.droomwork.io'
+    // var api_origin = 'http://localhost:3333'
+    var api_origin = 'https://api.droomwork.io'
 }else{
    var api_origin = 'https://api.droomwork.io'
 }
@@ -34,6 +34,25 @@
 
  class EasyHTTP{
      
+    async getNoAuth(url){
+
+        try {
+           const res = await fetch(`${api_origin}${url}`,{
+              
+               headers:{
+                  'Accept':'application/json',
+                  'Content-type':'application/json',
+                  'Access-Control-Allow-Origin':'*'
+               }
+           })
+         
+           const resData = await res.json()
+           return resData
+        } catch (e) {
+            throw new Error(e.message)
+        }
+    }
+
      async get(url,Token){
 
          try {
@@ -55,14 +74,14 @@
      }
 
      // Make an HTTP POST Request
-     async post(url,data){
+     async post(url,data,userToken){
 
             try {
                 const res = await fetch(`${api_origin}${url}`,{
                     mode: 'cors',
                     method:'POST',
                     headers:{
-                     'Authorization': `Bearer ${Token}`,
+                     'Authorization': `Bearer ${userToken}`,
                      'Content-type':'application/json',
                      'Accept':'application/json',
                      'Access-Control-Allow-Origin':'*',

@@ -19,16 +19,7 @@ function SelectLevel({handleClick, steps, currentStep}) {
     console.log(event.target.value);
   }
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    var formdata = new FormData();
-
-    formdata.append("unknownYet", myStack);
-    formdata.append("unknown", myLevel);
-  };
-
-   
-
+ 
    useEffect(() =>{
     const userRegData = router.asPath.slice(10)
     if(userRegData.startsWith('welcome')){
@@ -41,7 +32,7 @@ function SelectLevel({handleClick, steps, currentStep}) {
     }
    history.replaceState(null, "", location.href.split("?")[0])
    if(checkToken == 'undefined' || checkToken == null || checkToken == ''){
-    //  router.push(`/`)
+     router.push(`/`)
    }
     async function fetchData() {
     const res = await simpleHttp.get(`/api/v1/dev/getLevels`,userToken)
@@ -55,14 +46,17 @@ function SelectLevel({handleClick, steps, currentStep}) {
 
 const handleChooseLevelAndStack = async(e)=>{
 e.preventDefault()
-
+console.log(myStack,'checkMystackNow')
 localStorage.setItem('userStack', JSON.stringify(myStack))
 var userToken = JSON.parse(localStorage.getItem("userToken"))
 const res = await simpleHttp.put(`/api/v1/dev/chooseMyStacks/${myStack}`,userToken)
 const response = await simpleHttp.put(`/api/v1/dev/chooseMyLevel/${radio}`,userToken)
 if(res.status === true && response.status === true ){
 handleClick("next")
-}else{}
+}else{
+  console.log('here man')
+  toast.error(res.message)
+}
 
 }
 

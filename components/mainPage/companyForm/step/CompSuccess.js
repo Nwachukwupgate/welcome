@@ -14,7 +14,7 @@ function CompSuccess() {
             <div className="mx-auto lg:basis-3/6">
                 <div className="flex flex-col space-y-4">
                     <p className="text-center text-[#001935] font-extrabold drop-shadow-lg shadow-black text-4xl lg:text-left ">Success!</p>
-                    <p className="font-bold text-lg"> Your Details have been taken, you will be contaced in three weeks time.</p>
+                    <p className="font-bold text-lg"> Your Details have been taken, you will be contaced shortly.</p>
                     <p className="text-gray-500">Thank you for choosing Droomwork</p>
                     <Link href="/">
                         <a className="inline-flex justify-center w-fit px-5 py-2 font-semibold text-gray-100 transition-colors duration-200 transform bg-[#001935] rounded-md hover:bg-white hover:text-[#001935] hover:border-2 hover:border-solid hover:border-[#001935]">Home</a>
