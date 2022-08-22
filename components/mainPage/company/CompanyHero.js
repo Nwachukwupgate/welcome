@@ -1,23 +1,56 @@
 import React,{useState} from 'react';
 import { useQuickHireMutation } from "reactWrapper/redux/apiSlice";
 
+if(process.env.APP_env === 'development') {
+    var api_origin = 'https://api.droomwork.io'
+} else {
+    api_origin = 'https://api.droomwork.io'
+// api_origin = 'http://localhost:3000'
+}
+
 function CompanyHero() {
 
     const [ quickHire, {data, isSuccess, isError, error, isLoading }] = useQuickHireMutation();
     const [email, setEmail] = useState('')
+    const [isPending, setIsPending] = useState(false)
 
     const handleSubmit = async (e)=> {
         e.preventDefault()
         var formdata = new FormData();
         formdata.append("email", email);
 
+        setIsPending(true)
+        await fetch(`${api_origin}/api/v1/comp/hireContact`,{
+            mode: 'cors',
+            method: 'POST',
+            headers: {
+                'Content-type':'application/json',
+                'Accept':'application/json',
+                'Access-Control-Allow-Origin':'*',
+            },
+            body: JSON.stringify(formdata)
+        }).then(response => {
+            if (!response.ok) {
+                const validation = response.json();
+                // setErrors(validation.errors);
+                // console.log(validation.errors);
+                console.log("this is response", response)
+                console.log("this is err", validation)
+                setIsPending(false)
+              }else{
+                const valid = response.json();
+                console.log("this is response", response)
+                console.log("this is success", valid)
+                setIsPending(false)
+              }
+        })
 
-        try {
-            const response = await quickHire(formdata).unwrap();
-            console.log('fulfilled', response)
-        } catch (error) {
-            console.error('rejected', error.data.message);
-        }
+        // try {
+        //     const response = await quickHire(formdata).unwrap();
+        //     console.log('fulfilled', response)
+        // } catch (error) {
+        //     console.error('rejected', error.data.message);
+        // }
     }
 
   return (

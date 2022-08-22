@@ -7,50 +7,50 @@ const simpleHttp =  new EasyHTTP()
 const initFrameworkArray=[]
 
 function SelectLanguage({handleClick, steps, currentStep}) {
-  const[state, setState] = useState([
-    {
-      id: 1,
-      stack: 'Html',
-      stackIcon:"https://cdn-icons-png.flaticon.com/512/1216/1216733.png",
-    },
 
-    {
-      id: 2,
-      stack: 'JavaScript',
-      stackIcon:"https://cdn-icons-png.flaticon.com/512/5968/5968351.png",
-    },
 
-    {
-      id: 3,
-      stack: 'php',
-      stackIcon:"https://cdn-icons-png.flaticon.com/512/5968/5968332.png",
-    },
+  const[exp, setExp] = useState("")
+  const[show, setShow] = useState({})
+  const[value, setValue] = useState([])
+  const[mainValue, setMainValue]  = useState([value])
 
-    {
-      id: 4,
-      stack: 'Python',
-      stackIcon:"https://cdn-icons-png.flaticon.com/512/919/919852.png",
-    },
+  const showSelect = (index) => (e) => {
+    if (e.target.checked) {
+      console.log("yreasdffg")
+      setShow(state => ({
+        ...state, // <-- copy previous state
+        [index]: !state[index] // <-- update value by index key
+      }));
+    }
+  };
 
-    {
-      id: 5,
-      stack: 'Scala',
-      stackIcon:"https://cdn-icons-png.flaticon.com/512/919/919834.png",
-    },
-
-    {
-      id: 6,
-      stack: 'Mongo db',
-      stackIcon:"https://cdn.iconscout.com/icon/free/png-256/mongodb-4-1175139.png",
-    },
-  ])
-
-  const[show, setShow] = useState(true)
-
-  const showSelect = (e)=> {
+  const saveShow = (e) => {
     e.preventDefault()
-    setShow(!show)
+ 
+    Object.keys(mainValue).forEach(key => {
+      console.log("this is the key key value", key)
+      if (key in value) {
+        mainValue[key] = value[key];
+      }
+    });
+    setShow(!show);
+  };
+
+  const cancelShow = (e) => {
+    e.preventDefault()
+    setShow(!show);
+  };
+
+  
+
+  
+
+  const handleExp = (e) => {
+    e.preventDefault()
+    setExp(e.target.value)
   }
+
+  
 
 
   //api/v1/dev/getLanguagesBasedOnFrameworks/1/2/3/4/5
@@ -139,28 +139,48 @@ const handleSubmitFrameworks = async(e)=>{
           <div className={styles.main_container}>
 
             <ul className={styles.main_list}>
+
               {userFrameworks.map((single => (
                 <li className={styles.single_list} key={single.id}>
                   <label className={styles.list_label}>
-                    <input type="checkbox" name="" className={styles.inputType} id={single.id} onChange={handleSelectLanguage} />
-                    <div className={styles.icon_box}>
-                
-                      <span onClick={showSelect} className={`${show ? "block" : "hidden"} ml-2`}> + </span>
+                    {/* <input type="checkbox" name="" className={styles.inputType} id={single.id} onChange={handleSelectFramework} /> */}
+                    <input type="checkbox" name="" className={styles.inputType} id={single.id} onChange={showSelect(single.id)} />
+                    {/* <input type="checkbox" name="" className={styles.inputType} id={single.id} onChange={(e) => showSelect(single.id)} />  */}
+
+                    <div className={styles.icon_box} onClick={showSelect(single.id)}>
+                      <span onClick={showSelect(single.id)} className={`${show[single.id] ? "hidden" : "block"} ml-2`}> + </span>
                       
-                      <div className={`${show ? "hidden" : "block"}`}>
-                        <select>
-                          <option>2 years</option>
-                          <option>3 years</option>
-                          <option>4 years</option>
-                        </select>
-                      </div>
                       <span className={styles.fa} aria-hidden="true"> {single.name} </span>
                     </div>
                   </label>
+
+                  <div className={`${show[single.id] ? "block" : "hidden"} z-10 absolute`}>
+                    <div className='flex gap-y-4 min-w-[20rem] bg-white z-10 shadow-2xl flex-col p-2'>
+                      <p>Years of professional experience</p>
+
+                      <select onChange={(e)=> {setValue(s => (
+                        [...s, { [single.id]: e.target.value } ]
+                        ))
+                        }} id={single.id} name="experience">
+                        <option value = '1'>1 year</option>
+                        <option value = '2'>2 years</option>
+                        <option value = '3'>3 years</option>
+                        <option value = '4'>4 years</option>
+                        <option value = '5'>5 years</option>
+                        <option value = '6'>6 years</option>
+                        <option value = '7'>7 years</option>
+                      </select>
+
+                      <div className='flex justify-around'>
+                        <button className="inline-flex w-full lg:w-fit justify-center px-2 py-1 font-semibold bg-white text-[#001935] border-2 border-solid border-[#001935] hover:text-gray-100 transition-colors duration-200 transform hover:bg-[#001935] rounded-md " onClick={cancelShow}>cancel</button>
+                        <button className="inline-flex w-full lg:w-fit justify-center px-2 py-1 font-semibold text-gray-100 transition-colors duration-200 transform bg-[#001935] rounded-md hover:bg-white hover:text-[#001935] border-2 border-solid border-[#001935]" onClick={saveShow}>save</button>
+                        
+                      </div>
+                    </div>
+                  </div>
                 </li>
               )))}
             </ul>
-
           </div>
 
 
