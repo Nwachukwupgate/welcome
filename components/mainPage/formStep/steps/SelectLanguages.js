@@ -10,12 +10,7 @@ const simpleHttp =  new EasyHTTP()
 const initLanguagesArray=[]
 
 
-// function SelectStack({handleClick, steps, currentStep}) {
-//   const [userFrameworks,setUserFrameworks] = useState([])
-//   const [selectedFrameworks,setSelectedFrameworks] = useState([])
-//   const[show, setShow] = useState({})
-//   const[value, setValue] = useState([])
-//   const[mainValue, setMainValue]  = useState([value])
+
 function SelectLanguages({handleClick, steps, currentStep}) {
   const [userLanguagess,setUserLanguagess] = useState([])
   const [selectedLanguagess,setSelectedLanguagess] = useState([])
@@ -204,7 +199,7 @@ const handleSelectLanguagesExp = async(e)=>{
                       </div>
                     </div>
                   
-                  z
+                  
 
                   </div>
                 </li>

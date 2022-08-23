@@ -20,15 +20,6 @@
    var api_origin = 'https://api.droomwork.io'
 }
 
-// if(typeof window!=="undefined"){  
-// //var Token = JSON.parse(localStorage.getItem("user-token"));
-// const urlParams = new URLSearchParams(window.location.search)
-// const userToken = urlParams.get('welcome')
-// if(userToken){localStorage.setItem('userToken', JSON.stringify(userToken))}
-// var Token = JSON.parse(localStorage.getItem("userToken"))
-// history.replaceState(null, "", location.href.split("?")[0])
-// //  console.log(Token,' the toketn')
-// }
 
 
 

@@ -25,20 +25,23 @@ function SelectLevel({handleClick, steps, currentStep}) {
 
  
    useEffect(() =>{
-    const userRegData = router.asPath.slice(10)
-    if(userRegData.startsWith('welcome')){
-     const parameters = new URLSearchParams(userRegData)
-     var userToken = parameters.get('welcome')
-    }
-    if (typeof window !== "undefined") {
-        window.localStorage.setItem('userToken', JSON.stringify(userToken))
-        var checkToken = localStorage.getItem("userToken")
-    }
-   history.replaceState(null, "", location.href.split("?")[0])
-   if(checkToken == 'undefined' || checkToken == null || checkToken == ''){
-     router.push(`/`)
-   }
+  //   const userRegData = router.asPath.slice(10)
+  //   if(userRegData.startsWith('welcome')){
+  //    const parameters = new URLSearchParams(userRegData)
+  //    var userToken = parameters.get('welcome')
+  //   }
+  //   if (typeof window !== "undefined") {
+  //       window.localStorage.setItem('userToken', JSON.stringify(userToken))
+  //       var checkToken = localStorage.getItem("userToken")
+  //   }
+  //  history.replaceState(null, "", location.href.split("?")[0])
+  //  if(checkToken == 'undefined' || checkToken == null || checkToken == ''){
+  //    router.push(`/`)
+  //  }
     async function fetchData() {
+
+      var userToken = JSON.parse(localStorage.getItem("userToken"))
+    console.log(userToken,'Do i have ny token')
     const res = await simpleHttp.get(`/api/v1/dev/getLevels`,userToken)
     const resStack = await simpleHttp.get(`/api/v1/dev/getStacks`,userToken)
   

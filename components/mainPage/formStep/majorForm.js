@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React,{useState,useEffect} from 'react'
 import StepperPage from './stepper'
 import StepperControl from './StepperControl'
 import SelectLanguage from './steps/SelectFrameworks';
@@ -6,10 +6,32 @@ import SelectLast from './steps/SelectLast';
 import SelectLevel from './steps/SelectLevel';
 import SelectLanguages from './steps/SelectLanguages';
 import SuccessPage from './steps/success';
+import { useRouter } from 'next/router'
 
 function MajorForm() {
 
-    const [currentStep, setCurrentStep] = useState(1);
+const [currentStep, setCurrentStep] = useState(0)
+const router = useRouter()
+    useEffect(() =>{
+        const userRegData = router.asPath.slice(10)
+        if(userRegData.startsWith('welcome')){
+         const parameters = new URLSearchParams(userRegData)
+         var userToken = parameters.get('welcome')
+         var checkFullReg = parameters.get('isFullyReg')//
+         if(checkFullReg == null){setCurrentStep(1)}else{
+            setCurrentStep(5)}
+        }
+        if (typeof window !== "undefined") {
+            window.localStorage.setItem('userToken', JSON.stringify(userToken))
+            var checkToken = localStorage.getItem("userToken")
+        }
+       history.replaceState(null, "", location.href.split("?")[0])
+       if(checkToken == 'undefined' || checkToken == null || checkToken == ''){
+         router.push(`/`)
+       }
+  
+    }, [])
+
 
     const steps = [
         "Select Level",
