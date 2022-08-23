@@ -23,7 +23,8 @@ function SelectLanguages({handleClick, steps, currentStep}) {
   const[show, setShow] = useState({})
   const[value, setValue] = useState([])
   const[mainValue, setMainValue]  = useState([value])
-
+  const [checked, setChecked] = useState({})
+  console.log(value,'value of selected')
   
   useEffect(() =>{
 
@@ -74,27 +75,34 @@ const handleSelectLanguages = async(e)=>{
 
 }
 
- 
+  const hideSelect = (index) => (e) => {
+    setChecked(state => ({
+      ...state, // <-- copy previous state
+      [index]: !state[index] // <-- update value by index key
+    }));  
+  };  
+
   const showSelect = (index) => (e) => {
-    if (e.target.checked) {
-      console.log("yreasdffg")
-      setShow(state => ({
-        ...state, // <-- copy previous state
-        [index]: !state[index] // <-- update value by index key
-      }));
-    }
+    setShow(state => ({
+      ...state, // <-- copy previous state
+      [index]: !state[index] // <-- update value by index key
+    }));
+
+    setChecked(state => ({
+      ...state, // <-- copy previous state
+      [index]: !state[index] // <-- update value by index key
+    }));
   };
 
   const saveShow = (e) => {
     e.preventDefault()
-
+    console.log("clicked hereeee")
     Object.keys(mainValue).forEach(key => {
-      console.log("this is the key key value", key)
       if (key in value) {
         mainValue[key] = value[key];
       }
     });
-    setShow(!show);
+    setChecked(!checked);
   };
 
   const cancelShow = (e) => {
@@ -127,7 +135,7 @@ const handleSelectLanguagesExp = async(e)=>{
 
 }
 
-// console.log("this is the value", value)
+
 
 
   return (
@@ -159,27 +167,21 @@ const handleSelectLanguagesExp = async(e)=>{
                   <label className={styles.list_label}>
 
           
-                  <input type="checkbox" name="" className={styles.inputType} id={single.id} onChange={showSelect(single.id)} />
-                
-  
-                    <div className={styles.icon_box} onClick={showSelect(single.id)}> 
-                  
+                  {/* <input type="checkbox" name="" className={styles.inputType} id={single.id} onChange={showSelect(single.id)} checked={show[single.id]} /> */}
+
+                    <div className={`${show[single.id] ? styles.checked_butt : styles.icon_box}`} onClick={showSelect(single.id)}> 
 
                     {/* <input type="checkbox" name="" className={styles.inputType} id={single.id} onChange={handleSelectLanguages} /> */}
                     {/* <div className={styles.icon_box}> */}
 
-
-                    
                       <span onClick={showSelect(single.id)} className={`${show[single.id] ? "hidden" : "block"} ml-2`}> + </span>
-                      
-
-        
-                      
+ 
                       <span className={styles.fa} aria-hidden="true"> {single.name} </span>
                     </div>
                   </label>
 
                   <div className={`${show[single.id] ? "block" : "hidden"} absolute z-10`}>
+                  
                     <div className='flex gap-y-4 min-w-[20rem] bg-white z-10 shadow-2xl flex-col p-2'>
                       <p>Years of professional experience</p>
 
@@ -198,10 +200,12 @@ const handleSelectLanguagesExp = async(e)=>{
 
                       <div className='flex justify-around'>
                         <button className="inline-flex w-full lg:w-fit justify-center px-2 py-1 font-semibold bg-white text-[#001935] border-2 border-solid border-[#001935] hover:text-gray-100 transition-colors duration-200 transform hover:bg-[#001935] rounded-md " onClick={cancelShow}>cancel</button>
-                        <button className="inline-flex w-full lg:w-fit justify-center px-2 py-1 font-semibold text-gray-100 transition-colors duration-200 transform bg-[#001935] rounded-md hover:bg-white hover:text-[#001935] border-2 border-solid border-[#001935]" onClick={saveShow}>save</button>
-                        
+                        <button className="inline-flex w-full lg:w-fit justify-center px-2 py-1 font-semibold text-gray-100 transition-colors duration-200 transform bg-[#001935] rounded-md hover:bg-white hover:text-[#001935] border-2 border-solid border-[#001935]" onClick={saveShow}>save</button>    
                       </div>
                     </div>
+                  
+                  z
+
                   </div>
                 </li>
               )))}
