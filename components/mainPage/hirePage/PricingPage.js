@@ -183,7 +183,8 @@ const Tabs = ({ color }) => {
                                                 "
                                                 >
                                                 <span className="text-primary font-semibold text-lg block mb-4">
-                                                {price[0].seniority}
+                                                {/* {price[0].seniority} */}
+                                                Top Freelencer
                                                 </span>
                                                 <h2 className="font-bold text-dark mb-5 text-[36px]">
                                                     ${price[0].lower_price} - ${price[0].higher_price}
@@ -191,7 +192,7 @@ const Tabs = ({ color }) => {
                                                     / hr
                                                     </span>
                                                 </h2>
-                                                <p
+                                                {/* <p
                                                     className="
                                                     text-base text-body-color
                                                     pb-8
@@ -200,26 +201,16 @@ const Tabs = ({ color }) => {
                                                     "
                                                     >
                                                     Perfect for using in a personal website or a client project.
-                                                </p>
+                                                </p> */}
                                                 <div className="mb-7">
-                                                    <p className="text-base text-body-color leading-loose mb-1">
-                                                        1 User
-                                                    </p>
-                                                    <p className="text-base text-body-color leading-loose mb-1">
-                                                        All UI components
-                                                    </p>
-                                                    <p className="text-base text-body-color leading-loose mb-1">
-                                                        Lifetime access
-                                                    </p>
-                                                    <p className="text-base text-body-color leading-loose mb-1">
-                                                        Free updates
-                                                    </p>
-                                                    <p className="text-base text-body-color leading-loose mb-1">
-                                                        Use on 1 (one) project
-                                                    </p>
-                                                    <p className="text-base text-body-color leading-loose mb-1">
-                                                        3 Months support
-                                                    </p>
+                                                <ul className="list-disc text-base text-body-color leading-loose mb-1">
+                                                    <li>1-3 years of professional experience</li>
+                                                    <li> Writes code with at least one programming language</li>
+                                                    <li> Good knowledge of how softwares work on the web</li>
+
+                                                    <li> Top Individual Freelancer</li>
+                                                </ul>
+                                               
                                                 </div>
                                                 <a
                                                     href="javascript:void(0)"
@@ -238,7 +229,7 @@ const Tabs = ({ color }) => {
                                                     transition
                                                     "
                                                     >
-                                                Choose Personal
+                                                Hire Top Freelancers
                                                 </a>
                                                 <div>
                                                     <span className="absolute right-0 top-7 z-[-1]">
@@ -525,43 +516,25 @@ const Tabs = ({ color }) => {
                                                 "
                                                 >
                                                 <span className="text-primary font-semibold text-lg block mb-4">
-                                                {price[1].seniority}
+                                                {/* {price[1].seniority} */}
+                                                Expert Freelancer
                                                 </span>
                                                 <h2 className="font-bold text-dark mb-5 text-[36px]">
                                                 ${price[1].lower_price} - ${price[1].higher_price}
                                                     <span className="text-base text-body-color font-medium">
-                                                    / year
+                                                    / hr
                                                     </span>
                                                 </h2>
-                                                <p
-                                                    className="
-                                                    text-base text-body-color
-                                                    pb-8
-                                                    mb-8
-                                                    border-b border-[#F2F2F2]
-                                                    "
-                                                    >
-                                                    Perfect for using in a Business website or a client project.
-                                                </p>
+                                        
                                                 <div className="mb-7">
-                                                    <p className="text-base text-body-color leading-loose mb-1">
-                                                        5 Users
-                                                    </p>
-                                                    <p className="text-base text-body-color leading-loose mb-1">
-                                                        All UI components
-                                                    </p>
-                                                    <p className="text-base text-body-color leading-loose mb-1">
-                                                        Lifetime access
-                                                    </p>
-                                                    <p className="text-base text-body-color leading-loose mb-1">
-                                                        Free updates
-                                                    </p>
-                                                    <p className="text-base text-body-color leading-loose mb-1">
-                                                        Use on 3 (Three) project
-                                                    </p>
-                                                    <p className="text-base text-body-color leading-loose mb-1">
-                                                        4 Months support
-                                                    </p>
+                                                    
+                                                <ul className="list-disc text-base text-body-color leading-loose mb-1">
+                                                    <li>4-6 years of professional experience</li>
+                                                    <li>Writes code with several programming languages & technologies</li>
+                                                    <li>Knows industry best practices</li>
+                                                    <li>Can relate with business situations</li>
+                                                    <li>Can mentor junior developers</li>
+                                                </ul>
                                                 </div>
                                                 <a
                                                     href="javascript:void(0)"
@@ -570,7 +543,7 @@ const Tabs = ({ color }) => {
                                                     block
                                                     text-base
                                                     font-semibold
-                                                    text-white
+                                                    text-black
                                                     bg-primary
                                                     border border-primary
                                                     rounded-md
@@ -580,7 +553,7 @@ const Tabs = ({ color }) => {
                                                     transition
                                                     "
                                                     >
-                                                Choose Business
+                                                Hire Expert Freelancers
                                                 </a>
                                                 <div>
                                                     <span className="absolute right-0 top-7 z-[-1]">
@@ -867,43 +840,29 @@ const Tabs = ({ color }) => {
                                                 "
                                                 >
                                                 <span className="text-primary font-semibold text-lg block mb-4">
-                                                {price[2].seniority}
+                                                {/* {price[2].seniority} */}
+                                                Tech Lead Freelancer
                                                 </span>
                                                 <h2 className="font-bold text-dark mb-5 text-[42px]">
                                                 ${price[2].lower_price} - ${price[2].higher_price}
                                                     <span className="text-base text-body-color font-medium">
-                                                    / year
+                                                    / hr
                                                     </span>
                                                 </h2>
-                                                <p
-                                                    className="
-                                                    text-base text-body-color
-                                                    pb-8
-                                                    mb-8
-                                                    border-b border-[#F2F2F2]
-                                                    "
-                                                    >
-                                                    Perfect for using in a Professional website or a client project.
-                                                </p>
+                                            
                                                 <div className="mb-7">
-                                                    <p className="text-base text-body-color leading-loose mb-1">
-                                                        Unlimited Users
-                                                    </p>
-                                                    <p className="text-base text-body-color leading-loose mb-1">
-                                                        All UI components
-                                                    </p>
-                                                    <p className="text-base text-body-color leading-loose mb-1">
-                                                        Lifetime access
-                                                    </p>
-                                                    <p className="text-base text-body-color leading-loose mb-1">
-                                                        Free updates
-                                                    </p>
-                                                    <p className="text-base text-body-color leading-loose mb-1">
-                                                        Use on Unlimited project
-                                                    </p>
-                                                    <p className="text-base text-body-color leading-loose mb-1">
-                                                        12 Months support
-                                                    </p>
+                                                   
+                                                <ul className="list-disc text-base text-body-color leading-loose mb-1">
+                                                    <li>7-10+  years of professional experience</li>
+                                                    <li>Write codes with the most appropriate programming language to meet best practices</li>
+                                                    <li>Can transform business processes into programming code
+                                                    </li>
+                                                    <li>Experience leading teams</li>
+                                                    <li>Thinks about the software project in general</li>
+
+
+
+                                                </ul>
                                                 </div>
                                                 <a
                                                     href="javascript:void(0)"
@@ -922,7 +881,7 @@ const Tabs = ({ color }) => {
                                                     transition
                                                     "
                                                     >
-                                                Choose Professional
+                                                Hire Lead Freelancer
                                                 </a>
                                                 <div>
                                                     <span className="absolute right-0 top-7 z-[-1]">
