@@ -85,16 +85,19 @@ const handleSelectLanguages = async(e)=>{
 
   const saveShow = (index, value) => (e) => {
     e.preventDefault()
-    console.log("clicked hereeee", typeof(value))
-    console.log("clicked hereeee", typeof(mainValue))
-    // Object.keys(mainValue).forEach(key => {
-    //   if (key in value) {
-    //     mainValue[key] = value[key];
-    //   }
-    // });
-    setMainValue(current =>
-      [...current, value]
-    )
+
+    const i = mainValue.findIndex(_item => _item.id === value.id);
+    if (i > -1) {
+      mainValue[i] = value
+    } else {
+      setMainValue(current =>
+        [...current, value]
+      )
+    };
+
+    // setMainValue(current =>
+    //   [...current, value]
+    // )
     
     setSaveAction(state => ({
       ...state, // <-- copy previous state
@@ -205,11 +208,26 @@ const handleSelectLanguagesExp = async(e)=>{
                     {/* <input type="checkbox" name="" className={styles.inputType} id={single.id} onChange={handleSelectLanguages} /> */}
                     {/* <div className={styles.icon_box}> */}
 
-                      <span onClick={showSelect(single.id)} className={`${show[single.id] ? "hidden" : "block"} ml-2`}> + </span>
+                      {show[single.id] ?
+                        <span>
+                          
+  
+                          <span className={styles.fa} aria-hidden="true"> {single.name} </span>
+                          <span onClick={emptyFields(single.id, value)} className={"mr-2"}> x </span>
+                        </span>
+                        :
+                        <span>
+                          <span className={styles.fa} aria-hidden="true"> {single.name} </span>
+
+                          <span onClick={() => {showSelect(single.id); showSelect(single.id) }} className={"ml-2"}> + </span>
+                        </span>
+                      }
+
+                      {/* <span onClick={showSelect(single.id)} className={`${show[single.id] ? "hidden" : "block"} ml-2`}> + </span>
  
                       <span className={styles.fa} aria-hidden="true"> {single.name} </span>
 
-                      <span onClick={emptyFields(single.id, value)} className={`${show[single.id] ? "block" : "hidden"} ml-4`}> x </span>
+                      <span onClick={emptyFields(single.id, value)} className={`${show[single.id] ? "block" : "hidden"} ml-4`}> x </span> */}
                     </div>
                   </label>
 

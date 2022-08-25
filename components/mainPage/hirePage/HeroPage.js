@@ -38,7 +38,7 @@ const HeroPage = () => {
                     </div>
 
                     <div hidden class="lg:block lg:w-5/12">
-                        <img src="images/redo_all-blue.gif" class="w-full" alt="global talent" loading="lazy" width="280" height="200" />
+                        <img src="images/redo-blue-with-rotation-22-july(2).gif" class="w-full h-full" alt="global talent" loading="lazy" />
                     </div>
                 </div>
             </div>

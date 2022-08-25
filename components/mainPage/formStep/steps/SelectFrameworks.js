@@ -37,9 +37,14 @@ function SelectLanguage({handleClick, steps, currentStep}) {
     //     mainValue[key] = value[key];
     //   }
     // });
-    setMainValue(current =>
-      [...current, value]
-    )
+    const i = mainValue.findIndex(_item => _item.id === value.id);
+    if (i > -1) {
+      mainValue[i] = value
+    } else {
+      setMainValue(current =>
+        [...current, value]
+      )
+    };
     
     setSaveAction(state => ({
       ...state, // <-- copy previous state
