@@ -20,8 +20,15 @@ try {
 
 e.target.email.value = null
 e.target.password.value = null
-   //handle confirmation here
-   router.push(`/stepForm/?welcome=${res.token.token}`)
+   //handle confirmation here  &isFullyReg=true
+  
+   if(res.user.cv !== null){
+       console.log('I dey opobo')
+    router.push(`/stepForm/?welcome=${res.token.token}&isFullyReg=true`)
+   }else{
+    router.push(`/stepForm/?welcome=${res.token.token}`)
+   }
+  
    }else{toast.error(res.message)}
     
 } catch (error) {
