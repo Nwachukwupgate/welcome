@@ -21,10 +21,11 @@ function SelectLanguages({handleClick, steps, currentStep}) {
   const [selectedLanguagess,setSelectedLanguagess] = useState([])
   // const[show, setShow] = useState(true)
   const[show, setShow] = useState({})
-  const[value, setValue] = useState([])
-  const[mainValue, setMainValue]  = useState([value])
-  const [checked, setChecked] = useState({})
+  const[value, setValue] = useState()
+  const[mainValue, setMainValue]  = useState([])
+  const [saveAction, setSaveAction] = useState({})
   console.log(value,'value of selected')
+  console.log(mainValue,'value of MAIN selected')
   
   useEffect(() =>{
 
@@ -75,40 +76,75 @@ const handleSelectLanguages = async(e)=>{
 
 }
 
-  const hideSelect = (index) => (e) => {
-    setChecked(state => ({
-      ...state, // <-- copy previous state
-      [index]: !state[index] // <-- update value by index key
-    }));  
-  };  
-
   const showSelect = (index) => (e) => {
     setShow(state => ({
       ...state, // <-- copy previous state
       [index]: !state[index] // <-- update value by index key
     }));
 
-    setChecked(state => ({
+    setSaveAction(state => ({
       ...state, // <-- copy previous state
       [index]: !state[index] // <-- update value by index key
     }));
   };
 
-  const saveShow = (e) => {
+  const saveShow = (index, value) => (e) => {
     e.preventDefault()
-    console.log("clicked hereeee")
-    Object.keys(mainValue).forEach(key => {
-      if (key in value) {
-        mainValue[key] = value[key];
-      }
-    });
-    setChecked(!checked);
+    console.log("clicked hereeee", typeof(value))
+    console.log("clicked hereeee", typeof(mainValue))
+    // Object.keys(mainValue).forEach(key => {
+    //   if (key in value) {
+    //     mainValue[key] = value[key];
+    //   }
+    // });
+    setMainValue(current =>
+      [...current, value]
+    )
+    
+    setSaveAction(state => ({
+      ...state, // <-- copy previous state
+      [index]: !state[index] // <-- update value by index key
+
+    }));
   };
 
-  const cancelShow = (e) => {
+  const cancelShow = (index) => (e) => {
     e.preventDefault()
-    setShow(!show);
+    setShow(state => ({
+      ...state, // <-- copy previous state
+      [index]: !state[index] // <-- update value by index key
+    }));
+    setSaveAction(state => ({
+      ...state, // <-- copy previous state
+      [index]: !state[index] // <-- update value by index key
+    }));
   };
+
+  const emptyFields = (index, value) => (e) => {
+    e.preventDefault()
+    
+    setShow(state => ({
+      ...state, // <-- copy previous state
+      [index]: state[index] // <-- update value by index key
+    }));
+    setSaveAction(state => ({
+      ...state, // <-- copy previous state
+      [index]: !state[index] // <-- update value by index key
+    }));
+
+    const newObjs = mainValue.filter(item => item.id !== index)
+    setMainValue(newObjs)
+
+    // setMainValue(mainValue.fiter(item => item.id !== index))
+    // const newObjs = Object.values(mainValue).filter(product => product !== value)
+    // const newObjs = Object.values(mainValue)
+    // console.log("this is the filtered abeg work", newObjs)
+    // setMainValue(newObjs)
+
+
+    const newObj = Object.values(mainValue);
+    
+  }
 
   
 const handleSubmitLanguagess = async(e)=>{
@@ -177,17 +213,19 @@ const handleSelectLanguagesExp = async(e)=>{
                       <span onClick={showSelect(single.id)} className={`${show[single.id] ? "hidden" : "block"} ml-2`}> + </span>
  
                       <span className={styles.fa} aria-hidden="true"> {single.name} </span>
+
+                      <span onClick={emptyFields(single.id, value)} className={`${show[single.id] ? "block" : "hidden"} ml-4`}> x </span>
                     </div>
                   </label>
 
-                  <div className={`${show[single.id] ? "block" : "hidden"} absolute z-10`}>
+                  <div className={`${saveAction[single.id] ? "block" : "hidden"} absolute z-10`}>
                   
                     <div className='flex gap-y-4 min-w-[20rem] bg-white z-10 shadow-2xl flex-col p-2'>
                       <p>Years of professional experience</p>
 
-                      <select onChange={(e)=> {setValue(s => (
-                        [...s, { [single.id]: e.target.value } ]
-                        ))
+                      <select onChange={(e)=> {setValue(
+                         { id: single.id, value: e.target.value } 
+                        )
                         }} id={single.id} name="experience">
                         <option value = '1'>1 year</option>
                         <option value = '2'>2 years</option>
@@ -199,8 +237,8 @@ const handleSelectLanguagesExp = async(e)=>{
                       </select>
 
                       <div className='flex justify-around'>
-                        <button className="inline-flex w-full lg:w-fit justify-center px-2 py-1 font-semibold bg-white text-[#001935] border-2 border-solid border-[#001935] hover:text-gray-100 transition-colors duration-200 transform hover:bg-[#001935] rounded-md " onClick={cancelShow}>cancel</button>
-                        <button className="inline-flex w-full lg:w-fit justify-center px-2 py-1 font-semibold text-gray-100 transition-colors duration-200 transform bg-[#001935] rounded-md hover:bg-white hover:text-[#001935] border-2 border-solid border-[#001935]" onClick={saveShow}>save</button>    
+                        <button className="inline-flex w-full lg:w-fit justify-center px-2 py-1 font-semibold bg-white text-[#001935] border-2 border-solid border-[#001935] hover:text-gray-100 transition-colors duration-200 transform hover:bg-[#001935] rounded-md " onClick={cancelShow(single.id)}>cancel</button>
+                        <button className="inline-flex w-full lg:w-fit justify-center px-2 py-1 font-semibold text-gray-100 transition-colors duration-200 transform bg-[#001935] rounded-md hover:bg-white hover:text-[#001935] border-2 border-solid border-[#001935]" onClick={saveShow(single.id, value)}>save</button>    
                       </div>
                     </div>
                   

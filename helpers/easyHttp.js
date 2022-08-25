@@ -13,9 +13,10 @@
 
 
 
- if(process.env.NEXT_PUBLIC_NODE_ENV ==='development'){
+ if(process.env.NEXT_PUBLIC_APP_env ==='development'){
     // var api_origin = ''
-    var api_origin = 'http://localhost:3333'
+    // var api_origin = 'http://localhost:3333'
+    var api_origin = 'https://api.droomwork.io'
 }else{
    var api_origin = 'https://api.droomwork.io'
 }

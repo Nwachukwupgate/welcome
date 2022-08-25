@@ -11,37 +11,81 @@ function SelectLanguage({handleClick, steps, currentStep}) {
 
   const[exp, setExp] = useState("")
   const[show, setShow] = useState({})
-  const[value, setValue] = useState([])
-  const[mainValue, setMainValue]  = useState([value])
+  const[value, setValue] = useState()
+  const[mainValue, setMainValue]  = useState([])
+  const [saveAction, setSaveAction] = useState({})
+
 
   const showSelect = (index) => (e) => {
-    if (e.target.checked) {
-      console.log("yreasdffg")
-      setShow(state => ({
-        ...state, // <-- copy previous state
-        [index]: !state[index] // <-- update value by index key
-      }));
-    }
+    setShow(state => ({
+      ...state, // <-- copy previous state
+      [index]: !state[index] // <-- update value by index key
+    }));
+
+    setSaveAction(state => ({
+      ...state, // <-- copy previous state
+      [index]: !state[index] // <-- update value by index key
+    }));
   };
 
-  const saveShow = (e) => {
+  const saveShow = (index, value) => (e) => {
     e.preventDefault()
- 
-    Object.keys(mainValue).forEach(key => {
-      console.log("this is the key key value", key)
-      if (key in value) {
-        mainValue[key] = value[key];
-      }
-    });
-    setShow(!show);
+    console.log("clicked hereeee", typeof(value))
+    console.log("clicked hereeee", typeof(mainValue))
+    // Object.keys(mainValue).forEach(key => {
+    //   if (key in value) {
+    //     mainValue[key] = value[key];
+    //   }
+    // });
+    setMainValue(current =>
+      [...current, value]
+    )
+    
+    setSaveAction(state => ({
+      ...state, // <-- copy previous state
+      [index]: !state[index] // <-- update value by index key
+
+    }));
   };
 
-  const cancelShow = (e) => {
+  const cancelShow = (index) => (e) => {
     e.preventDefault()
-    setShow(!show);
+    setShow(state => ({
+      ...state, // <-- copy previous state
+      [index]: !state[index] // <-- update value by index key
+    }));
+    setSaveAction(state => ({
+      ...state, // <-- copy previous state
+      [index]: !state[index] // <-- update value by index key
+    }));
   };
 
-  
+  const emptyFields = (index, value) => (e) => {
+    e.preventDefault()
+    
+    setShow(state => ({
+      ...state, // <-- copy previous state
+      [index]: state[index] // <-- update value by index key
+    }));
+    setSaveAction(state => ({
+      ...state, // <-- copy previous state
+      [index]: !state[index] // <-- update value by index key
+    }));
+
+    const newObjs = mainValue.filter(item => item.id !== index)
+    setMainValue(newObjs)
+
+    // setMainValue(mainValue.fiter(item => item.id !== index))
+    // const newObjs = Object.values(mainValue).filter(product => product !== value)
+    // const newObjs = Object.values(mainValue)
+    // console.log("this is the filtered abeg work", newObjs)
+    // setMainValue(newObjs)
+
+
+    const newObj = Object.values(mainValue);
+    
+  }
+
 
   
 
@@ -142,43 +186,52 @@ const handleSubmitFrameworks = async(e)=>{
 
               {userFrameworks.map((single => (
                 <li className={styles.single_list} key={single.id}>
-                  <label className={styles.list_label}>
-                    {/* <input type="checkbox" name="" className={styles.inputType} id={single.id} onChange={handleSelectFramework} /> */}
-                    <input type="checkbox" name="" className={styles.inputType} id={single.id} onChange={showSelect(single.id)} />
-                    {/* <input type="checkbox" name="" className={styles.inputType} id={single.id} onChange={(e) => showSelect(single.id)} />  */}
+                <label className={styles.list_label}>
 
-                    <div className={styles.icon_box} onClick={showSelect(single.id)}>
-                      <span onClick={showSelect(single.id)} className={`${show[single.id] ? "hidden" : "block"} ml-2`}> + </span>
-                      
-                      <span className={styles.fa} aria-hidden="true"> {single.name} </span>
-                    </div>
-                  </label>
+        
+                {/* <input type="checkbox" name="" className={styles.inputType} id={single.id} onChange={showSelect(single.id)} checked={show[single.id]} /> */}
 
-                  <div className={`${show[single.id] ? "block" : "hidden"} z-10 absolute`}>
-                    <div className='flex gap-y-4 min-w-[20rem] bg-white z-10 shadow-2xl flex-col p-2'>
-                      <p>Years of professional experience</p>
+                  <div className={`${show[single.id] ? styles.checked_butt : styles.icon_box}`} onClick={showSelect(single.id)}> 
 
-                      <select onChange={(e)=> {setValue(s => (
-                        [...s, { [single.id]: e.target.value } ]
-                        ))
-                        }} id={single.id} name="experience">
-                        <option value = '1'>1 year</option>
-                        <option value = '2'>2 years</option>
-                        <option value = '3'>3 years</option>
-                        <option value = '4'>4 years</option>
-                        <option value = '5'>5 years</option>
-                        <option value = '6'>6 years</option>
-                        <option value = '7'>7 years</option>
-                      </select>
+                  {/* <input type="checkbox" name="" className={styles.inputType} id={single.id} onChange={handleSelectLanguages} /> */}
+                  {/* <div className={styles.icon_box}> */}
 
-                      <div className='flex justify-around'>
-                        <button className="inline-flex w-full lg:w-fit justify-center px-2 py-1 font-semibold bg-white text-[#001935] border-2 border-solid border-[#001935] hover:text-gray-100 transition-colors duration-200 transform hover:bg-[#001935] rounded-md " onClick={cancelShow}>cancel</button>
-                        <button className="inline-flex w-full lg:w-fit justify-center px-2 py-1 font-semibold text-gray-100 transition-colors duration-200 transform bg-[#001935] rounded-md hover:bg-white hover:text-[#001935] border-2 border-solid border-[#001935]" onClick={saveShow}>save</button>
-                        
-                      </div>
+                    <span onClick={showSelect(single.id)} className={`${show[single.id] ? "hidden" : "block"} ml-2`}> + </span>
+
+                    <span className={styles.fa} aria-hidden="true"> {single.name} </span>
+
+                    <span onClick={emptyFields(single.id, value)} className={`${show[single.id] ? "block" : "hidden"} ml-4`}> x </span>
+                  </div>
+                </label>
+
+                <div className={`${saveAction[single.id] ? "block" : "hidden"} absolute z-10`}>
+                
+                  <div className='flex gap-y-4 min-w-[20rem] bg-white z-10 shadow-2xl flex-col p-2'>
+                    <p>Years of professional experience</p>
+
+                    <select onChange={(e)=> {setValue(
+                       { id: single.id, value: e.target.value } 
+                      )
+                      }} id={single.id} name="experience">
+                      <option value = '1'>1 year</option>
+                      <option value = '2'>2 years</option>
+                      <option value = '3'>3 years</option>
+                      <option value = '4'>4 years</option>
+                      <option value = '5'>5 years</option>
+                      <option value = '6'>6 years</option>
+                      <option value = '7'>7 years</option>
+                    </select>
+
+                    <div className='flex justify-around'>
+                      <button className="inline-flex w-full lg:w-fit justify-center px-2 py-1 font-semibold bg-white text-[#001935] border-2 border-solid border-[#001935] hover:text-gray-100 transition-colors duration-200 transform hover:bg-[#001935] rounded-md " onClick={cancelShow(single.id)}>cancel</button>
+                      <button className="inline-flex w-full lg:w-fit justify-center px-2 py-1 font-semibold text-gray-100 transition-colors duration-200 transform bg-[#001935] rounded-md hover:bg-white hover:text-[#001935] border-2 border-solid border-[#001935]" onClick={saveShow(single.id, value)}>save</button>    
                     </div>
                   </div>
-                </li>
+                
+                z
+
+                </div>
+              </li>
               )))}
             </ul>
           </div>
