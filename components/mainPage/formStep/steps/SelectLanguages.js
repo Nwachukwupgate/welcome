@@ -219,7 +219,7 @@ const handleSelectLanguagesExp = async(e)=>{
                         <span>
                           <span className={styles.fa} aria-hidden="true"> {single.name} </span>
 
-                          <span onClick={() => {showSelect(single.id); showSelect(single.id) }} className={"ml-2"}> + </span>
+                          <span onClick={showSelect(single.id)} className={"ml-2"}> + </span>
                         </span>
                       }
 
