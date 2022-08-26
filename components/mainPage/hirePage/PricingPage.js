@@ -5,7 +5,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 const simpleHttp =  new EasyHTTP()
 
-if(process.env.APP_env === 'development') {
+if(process.env.NODE_ENV === 'development') {
     var api_origin = 'http://127.0.0.1:3333'
 } else {
     api_origin = 'https://api.droomwork.io'
@@ -33,7 +33,7 @@ const Tabs = ({ color }) => {
             setLocation(items);
         }
     }, []);
-    console.log("this is the location", location)
+    console.log("api origin", api_origin)
 
     const {data: stackData, isPending: stackLoading, error: stackError} = myFetch(`${api_origin}/api/v1/all/getStacks`)
 
