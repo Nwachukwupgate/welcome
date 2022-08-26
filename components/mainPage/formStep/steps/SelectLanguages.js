@@ -87,11 +87,7 @@ const handleSelectLanguages = async(e)=>{
     e.preventDefault()
     console.log("clicked hereeee", typeof(value))
     console.log("clicked hereeee", typeof(mainValue))
-    // Object.keys(mainValue).forEach(key => {
-    //   if (key in value) {
-    //     mainValue[key] = value[key];
-    //   }
-    // });
+    
     setMainValue(current =>
       [...current, value]
     )
@@ -144,11 +140,25 @@ const handleSelectLanguages = async(e)=>{
   
 const handleSubmitLanguagess = async(e)=>{
   e.preventDefault()
-  var userLanguagess = JSON.parse(localStorage.getItem("userLanguagess"))
+  // var userLanguagess = JSON.parse(localStorage.getItem("userLanguagess"))
+  // if(userLanguagess == null){return toast.error('You did not select any Languages')}
+  console.log(mainValue.length,'length of array')
+  // if(mainValue.length == 0){return toast.error('You did not select any Languages')}else{
+  //   var userToken = JSON.parse(localStorage.getItem("userToken"))
+  // mainValue.length !== 0 && mainValue.map(async(single)=>{
+    
+  //   console.log(single.value,'vava')
+  //   const res = await simpleHttp.put(`/api/v1/dev/chooseMyLanguages/${single.id}`,userToken)
+  //   if(res.status === true ){
+  //   const data = {experience1:parseInt(single.value)}
+  //   const ress = await simpleHttp.put(`/api/v1/dev/enterMyLanguageExperience`,userToken,data)
+  //   if(ress.status === true ){}else{toast.error(ress.message)}
+  //   }else{toast.error(res.message)}
+   
+  // }) 
+  // }
+  
 
-  if(userLanguagess == null){
-   return toast.error('You did not select any Languages')
-  }
   handleClick("next")
 }
 
@@ -197,24 +207,14 @@ const handleSelectLanguagesExp = async(e)=>{
                 <li className={styles.single_list} key={single.id}>
                   <label className={styles.list_label}>
 
-          
-                  {/* <input type="checkbox" name="" className={styles.inputType} id={single.id} onChange={showSelect(single.id)} checked={show[single.id]} /> */}
-
                     <div className={`${show[single.id] ? styles.checked_butt : styles.icon_box}`} onClick={showSelect(single.id)}> 
-
-                    {/* <input type="checkbox" name="" className={styles.inputType} id={single.id} onChange={handleSelectLanguages} /> */}
-                    {/* <div className={styles.icon_box}> */}
-
                       <span onClick={showSelect(single.id)} className={`${show[single.id] ? "hidden" : "block"} ml-2`}> + </span>
- 
                       <span className={styles.fa} aria-hidden="true"> {single.name} </span>
-
                       <span onClick={emptyFields(single.id, value)} className={`${show[single.id] ? "block" : "hidden"} ml-4`}> x </span>
                     </div>
                   </label>
 
                   <div className={`${saveAction[single.id] ? "block" : "hidden"} absolute z-10`}>
-                  
                     <div className='flex gap-y-4 min-w-[20rem] bg-white z-10 shadow-2xl flex-col p-2'>
                       <p>Years of professional experience</p>
 
@@ -222,6 +222,7 @@ const handleSelectLanguagesExp = async(e)=>{
                          { id: single.id, value: e.target.value } 
                         )
                         }} id={single.id} name="experience">
+                        <option value = '1'>select years</option>
                         <option value = '1'>1 year</option>
                         <option value = '2'>2 years</option>
                         <option value = '3'>3 years</option>
