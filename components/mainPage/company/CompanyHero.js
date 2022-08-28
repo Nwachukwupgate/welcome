@@ -20,7 +20,7 @@ function CompanyHero() {
         formdata.append("email", email);
 
         setIsPending(true)
-        await fetch(`${api_origin}/api/v1/comp/hireContact`,{
+        await fetch(`${api_origin}/api/v1/comp/quickHire`,{
             mode: 'cors',
             method: 'POST',
             headers: {

@@ -8,7 +8,7 @@ import { useRouter } from 'next/router'
 function SuccessPage() {
 const router = useRouter()
 const [applyEmail, setApplyEmail] = useState('')
-// http://localhost:3000/register?applyUrl=https://grnh.se/8633017d1us
+// http://localhost:3000/register?applyUrl=https://grnh.se/8633017d1us   //normally applyurl
     useEffect(() =>{
     if (typeof window !== "undefined"){var applyUrl = JSON.parse(localStorage.getItem("applyUrl"))}
     if(applyUrl !==undefined && applyUrl !==null ){
@@ -45,8 +45,8 @@ const [applyEmail, setApplyEmail] = useState('')
                     )}
                     {applyEmail == '' && (
                      <>
-                     <p className="font-bold text-lg"> Your Details have been taken, you will be contacted for an Interview Session.</p>
-                    <p className="text-gray-500">Upon completion of the next stage, getting your next gig or remote job will be made easier using droomwork. Thank you!</p>
+                     <p className="font-bold text-lg"> Your Details have been taken, you will be contacted for an interview session by our team not too long.</p>
+                    <p className="text-gray-500">Upon completion of the next stage, you would have no need to search for contract jobs.Companies will rather apply to you. Thank you!</p>
                      </>
                     )}
              

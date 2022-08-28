@@ -10,7 +10,6 @@ const simpleHttp =  new EasyHTTP()
 const initLanguagesArray=[]
 
 
-
 function SelectLanguages({handleClick, steps, currentStep}) {
   const [userLanguagess,setUserLanguagess] = useState([])
   const [selectedLanguagess,setSelectedLanguagess] = useState([])
@@ -85,12 +84,19 @@ const handleSelectLanguages = async(e)=>{
 
   const saveShow = (index, value) => (e) => {
     e.preventDefault()
-    console.log("clicked hereeee", typeof(value))
-    console.log("clicked hereeee", typeof(mainValue))
-    
-    setMainValue(current =>
-      [...current, value]
-    )
+
+    const i = mainValue.findIndex(_item => _item.id === value.id);
+    if (i > -1) {
+      mainValue[i] = value
+    } else {
+      setMainValue(current =>
+        [...current, value]
+      )
+    };
+
+    // setMainValue(current =>
+    //   [...current, value]
+    // )
     
     setSaveAction(state => ({
       ...state, // <-- copy previous state
@@ -140,41 +146,45 @@ const handleSelectLanguages = async(e)=>{
   
 const handleSubmitLanguagess = async(e)=>{
   e.preventDefault()
-  // var userLanguagess = JSON.parse(localStorage.getItem("userLanguagess"))
-  // if(userLanguagess == null){return toast.error('You did not select any Languages')}
-  console.log(mainValue.length,'length of array')
-  // if(mainValue.length == 0){return toast.error('You did not select any Languages')}else{
-  //   var userToken = JSON.parse(localStorage.getItem("userToken"))
-  // mainValue.length !== 0 && mainValue.map(async(single)=>{
-    
-  //   console.log(single.value,'vava')
-  //   const res = await simpleHttp.put(`/api/v1/dev/chooseMyLanguages/${single.id}`,userToken)
-  //   if(res.status === true ){
-  //   const data = {experience1:parseInt(single.value)}
-  //   const ress = await simpleHttp.put(`/api/v1/dev/enterMyLanguageExperience`,userToken,data)
-  //   if(ress.status === true ){}else{toast.error(ress.message)}
-  //   }else{toast.error(res.message)}
-   
-  // }) 
-  // }
+  if (typeof window !== "undefined") {window.localStorage.setItem('userLanguagess', JSON.stringify(mainValue))}
+  if(mainValue.length == 0){return toast.error('You did not select any Languages')}else{
+  var userToken = JSON.parse(localStorage.getItem("userToken"))
+
+  const langId1 =  mainValue[0] !==undefined? mainValue[0].id:'undefined'
+  const langId2 =  mainValue[1] !==undefined? mainValue[1].id:'undefined'
+  const langId3 =  mainValue[2] !==undefined? mainValue[2].id:'undefined'
+  const langId4 =  mainValue[3] !==undefined? mainValue[3].id:'undefined'
+  const langId5 =  mainValue[4] !==undefined? mainValue[4].id:'undefined'
+  const langId6 =  mainValue[5] !==undefined? mainValue[5].id:'undefined'
+  const langId7 =  mainValue[6] !==undefined? mainValue[6].id:'undefined'
+  const langId8 =  mainValue[7] !==undefined? mainValue[7].id:'undefined'
+
+  const langExp1 =  mainValue[0] !==undefined? parseInt(mainValue[0].value):'undefined'
+  const langExp2 =  mainValue[1] !==undefined? parseInt(mainValue[1].value):'undefined'
+  const langExp3 =  mainValue[2] !==undefined? parseInt(mainValue[2].value):'undefined'
+  const langExp4 =  mainValue[3] !==undefined? parseInt(mainValue[3].value):'undefined'
+  const langExp5 =  mainValue[4] !==undefined? parseInt(mainValue[4].value):'undefined'
+  const langExp6 =  mainValue[5] !==undefined? parseInt(mainValue[5].value):'undefined'
+  const langExp7 =  mainValue[6] !==undefined? parseInt(mainValue[6].value):'undefined'
+  const langExp8 =  mainValue[7] !==undefined? parseInt(mainValue[7].value):'undefined'
+  
+  const res = await simpleHttp.put(`/api/v1/dev/chooseMyLanguages/${langId1}/${langId2}/${langId3}/${langId4}/${langId5}/${langId6}/${langId7}/${langId8}`,userToken)
+
+  if(res.status === true ){}else{toast.error(res.error.message)}
+
+  const ress = await simpleHttp.put(`/api/v1/dev/enterMyLanguageExperience/${langExp1}/${langExp2}/${langExp3}/${langExp4}/${langExp5}/${langExp6}/${langExp7}/${langExp8}`,userToken)
+  
+  if(ress.status === true ){}else{toast.error(ress.message)}
+  handleClick("next")
+  }
   
 
-  handleClick("next")
+ 
 }
 
 
 
 
-const handleSelectLanguagesExp = async(e)=>{
-  e.preventDefault()
-  const LanguagesId = e.target.experience.value
-
-  var userToken = JSON.parse(localStorage.getItem("userToken"))
-  const res = await simpleHttp.put(`/api/v1/dev/enterMyLanguagesExperience`,userToken,LanguagesId)
-  if(res.status === true ){
-    }else{toast.error(res.message)}
-
-}
 
 
 
@@ -208,9 +218,30 @@ const handleSelectLanguagesExp = async(e)=>{
                   <label className={styles.list_label}>
 
                     <div className={`${show[single.id] ? styles.checked_butt : styles.icon_box}`} onClick={showSelect(single.id)}> 
-                      <span onClick={showSelect(single.id)} className={`${show[single.id] ? "hidden" : "block"} ml-2`}> + </span>
+
+                    {/* <input type="checkbox" name="" className={styles.inputType} id={single.id} onChange={handleSelectLanguages} /> */}
+                    {/* <div className={styles.icon_box}> */}
+
+                      {show[single.id] ?
+                        <span>
+                          
+  
+                          <span className={styles.fa} aria-hidden="true"> {single.name} </span>
+                          <span onClick={emptyFields(single.id, value)} className={"mr-2"}> x </span>
+                        </span>
+                        :
+                        <span>
+                          <span className={styles.fa} aria-hidden="true"> {single.name} </span>
+
+                          <span onClick={showSelect(single.id)} className={"ml-2"}> + </span>
+                        </span>
+                      }
+
+                      {/* <span onClick={showSelect(single.id)} className={`${show[single.id] ? "hidden" : "block"} ml-2`}> + </span>
+ 
                       <span className={styles.fa} aria-hidden="true"> {single.name} </span>
-                      <span onClick={emptyFields(single.id, value)} className={`${show[single.id] ? "block" : "hidden"} ml-4`}> x </span>
+
+                      <span onClick={emptyFields(single.id, value)} className={`${show[single.id] ? "block" : "hidden"} ml-4`}> x </span> */}
                     </div>
                   </label>
 
@@ -222,7 +253,7 @@ const handleSelectLanguagesExp = async(e)=>{
                          { id: single.id, value: e.target.value } 
                         )
                         }} id={single.id} name="experience">
-                        <option value = '1'>select years</option>
+                        <option value = '0'>select years</option>
                         <option value = '1'>1 year</option>
                         <option value = '2'>2 years</option>
                         <option value = '3'>3 years</option>

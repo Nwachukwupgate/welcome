@@ -267,13 +267,15 @@ const handleSelectLanguage = async(e)=>{
     for ( var key in userLanguagess[3] ) {var langId4 = key}
     for ( var key in userLanguagess[4] ) {var langId5 = key}
     for ( var key in userLanguagess[5] ) {var langId6 = key}
+    for ( var key in userLanguagess[6] ) {var langId7 = key}
+    for ( var key in userLanguagess[7] ) {var langId8 = key}
 
-    const res = await simpleHttp.getNoAuth(`/api/v1/comp/getFrameworksBasedOnLanguages/${langId1}/${langId2}/${langId3}/${langId4}/${langId5}/${langId6}`)
+    const res = await simpleHttp.getNoAuth(`/api/v1/comp/getFrameworksBasedOnLanguages/${langId1}/${langId2}/${langId3}/${langId4}/${langId5}/${langId6}/${langId7}/${langId8}`)
+
     if(res.status == true){  
-    
       setFramework(res.data)
       setShowFramework(true)
-    }else{toast.error(res.error.message)}
+    }else{toast.error(res.message)}
   }
   
 }

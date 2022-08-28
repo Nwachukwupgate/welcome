@@ -49,6 +49,14 @@ const handleSubmitDevsRegistration = async(e)=>{
   formData.append('continent',e.target.continent.value)
   formData.append('language','english')
 
+  console.log('cv', cvFile)
+  console.log('profilePicture', file)
+  console.log('firstname',e.target.firstName.value)
+  console.log('phone',e.target.phoneNumber.value)
+  console.log('lastname',e.target.lastName.value)
+  console.log('short_bio',e.target.shortBio.value)
+  console.log('continent',e.target.continent.value)
+  console.log('language','english')
 
   var userToken = JSON.parse(localStorage.getItem("userToken"))
 
@@ -66,7 +74,7 @@ const handleSubmitDevsRegistration = async(e)=>{
           localStorage.removeItem("userToken")
           localStorage.removeItem("userStack")
           localStorage.removeItem("userFrameworks")
-          localStorage.removeItem("userLanguages")
+          localStorage.removeItem("userLanguagess")
         
         }else{
           setSpinner(false)
@@ -298,7 +306,7 @@ setSuggest(res.data)
                     "
                     id="exampleFormControlTextarea1"
                     rows="3"
-                    placeholder="Write a short description about yourself"
+                    placeholder="Write a short professional intro of yourself"
                     name="shortBio"
                     required
                 ></textarea>
