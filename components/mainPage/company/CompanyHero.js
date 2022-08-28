@@ -32,15 +32,11 @@ function CompanyHero() {
         }).then(response => {
             if (!response.ok) {
                 const validation = response.json();
-                // setErrors(validation.errors);
-                // console.log(validation.errors);
-                console.log("this is response", response)
-                console.log("this is err", validation)
+              
                 setIsPending(false)
               }else{
                 const valid = response.json();
-                console.log("this is response", response)
-                console.log("this is success", valid)
+           
                 setIsPending(false)
               }
         })

@@ -18,9 +18,7 @@ function SelectLanguages({handleClick, steps, currentStep}) {
   const[value, setValue] = useState()
   const[mainValue, setMainValue]  = useState([])
   const [saveAction, setSaveAction] = useState({})
-  console.log(value,'value of selected')
-  console.log(mainValue,'value of MAIN selected')
-  
+
   useEffect(() =>{
 
     async function fetchData() {

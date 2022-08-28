@@ -49,14 +49,14 @@ const handleSubmitDevsRegistration = async(e)=>{
   formData.append('continent',e.target.continent.value)
   formData.append('language','english')
 
-  console.log('cv', cvFile)
-  console.log('profilePicture', file)
-  console.log('firstname',e.target.firstName.value)
-  console.log('phone',e.target.phoneNumber.value)
-  console.log('lastname',e.target.lastName.value)
-  console.log('short_bio',e.target.shortBio.value)
-  console.log('continent',e.target.continent.value)
-  console.log('language','english')
+  // console.log('cv', cvFile)
+  // console.log('profilePicture', file)
+  // console.log('firstname',e.target.firstName.value)
+  // console.log('phone',e.target.phoneNumber.value)
+  // console.log('lastname',e.target.lastName.value)
+  // console.log('short_bio',e.target.shortBio.value)
+  // console.log('continent',e.target.continent.value)
+  // console.log('language','english')
 
   var userToken = JSON.parse(localStorage.getItem("userToken"))
 

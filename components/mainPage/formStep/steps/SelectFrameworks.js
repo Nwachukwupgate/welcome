@@ -31,8 +31,7 @@ function SelectLanguage({handleClick, steps, currentStep}) {
 
   const saveShow = (index, value) => (e) => {
     e.preventDefault()
-    console.log("clicked hereeee", typeof(value))
-    console.log("clicked hereeee", typeof(mainValue))
+   
     // Object.keys(mainValue).forEach(key => {
     //   if (key in value) {
     //     mainValue[key] = value[key];

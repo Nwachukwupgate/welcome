@@ -23,7 +23,6 @@ e.target.password.value = null
    //handle confirmation here  &isFullyReg=true
   
    if(res.user.cv !== null){
-       console.log('I dey opobo')
     router.push(`/stepForm/?welcome=${res.token.token}&isFullyReg=true`)
    }else{
     router.push(`/stepForm/?welcome=${res.token.token}`)

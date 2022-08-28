@@ -57,7 +57,7 @@ function DevChoice({handleClick, steps, currentStep}) {
       formData.append('email',compInfoObj.email)
       
       if(isLanguageSelected == true){
-        console.log(userLanguages[0],'userLanguages[0]')
+      
         if(userLanguages[0] !== undefined){
           var langId1 =  Object.values(userLanguages[0])[0]
           formData.append('language1',langId1)
@@ -237,21 +237,20 @@ const handleSelectLanguage = async(e)=>{
     return Object.values(single)[0] == LanguageName
   }
   const checked = initLanguageArray.find(checkIfClicked)
-  console.log(checked,'checked')
   if (checked !== undefined) { // has been checked before, remove id from stat
   var selectedLanguages = JSON.parse(localStorage.getItem("userLanguages"))
   let updatedLanguages = selectedLanguages.filter((id) => {
   return Object.values(id)[0] !== LanguageName})
 
   localStorage.setItem('userLanguages', JSON.stringify(updatedLanguages))
-  console.log(initLanguageArray,'b4 updated',updatedLanguages,'updatedLanguages')
+ 
   initLanguageArray.length = 0 //clears array
-  console.log(initLanguageArray,'see the cleared state')
+  
 
   updatedLanguages.map((single)=>{
    return initLanguageArray.push(single)
   })
-  console.log(initLanguageArray,'true updated intiarray')
+
 
   }else{
     // initLanguageArray.push(parseInt(singleId))
@@ -296,12 +295,12 @@ setIsFrameworkSelected(true)
 
   console.log(initFrameworkArray,'b4 updated',updatedFrameworks,'updatedLanguages')
   initFrameworkArray.length = 0 //clears array
-  console.log(initFrameworkArray,'see the cleared state')
+  
 
   updatedFrameworks.map((single)=>{
    return initFrameworkArray.push(single)
   })
-  console.log(initFrameworkArray,'true updated intiarray')
+ 
 
   }else{
     var key =parseInt(singleId),

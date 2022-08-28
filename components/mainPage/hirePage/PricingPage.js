@@ -33,7 +33,7 @@ const Tabs = ({ color }) => {
             setLocation(items);
         }
     }, []);
-    console.log("api origin", api_origin)
+ 
 
     const {data: stackData, isPending: stackLoading, error: stackError} = myFetch(`${api_origin}/api/v1/all/getStacks`)
 
