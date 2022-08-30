@@ -83,21 +83,17 @@ const Item = ({ title, children }) => {
             </p> */}
           </div>
           <div class="space-y-4">
-            <Item title="The quick, brown fox jumps over a lazy dog?">
-              Sed ut perspiciatis unde omnis iste natus error sit voluptatem
-              accusantium doloremque rem aperiam, eaque ipsa quae.
+            <Item title="What is Droomwork, and how can I acquire a job there?">
+              As we support top-tier independent professionals to collaborate with scaling businesses throughout the world, Droomwork is an exclusive network of full-time self-employed professionals. We have an onboarding process that will enable us to comprehend the skill set you would bring to the table and recommend projects that are more pertinent to you before you begin working on them.
             </Item>
-            <Item title="The first mate and his Skipper too will do?">
-              Sed ut perspiciatis unde omnis iste natus error sit voluptatem
-              accusantium doloremque rem aperiam, eaque ipsa quae.
+            <Item title="What kind of projects can Droomwork provide?">
+              Almost all web and mobile application development and design technologies are covered by the freelance contracts we offer to full-time independent contractors.
             </Item>
-            <Item title="Is the Space Pope reptilian!?">
-              Sed ut perspiciatis unde omnis iste natus error sit voluptatem
-              accusantium doloremque rem aperiam, eaque ipsa quae.
+            <Item title="What charges or fees do you charge?">
+              No, we don't charge freelancers for our services.
             </Item>
-            <Item title="How much money you got on you?">
-              Sed ut perspiciatis unde omnis iste natus error sit voluptatem
-              accusantium doloremque rem aperiam, eaque ipsa quae.
+            <Item title="When I join, will I start getting projects?">
+              As soon as a freelancer joins our community, we do our best to match every freelancer with appropriate tasks. We may not be able to find you a project right away, though, so that cannot be guaranteed.
             </Item>
           </div>
         </div>

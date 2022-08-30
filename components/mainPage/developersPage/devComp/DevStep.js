@@ -46,7 +46,7 @@ function DevStep() {
                             <p className="mb-2 text-lg font-bold bg-gradient-to-r from-[#f49038] to-[#001935] bg-clip-text text-transparent">Step. 1</p>
                             <p className="mb-2 text-2xl font-bold">Sign Up</p>
                             <p className="text-gray-700">
-                                Take a skill assessment based on the things you know. Schedule a quick chat to help us know your communication level. Learn more about our vetting process.
+                                Fill in your basic details. Your senior level, stack, languages &amp; frameworks you know, your personal information.
                             </p>
                             </div>
                         </div>
@@ -84,7 +84,7 @@ function DevStep() {
                             <p className="mb-2 text-lg font-bold bg-gradient-to-r from-[#f49038] to-[#001935] bg-clip-text text-transparent">Step. 2</p>
                             <p className="mb-2 text-2xl font-bold">Complete your Vetting and Interview Process</p>
                             <p className="text-gray-700">
-                            Fill in your basic details, Personal information, Work experience and Certification.
+                            You schedule a quick chat with us to help us know your roots on the job and your communication level.
                             </p>
                             </div>
                         </div>
@@ -120,9 +120,9 @@ function DevStep() {
                             </div>
                             <div className="pt-1 pb-8">
                             <p className="mb-2 text-lg font-bold bg-gradient-to-r from-[#f49038] to-[#001935] bg-clip-text text-transparent">Step. 3</p>
-                            <p className="mb-2 text-2xl font-bold">Recieve Offers & Get Hired</p>
+                            <p className="mb-2 text-2xl font-bold">Recieve Offers &amp; Get Hired</p>
                             <p className="text-gray-700">
-                                Receive notification on the most fully contract jobs from Droomwork. Get matched with the hottest companies in Africa & Canada
+                                Receive notification on the most juicy contract jobs from us.
                             </p>
                             </div>
                         </div>
@@ -158,9 +158,9 @@ function DevStep() {
                             </div>
                             <div className="pt-1 pb-8">
                             <p className="mb-2 text-lg font-bold bg-gradient-to-r from-[#f49038] to-[#001935] bg-clip-text text-transparent">Step. 4</p>
-                            <p className="mb-2 text-2xl font-bold">Recieve Offers & Get Hired</p>
+                            <p className="mb-2 text-2xl font-bold">Continue working on your dream jobs &amp; projects</p>
                             <p className="text-gray-700">
-                            You only need to set your profile as Available whenever you are out of Job or even wish to switch.
+                            We will keep doing the work of serving you with opportunities that fits your profile.
                             </p>
                             </div>
                         </div>

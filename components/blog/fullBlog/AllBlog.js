@@ -8,13 +8,13 @@ const Blog = ({ fullBlog }) => {
           <div className="grid gap-8 lg:grid-cols-3 sm:max-w-sm sm:mx-auto lg:max-w-full">
             {fullBlog && fullBlog.data.data.slice(3).map((post) => (
               <Link href={`/blog/${post.slug}`} passHref key={post.id}> 
-                <div className="overflow-hidden transition-shadow duration-300 bg-white rounded shadow-sm">
+                <div className="min-h-full overflow-hidden transition-shadow duration-300 bg-white rounded shadow-sm">
                   <img
                     src={post.featured_image_link}
                     className="object-cover w-full h-64"
                     alt={post.title}
                   />
-                  <div className="p-5 border border-t-0">
+                  <div className="p-5 border border-t-0 min-h-full">
                     <p className="mb-3 text-xs font-semibold tracking-wide uppercase">
                       <Link href={`/blog/${post.slug}`}>
                         <a

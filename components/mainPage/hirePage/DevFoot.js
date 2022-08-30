@@ -31,76 +31,76 @@ const DevFoot = () => {
                     <div>
                         <ul class="list-inside mt-4 space-y-4">
                             <li>
-                                <a href="#" class="hover:text-cyan-600 transition">.Net Developer</a>
+                                <a href="#" class="transition">.Net Developer</a>
                             </li>
                             <li>
-                                <a href="#" class="hover:text-cyan-600 transition">Asp Developer</a>
+                                <a href="#" class=" transition">Asp Developer</a>
                             </li>
                             <li>
-                                <a href="#" class="hover:text-cyan-600 transition">Dev ops</a>
+                                <a href="#" class=" transition">Dev ops</a>
                             </li>
                             <li>
-                                <a href="#" class="hover:text-cyan-600 transition">Java Developers</a>
+                                <a href="#" class=" transition">Java Developers</a>
                             </li>
                             <li>
-                                <a href="#" class="hover:text-cyan-600 transition">C++ Developer</a>
-                            </li>
-                        </ul>
-                    </div>
-                    <div>
-                        <ul class="list-inside mt-4 space-y-4">
-                            <li>
-                                <a href="#" class="hover:text-cyan-600 transition">React Developers</a>
-                            </li>
-                            <li>
-                                <a href="#" class="hover:text-cyan-600 transition">Bun Developer</a>
-                            </li>
-                            <li>
-                                <a href="#" class="hover:text-cyan-600 transition">Node Developer</a>
-                            </li>
-                            <li>
-                                <a href="#" class="hover:text-cyan-600 transition">Django Developers</a>
-                            </li>
-                            <li>
-                                <a href="#" class="hover:text-cyan-600 transition">Javascript Developers</a>
+                                <a href="#" class="transition">C++ Developer</a>
                             </li>
                         </ul>
                     </div>
                     <div>
                         <ul class="list-inside mt-4 space-y-4">
                             <li>
-                                <a href="#" class="hover:text-cyan-600 transition">Vue Developers</a>
+                                <a href="#" class=" transition">React Developers</a>
                             </li>
                             <li>
-                                <a href="#" class="hover:text-cyan-600 transition">Angular Developers</a>
+                                <a href="#" class=" transition">Bun Developer</a>
                             </li>
                             <li>
-                                <a href="#" class="hover:text-cyan-600 transition">R developers</a>
+                                <a href="#" class=" transition">Node Developer</a>
                             </li>
                             <li>
-                                <a href="#" class="hover:text-cyan-600 transition">Php Developers</a>
+                                <a href="#" class=" transition">Django Developers</a>
                             </li>
                             <li>
-                                <a href="#" class="hover:text-cyan-600 transition">Scalar Developers</a>
+                                <a href="#" class=" transition">Javascript Developers</a>
                             </li>
                         </ul>
                     </div>
                     <div>
                         <ul class="list-inside mt-4 space-y-4">
                             <li>
-                                <a href="#" class="hover:text-cyan-600 transition">Next Developers</a>
+                                <a href="#" class=" transition">Vue Developers</a>
                             </li>
                             <li>
-                                <a href="#" class="hover:text-cyan-600 transition">Flutter Developers</a>
+                                <a href="#" class=" transition">Angular Developers</a>
                             </li>
                             <li>
-                                <a href="#" class="hover:text-cyan-600 transition">Mobile Developers</a>
+                                <a href="#" class=" transition">R developers</a>
                             </li>
                             <li>
-                                <a href="#" class="hover:text-cyan-600 transition">Andonis Developers</a>
+                                <a href="#" class=" transition">Php Developers</a>
                             </li>
                             <li>
-                                <a href="#" class="hover:text-cyan-600 transition">Docker Developers</a>
+                                <a href="#" class=" transition">Scalar Developers</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div>
+                        <ul class="list-inside mt-4 space-y-4">
+                            <li>
+                                <a href="#" class=" transition">Next Developers</a>
+                            </li>
+                            <li>
+                                <a href="#" class=" transition">Flutter Developers</a>
+                            </li>
+                            <li>
+                                <a href="#" class=" transition">Mobile Developers</a>
+                            </li>
+                            <li>
+                                <a href="#" class=" transition">Andonis Developers</a>
+                            </li>
+                            <li>
+                                <a href="#" class=" transition">Docker Developers</a>
                             </li>
                         </ul>
                     </div>

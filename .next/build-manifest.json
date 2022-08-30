@@ -25,15 +25,15 @@
       "static/chunks/main.js",
       "static/chunks/pages/_error.js"
     ],
-    "/company": [
+    "/developers": [
       "static/chunks/webpack.js",
       "static/chunks/main.js",
-      "static/chunks/pages/company.js"
+      "static/chunks/pages/developers.js"
     ],
-    "/companyStep": [
+    "/recruiters": [
       "static/chunks/webpack.js",
       "static/chunks/main.js",
-      "static/chunks/pages/companyStep.js"
+      "static/chunks/pages/recruiters.js"
     ]
   },
   "ampFirstPages": []

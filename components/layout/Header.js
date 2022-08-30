@@ -279,10 +279,11 @@ export const Nav = () => {
                             <div className="block w-full lg:items-center lg:flex">
                                 <ul className="space-y-6 pb-6 tracking-wide font-medium text-gray-600 lg:pb-0 lg:pr-6 lg:items-center lg:flex lg:space-y-0">
                                     
-                                    <li onClick={scrollTo}>
+                                    {/* <li onClick={scrollTo}> */}
+                                    <li>
                                         {/* <Link href="#">
                                             <a href="#" className="block md:px-3"> */}
-                                                <span className="relative before:absolute before:block before:bottom-[-0.15rem] before:left-0 before:w-2/4 before:h-[1px] before:bg-[#F49038] before:-p-2 cursor-pointer ">Get a Quote</span>
+                                                <span className="relative before:absolute before:block before:bottom-[-0.15rem] before:left-0 before:w-2/4 before:h-[1px] before:bg-[#F49038] before:-p-2 cursor-pointer ">Build</span>
                                             {/* </a>
                                         </Link> */}
                                     </li>
@@ -317,7 +318,7 @@ export const Nav = () => {
 
                                     <li>
                                         <button className="inline-flex w-full lg:w-fit justify-center px-5 py-2 font-semibold bg-white text-[#001935] border-2 border-solid border-[#001935] hover:text-gray-100 transition-colors duration-200 transform hover:bg-[#001935] rounded-md ">
-                                            <Link href="/company">
+                                            <Link href="/recruiters">
                                                 <a>
                                                     <span className="block">
                                                         Hire Developers

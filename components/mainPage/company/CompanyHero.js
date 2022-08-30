@@ -1,5 +1,7 @@
 import React,{useState} from 'react';
-import { useQuickHireMutation } from "reactWrapper/redux/apiSlice";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import Link from 'next/link';
 
 if(process.env.APP_env === 'development') {
     var api_origin = 'https://api.droomwork.io'
@@ -10,7 +12,6 @@ if(process.env.APP_env === 'development') {
 
 function CompanyHero() {
 
-    const [ quickHire, {data, isSuccess, isError, error, isLoading }] = useQuickHireMutation();
     const [email, setEmail] = useState('')
     const [isPending, setIsPending] = useState(false)
 
@@ -28,37 +29,46 @@ function CompanyHero() {
                 'Accept':'application/json',
                 'Access-Control-Allow-Origin':'*',
             },
-            body: JSON.stringify(formdata)
-        }).then(response => {
-            if (!response.ok) {
-                const validation = response.json();
-                // setErrors(validation.errors);
-                // console.log(validation.errors);
-                console.log("this is response", response)
-                console.log("this is err", validation)
+            body: JSON.stringify({
+                email: email,
+                userId: Math.random().toString(36).slice(2),
+             })
+        }).then((res) => res.json())
+        .then((post) => {
+            // setPosts((posts) => [post, ...posts]);
+            console.log("this is the post full", post)
+            if(post.status == true) {
+                setEmail('')
                 setIsPending(false)
-              }else{
-                const valid = response.json();
-                console.log("this is response", response)
-                console.log("this is success", valid)
-                setIsPending(false)
-              }
-        })
-
-        // try {
-        //     const response = await quickHire(formdata).unwrap();
-        //     console.log('fulfilled', response)
-        // } catch (error) {
-        //     console.error('rejected', error.data.message);
-        // }
+                toast.success(post.message)
+            } else{
+                // toast.error(post.error.message)
+                toast.error(post.message)
+            }  
+         })
+         .catch((err) => {
+            toast.error(err.message);
+            console.log("this is d main", err.message)
+         });
     }
 
   return (
     <>
+        <ToastContainer
+        position="top-right"
+        autoClose={10000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        />
         <section className="pt-24 mx-auto max-w-screen-xl pb-4 px-4 items-center lg:flex md:px-8">
             <div className="space-y-4  sm:text-center lg:text-left lg:space-y-10">
                 <div>
-                    <p className="text-[#F49038] text-lg ml-2 mb-[0.8rem] font-medium">For Company</p>
+                    {/* <p className="text-[#F49038] text-lg ml-2 mb-[0.8rem] font-medium">For Company</p> */}
                     <h1 className="text-gray-900 font-bold text-4xl xl:text-5xl">
                         Hire Pre-Screened Developers for Full Time Jobs in Your Company
                     </h1>
@@ -77,11 +87,19 @@ function CompanyHero() {
                             value={email}
                             onChange={(e) => setEmail(e.target.value)}
                         />
-                        <button className="inline-flex w-fit justify-center px-5 py-2 font-semibold text-gray-100 transition-colors duration-200 transform bg-[#001935] rounded-md hover:bg-white hover:text-[#001935] hover:border-2 hover:border-solid hover:border-[#001935]">Quick Hire</button>
+                        {!isPending && 
+                            <button className="inline-flex w-fit justify-center px-5 py-2 font-semibold text-gray-100 transition-colors duration-200 transform bg-[#001935] rounded-md hover:bg-white hover:text-[#001935] hover:border-2 hover:border-solid hover:border-[#001935]">Quick Hire</button>
+                        }
+                        
+                        {isPending && 
+                            <button className="inline-flex w-full lg:w-fit justify-center px-5 py-2 font-semibold bg-white text-[#001935] border-2 border-solid border-[#001935] hover:text-gray-100 transition-colors duration-200 transform hover:bg-[#001935] rounded-md " disabled>
+                                Hiring
+                            </button>
+                        }
                     </form>
 
                     <p className="text-gray-800 py-3">
-                        Are you a developer? <span className="text-[#F49038]">Get Hired</span>
+                        Are you a developer? <span className="text-[#F49038]"><Link href="/developers"><a>Get Hired</a></Link></span>
                     </p>
                 </div>
             </div>

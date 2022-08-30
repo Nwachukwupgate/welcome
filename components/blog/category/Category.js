@@ -27,16 +27,15 @@ const Feature = () => {
                     height="24"
                   />
                 </svg>
-                <span className="relative">The</span>
+                <span className="relative">Explore</span>
               </span>{' '}
-              quick, brown fox jumps over a lazy dog
+               More Topics
             </h2>
             <p className="text-base text-gray-700 md:text-lg">
-              Sed ut perspiciatis unde omnis iste natus error sit voluptatem
-              accusantium doloremque rem aperiam, eaque ipsa quae.
+            Ready to brush up on something new? We've got more to read right this way
             </p>
           </div>
-          <div className="grid grid-cols-2 gap-5 row-gap-6 mb-10 sm:grid-cols-3 lg:grid-cols-6">
+          <div className="grid grid-cols-2 gap-5 row-gap-6 mb-10 sm:grid-cols-3 lg:grid-cols-4">
             <div className="text-center">
               <div className="flex items-center justify-center w-16 h-16 mx-auto mb-4 rounded-full bg-indigo-50 sm:w-24 sm:h-24">
                 <svg
@@ -53,7 +52,7 @@ const Feature = () => {
                   />
                 </svg>
               </div>
-              <h6 className="mb-2 font-semibold leading-5">World</h6>
+              <h6 className="mb-2 font-semibold leading-5">Technical HR</h6>
             </div>
             <div className="text-center">
               <div className="flex items-center justify-center w-16 h-16 mx-auto mb-4 rounded-full bg-indigo-50 sm:w-24 sm:h-24">
@@ -71,7 +70,7 @@ const Feature = () => {
                   />
                 </svg>
               </div>
-              <h6 className="mb-2 font-semibold leading-5">Sport</h6>
+              <h6 className="mb-2 font-semibold leading-5">Remote Work</h6>
             </div>
             <div className="text-center">
               <div className="flex items-center justify-center w-16 h-16 mx-auto mb-4 rounded-full bg-indigo-50 sm:w-24 sm:h-24">
@@ -89,7 +88,7 @@ const Feature = () => {
                   />
                 </svg>
               </div>
-              <h6 className="mb-2 font-semibold leading-5">Weather</h6>
+              <h6 className="mb-2 font-semibold leading-5">Custom Build</h6>
             </div>
             <div className="text-center">
               <div className="flex items-center justify-center w-16 h-16 mx-auto mb-4 rounded-full bg-indigo-50 sm:w-24 sm:h-24">
@@ -107,43 +106,7 @@ const Feature = () => {
                   />
                 </svg>
               </div>
-              <h6 className="mb-2 font-semibold leading-5">Projects</h6>
-            </div>
-            <div className="text-center">
-              <div className="flex items-center justify-center w-16 h-16 mx-auto mb-4 rounded-full bg-indigo-50 sm:w-24 sm:h-24">
-                <svg
-                  className="w-12 h-12 text-deep-purple-accent-400 sm:w-16 sm:h-16"
-                  stroke="currentColor"
-                  viewBox="0 0 52 52"
-                >
-                  <polygon
-                    strokeWidth="3"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    fill="none"
-                    points="29 13 14 29 25 29 23 39 38 23 27 23"
-                  />
-                </svg>
-              </div>
-              <h6 className="mb-2 font-semibold leading-5">Fitness</h6>
-            </div>
-            <div className="text-center">
-              <div className="flex items-center justify-center w-16 h-16 mx-auto mb-4 rounded-full bg-indigo-50 sm:w-24 sm:h-24">
-                <svg
-                  className="w-12 h-12 text-deep-purple-accent-400 sm:w-16 sm:h-16"
-                  stroke="currentColor"
-                  viewBox="0 0 52 52"
-                >
-                  <polygon
-                    strokeWidth="3"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    fill="none"
-                    points="29 13 14 29 25 29 23 39 38 23 27 23"
-                  />
-                </svg>
-              </div>
-              <h6 className="mb-2 font-semibold leading-5">News</h6>
+              <h6 className="mb-2 font-semibold leading-5">Programming</h6>
             </div>
           </div>
           

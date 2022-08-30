@@ -28,10 +28,14 @@ const Tabs = ({ color }) => {
     const [price, setPrice] = useState(null)
 
     useEffect(() => {
-        const items = JSON.parse(localStorage.getItem('location'));
-        if (items) {
-            setLocation(items);
+        if (typeof window !== "undefined") {
+            const items = JSON.parse(localStorage.getItem('location'));
+            setLocation(items)
         }
+        // const items = JSON.parse(localStorage.getItem('location'));
+        // if (items) {
+        //     setLocation(items);
+        // }
     }, []);
     console.log("this is the location", location)
 
@@ -61,6 +65,7 @@ const Tabs = ({ color }) => {
             })
             .catch((e) => toast.error(e.message));
         };
+        // fetchData()
     
         const timer = setTimeout(() => {
           fetchData();
@@ -72,7 +77,7 @@ const Tabs = ({ color }) => {
     // console.log("this is the Stackdata", stackData)
 
     const handleClick = async (id) => {
-        const res = await simpleHttp.get(`/api/v1/all/getPrice/${location}/${id}`)
+        const res = await simpleHttp.getNoAuth(`/api/v1/all/getPrice/${location}/${id}`)
         if(res.status == true) {
             setPrice(res.data)
             setIsPending(false)
@@ -105,10 +110,10 @@ const Tabs = ({ color }) => {
                 >
                 Our Pricing Plan
             </h2>
-            <p className="text-base text-body-color">
+            {/* <p className="text-base text-body-color">
                 There are many variations of passages of Lorem Ipsum available
                 but the majority have suffered alteration in some form.
-            </p>
+            </p> */}
             </div>
         </div>
         </div>
@@ -123,7 +128,7 @@ const Tabs = ({ color }) => {
                     <li className="-mb-px mr-2 last:mr-0 flex-auto text-center" key={items.id}> 
                         <span
                             className={
-                                "text-xs font-bold uppercase px-5 py-3 shadow-lg rounded block leading-normal " +
+                                "text-xs cursor-pointer font-bold uppercase px-5 py-3 shadow-lg rounded block leading-normal " +
                                 (openTab === (items.id)
                                     ? "text-gray-100 bg-" + color + " "
                                     : "text-" + color + "-600 bg-white")
@@ -164,7 +169,7 @@ const Tabs = ({ color }) => {
                                 ) : (
                                     <div className="">
                                         <div className="flex flex-wrap justify-center -mx-4">
-                                            <div className="w-full md:w-1/2 lg:w-1/3 px-4">
+                                            <div className="w-full min-h-full md:w-1/2 lg:w-1/3 px-4">
                                                 <div
                                                 className="
                                                 bg-white
@@ -180,6 +185,7 @@ const Tabs = ({ color }) => {
                                                 lg:py-10 lg:px-6
                                                 xl:p-12
                                                 mb-10
+                                                min-h-full
                                                 "
                                                 >
                                                 <span className="text-primary font-semibold text-lg block mb-4">
@@ -497,7 +503,7 @@ const Tabs = ({ color }) => {
                                                 </div>
                                                 </div>
                                             </div>
-                                            <div className="w-full md:w-1/2 lg:w-1/3 px-4">
+                                            <div className="w-full min-h-full md:w-1/2 lg:w-1/3 px-4">
                                                 <div
                                                 className="
                                                 bg-white
@@ -513,6 +519,7 @@ const Tabs = ({ color }) => {
                                                 lg:py-10 lg:px-6
                                                 xl:p-12
                                                 mb-10
+                                                min-h-full
                                                 "
                                                 >
                                                 <span className="text-primary font-semibold text-lg block mb-4">
@@ -821,7 +828,7 @@ const Tabs = ({ color }) => {
                                                 </div>
                                                 </div>
                                             </div>
-                                            <div className="w-full md:w-1/2 lg:w-1/3 px-4">
+                                            <div className="w-full min-h-full md:w-1/2 lg:w-1/3 px-4">
                                                 <div
                                                 className="
                                                 bg-white
@@ -837,6 +844,7 @@ const Tabs = ({ color }) => {
                                                 lg:py-10 lg:px-6
                                                 xl:p-12
                                                 mb-10
+                                                min-h-full
                                                 "
                                                 >
                                                 <span className="text-primary font-semibold text-lg block mb-4">

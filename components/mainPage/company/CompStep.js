@@ -11,7 +11,7 @@ function CompStep() {
             <div className={styles.sector}>
                 <div className="pt-8">
                     <SectionTitle
-                        title="How we Vet our Developers"
+                        title="Our Vetting Process"
                     />
                 </div>
                 

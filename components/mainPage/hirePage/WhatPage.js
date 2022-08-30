@@ -1,4 +1,5 @@
 import React from 'react'
+import Link from 'next/link';
 
 const WhatPage = () => {
   return (
@@ -10,10 +11,15 @@ const WhatPage = () => {
             <div class="items-center flex flex-col lg:flex-row">
                 <div class="w-full lg:w-1/2 order-last mt-4 lg:mt-0 lg:order-first">
                     <div class="lg:max-w-lg">
-                        <h2 className="font-medium text-xl text-gray-800 dark:text-gray-400"> Why Droomwork.io </h2>
                         <h3 class="text-3xl mt-2 leading-snug font-semibold text-gray-600 dark:text-white md:text-4xl lg:text-5xl">What Droomwork.io freelancers bring</h3>
                         <p class="prose mt-2 text-xl text-gray-600 dark:text-gray-400">Startups and companies spend 10% of their time recruiting and 90% of their making up for recruitment mistakes. But droomwork freelancers removes talent hiring mistakes.</p>
-                        <button class="w-fit inline-flex justify-center px-5 py-3 mt-2 text-xs font-semibold text-gray-100 transition-colors duration-200 transform bg-[#001935] rounded-md hover:bg-white hover:text-[#001935] hover:border-2 hover:border-solid hover:border-[#001935]">Hire Freelancers</button>
+                        <button class="w-fit inline-flex justify-center px-5 py-3 mt-2 text-xs font-semibold text-gray-100 transition-colors duration-200 transform bg-[#001935] rounded-md hover:bg-white hover:text-[#001935] hover:border-2 hover:border-solid hover:border-[#001935]">
+                        <Link href="/recruiters">
+                            <a>
+                            Hire Freelancers
+                            </a>
+                        </Link>
+                        </button>
                     </div>
                 </div>
         

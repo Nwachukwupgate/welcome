@@ -16,7 +16,7 @@ const HeroPage = () => {
                         </p>
                         <p>
                             Wanting to know more about hiring 
-                            <span className="text-[#001935]"> Read more</span> 
+                            <span className="text-[#F49038]"><Link href="/blog/"><a> Read more</a></Link></span> 
                         </p>
                         </div>
 
@@ -26,7 +26,7 @@ const HeroPage = () => {
                         </p>
 
                         <button className="inline-flex w-fit justify-center px-5 py-2 font-semibold text-gray-100 transition-colors duration-200 transform bg-[#001935] rounded-md hover:bg-white hover:text-[#001935] hover:border-2 hover:border-solid hover:border-[#001935]">
-                            <Link href="/register">
+                            <Link href="/recruiters">
                                 <a>
                                 <span className="block">
                                     Hire now

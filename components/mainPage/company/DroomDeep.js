@@ -1,4 +1,6 @@
 import React from 'react'
+import Link from 'next/link';
+
 
 function DroomDeep() {
   return (
@@ -18,14 +20,21 @@ function DroomDeep() {
                         </div>
 
                         <div>
-                            <button className="inline-flex w-fit justify-center px-5 py-2 font-semibold text-gray-100 transition-colors duration-200 transform bg-[#001935] rounded-md hover:bg-white hover:text-[#001935] hover:border-2 hover:border-solid hover:border-[#001935]">Quick Hire</button>
+                            <button className="inline-flex w-fit justify-center px-5 py-2 font-semibold text-gray-100 transition-colors duration-200 transform bg-[#001935] rounded-md hover:bg-white hover:text-[#001935] hover:border-2 hover:border-solid hover:border-[#001935]"><Link href="/companyStep">
+                                <a>
+                                <span className="block">
+                                    Hire now
+                                </span>
+                                </a>
+                            </Link>
+                            </button>
                         </div>
                     </div>
                 </div>
 
                 <div>
                     <div>
-                        <img src="images/droomworkdeep41.png" />
+                        <img src="images/IMG-20220828-WA0029.jpg" />
                     </div>
                 </div>
             </div>
