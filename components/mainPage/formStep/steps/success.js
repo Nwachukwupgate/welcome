@@ -8,14 +8,18 @@ import { useRouter } from 'next/router'
 function SuccessPage() {
 const router = useRouter()
 const [applyEmail, setApplyEmail] = useState('')
-// http://localhost:3000/register?applyUrl=https://grnh.se/8633017d1us
+// http://localhost:3000/register?applyUrl=https://grnh.se/8633017d1us   //normally applyurl
+
+// http://localhost:3000/register?applyUrl=mailto:integrations_engineer_8716d7893us@fern.greenhouse.io?body=%0A%0A%0A%0A%0A%0A%0A%0A%0A%0A%0A%0A%0A%0A%0A%0A%0A%0A%0A%0A%0A%0A%20-%20The%20We%20Work%20Remotely%20Team%20%0A%20weworkremotely.com&amp;subject=Application%20for%20Presales%20%2F%20Solutions%20Engineer%20at%20WINGSPAN
     useEffect(() =>{
-    if (typeof window !== "undefined"){var applyUrl = JSON.parse(localStorage.getItem("applyUrl"))}
-    if(applyUrl !==undefined && applyUrl !==null ){
+    if (typeof window !== "undefined"){var checkApplyUrl = localStorage.getItem("applyUrl")}
+    if(checkApplyUrl !=="undefined" && checkApplyUrl !==null ){
+    var applyUrl = JSON.parse(localStorage.getItem("applyUrl"))
     if(applyUrl.startsWith("mailto")){
     var regex = /([a-zA-Z0-9._-]+@[a-zA-Z0-9._-]+\.[a-zA-Z0-9_-]+)/gi // The actual regex
     var matches = regex.exec(applyUrl)
     setApplyEmail(matches[1])
+    localStorage.removeItem("applyUrl")
             
     }else{
     const timer = setTimeout(() => {
@@ -41,12 +45,12 @@ const [applyEmail, setApplyEmail] = useState('')
                 <div className="flex flex-col space-y-4">
                     <p className="text-center text-[#001935] font-extrabold drop-shadow-lg shadow-black text-4xl lg:text-left ">Success!</p>
                     {applyEmail !== '' && (
-                    <p className="font-bold text-lg"> Kindly send your CV to <span className="font-extrabold">{applyEmail}</span> to apply for the job</p> 
+                    <p className="text-md"> Kindly send your CV to <span className="font-bold flex">{applyEmail}</span> to apply for the job</p> 
                     )}
                     {applyEmail == '' && (
                      <>
-                     <p className="font-bold text-lg"> Your Details have been taken, you will be contacted for an Interview Session.</p>
-                    <p className="text-gray-500">Upon completion of the next stage, getting your next gig or remote job will be made easier using droomwork. Thank you!</p>
+                     <p className="font-bold text-lg"> Your Details have been taken, you will be contacted for an interview session by our team not too long.</p>
+                    <p className="text-gray-500">Upon completion of the next stage, you would have no need to search for contract jobs.Companies will rather apply to you. Thank you!</p>
                      </>
                     )}
              

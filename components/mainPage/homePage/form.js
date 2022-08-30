@@ -64,7 +64,7 @@ export default function FormField() {
         // }else{
         //     toast.error("Please fill out email and company name")
         // }
-        console.log("this is the form data", ...formdata)
+        
         try{
             await customContact(formdata)
             setIndividual_Name('')
@@ -74,7 +74,7 @@ export default function FormField() {
             setWebsite('')
             setMessage('')
             setFileName('')
-            console.log('post saved: ', ...formdata)
+            
         } catch (error) {
             toast.error(error.data.message)
             console.error('Failed to save the post: ', error)
@@ -84,7 +84,7 @@ export default function FormField() {
     useEffect(() => {
         if(isSuccess) {
             // toast.success(data.message)
-            console.log("this is success", data)
+      
         }
     }, [isSuccess]) 
 

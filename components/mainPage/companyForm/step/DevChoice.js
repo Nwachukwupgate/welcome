@@ -57,7 +57,7 @@ function DevChoice({handleClick, steps, currentStep}) {
       formData.append('email',compInfoObj.email)
       
       if(isLanguageSelected == true){
-        console.log(userLanguages[0],'userLanguages[0]')
+      
         if(userLanguages[0] !== undefined){
           var langId1 =  Object.values(userLanguages[0])[0]
           formData.append('language1',langId1)
@@ -237,21 +237,20 @@ const handleSelectLanguage = async(e)=>{
     return Object.values(single)[0] == LanguageName
   }
   const checked = initLanguageArray.find(checkIfClicked)
-  console.log(checked,'checked')
   if (checked !== undefined) { // has been checked before, remove id from stat
   var selectedLanguages = JSON.parse(localStorage.getItem("userLanguages"))
   let updatedLanguages = selectedLanguages.filter((id) => {
   return Object.values(id)[0] !== LanguageName})
 
   localStorage.setItem('userLanguages', JSON.stringify(updatedLanguages))
-  console.log(initLanguageArray,'b4 updated',updatedLanguages,'updatedLanguages')
+ 
   initLanguageArray.length = 0 //clears array
-  console.log(initLanguageArray,'see the cleared state')
+  
 
   updatedLanguages.map((single)=>{
    return initLanguageArray.push(single)
   })
-  console.log(initLanguageArray,'true updated intiarray')
+
 
   }else{
     // initLanguageArray.push(parseInt(singleId))
@@ -267,13 +266,15 @@ const handleSelectLanguage = async(e)=>{
     for ( var key in userLanguagess[3] ) {var langId4 = key}
     for ( var key in userLanguagess[4] ) {var langId5 = key}
     for ( var key in userLanguagess[5] ) {var langId6 = key}
+    for ( var key in userLanguagess[6] ) {var langId7 = key}
+    for ( var key in userLanguagess[7] ) {var langId8 = key}
 
-    const res = await simpleHttp.getNoAuth(`/api/v1/comp/getFrameworksBasedOnLanguages/${langId1}/${langId2}/${langId3}/${langId4}/${langId5}/${langId6}`)
+    const res = await simpleHttp.getNoAuth(`/api/v1/comp/getFrameworksBasedOnLanguages/${langId1}/${langId2}/${langId3}/${langId4}/${langId5}/${langId6}/${langId7}/${langId8}`)
+
     if(res.status == true){  
-    
       setFramework(res.data)
       setShowFramework(true)
-    }else{toast.error(res.error.message)}
+    }else{toast.error(res.message)}
   }
   
 }
@@ -294,12 +295,12 @@ setIsFrameworkSelected(true)
 
   console.log(initFrameworkArray,'b4 updated',updatedFrameworks,'updatedLanguages')
   initFrameworkArray.length = 0 //clears array
-  console.log(initFrameworkArray,'see the cleared state')
+  
 
   updatedFrameworks.map((single)=>{
    return initFrameworkArray.push(single)
   })
-  console.log(initFrameworkArray,'true updated intiarray')
+ 
 
   }else{
     var key =parseInt(singleId),

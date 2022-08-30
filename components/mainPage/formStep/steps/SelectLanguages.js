@@ -10,7 +10,6 @@ const simpleHttp =  new EasyHTTP()
 const initLanguagesArray=[]
 
 
-
 function SelectLanguages({handleClick, steps, currentStep}) {
   const [userLanguagess,setUserLanguagess] = useState([])
   const [selectedLanguagess,setSelectedLanguagess] = useState([])
@@ -19,9 +18,7 @@ function SelectLanguages({handleClick, steps, currentStep}) {
   const[value, setValue] = useState()
   const[mainValue, setMainValue]  = useState([])
   const [saveAction, setSaveAction] = useState({})
-  console.log(value,'value of selected')
-  console.log(mainValue,'value of MAIN selected')
-  
+
   useEffect(() =>{
 
     async function fetchData() {
@@ -147,27 +144,45 @@ const handleSelectLanguages = async(e)=>{
   
 const handleSubmitLanguagess = async(e)=>{
   e.preventDefault()
-  var userLanguagess = JSON.parse(localStorage.getItem("userLanguagess"))
-
-  if(userLanguagess == null){
-   return toast.error('You did not select any Languages')
-  }
-  handleClick("next")
-}
-
-
-
-
-const handleSelectLanguagesExp = async(e)=>{
-  e.preventDefault()
-  const LanguagesId = e.target.experience.value
-
+  if (typeof window !== "undefined") {window.localStorage.setItem('userLanguagess', JSON.stringify(mainValue))}
+  if(mainValue.length == 0){return toast.error('You did not select any Languages')}else{
   var userToken = JSON.parse(localStorage.getItem("userToken"))
-  const res = await simpleHttp.put(`/api/v1/dev/enterMyLanguagesExperience`,userToken,LanguagesId)
-  if(res.status === true ){
-    }else{toast.error(res.message)}
 
+  const langId1 =  mainValue[0] !==undefined? mainValue[0].id:'undefined'
+  const langId2 =  mainValue[1] !==undefined? mainValue[1].id:'undefined'
+  const langId3 =  mainValue[2] !==undefined? mainValue[2].id:'undefined'
+  const langId4 =  mainValue[3] !==undefined? mainValue[3].id:'undefined'
+  const langId5 =  mainValue[4] !==undefined? mainValue[4].id:'undefined'
+  const langId6 =  mainValue[5] !==undefined? mainValue[5].id:'undefined'
+  const langId7 =  mainValue[6] !==undefined? mainValue[6].id:'undefined'
+  const langId8 =  mainValue[7] !==undefined? mainValue[7].id:'undefined'
+
+  const langExp1 =  mainValue[0] !==undefined? parseInt(mainValue[0].value):'undefined'
+  const langExp2 =  mainValue[1] !==undefined? parseInt(mainValue[1].value):'undefined'
+  const langExp3 =  mainValue[2] !==undefined? parseInt(mainValue[2].value):'undefined'
+  const langExp4 =  mainValue[3] !==undefined? parseInt(mainValue[3].value):'undefined'
+  const langExp5 =  mainValue[4] !==undefined? parseInt(mainValue[4].value):'undefined'
+  const langExp6 =  mainValue[5] !==undefined? parseInt(mainValue[5].value):'undefined'
+  const langExp7 =  mainValue[6] !==undefined? parseInt(mainValue[6].value):'undefined'
+  const langExp8 =  mainValue[7] !==undefined? parseInt(mainValue[7].value):'undefined'
+  
+  const res = await simpleHttp.put(`/api/v1/dev/chooseMyLanguages/${langId1}/${langId2}/${langId3}/${langId4}/${langId5}/${langId6}/${langId7}/${langId8}`,userToken)
+
+  if(res.status === true ){}else{toast.error(res.error.message)}
+
+  const ress = await simpleHttp.put(`/api/v1/dev/enterMyLanguageExperience/${langExp1}/${langExp2}/${langExp3}/${langExp4}/${langExp5}/${langExp6}/${langExp7}/${langExp8}`,userToken)
+  
+  if(ress.status === true ){}else{toast.error(ress.message)}
+  handleClick("next")
+  }
+  
+
+ 
 }
+
+
+
+
 
 
 
@@ -200,9 +215,6 @@ const handleSelectLanguagesExp = async(e)=>{
                 <li className={styles.single_list} key={single.id}>
                   <label className={styles.list_label}>
 
-          
-                  {/* <input type="checkbox" name="" className={styles.inputType} id={single.id} onChange={showSelect(single.id)} checked={show[single.id]} /> */}
-
                     <div className={`${show[single.id] ? styles.checked_butt : styles.icon_box}`} onClick={showSelect(single.id)}> 
 
                     {/* <input type="checkbox" name="" className={styles.inputType} id={single.id} onChange={handleSelectLanguages} /> */}
@@ -232,7 +244,6 @@ const handleSelectLanguagesExp = async(e)=>{
                   </label>
 
                   <div className={`${saveAction[single.id] ? "block" : "hidden"} absolute z-10`}>
-                  
                     <div className='flex gap-y-4 min-w-[20rem] bg-white z-10 shadow-2xl flex-col p-2'>
                       <p>Years of professional experience</p>
 
@@ -240,6 +251,7 @@ const handleSelectLanguagesExp = async(e)=>{
                          { id: single.id, value: e.target.value } 
                         )
                         }} id={single.id} name="experience">
+                        <option value = '0'>select years</option>
                         <option value = '1'>1 year</option>
                         <option value = '2'>2 years</option>
                         <option value = '3'>3 years</option>

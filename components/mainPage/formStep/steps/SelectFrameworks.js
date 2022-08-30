@@ -8,12 +8,13 @@ const initFrameworkArray=[]
 
 function SelectLanguage({handleClick, steps, currentStep}) {
 
-
   const[exp, setExp] = useState("")
   const[show, setShow] = useState({})
   const[value, setValue] = useState()
   const[mainValue, setMainValue]  = useState([])
   const [saveAction, setSaveAction] = useState({})
+
+
 
 
   const showSelect = (index) => (e) => {
@@ -30,8 +31,7 @@ function SelectLanguage({handleClick, steps, currentStep}) {
 
   const saveShow = (index, value) => (e) => {
     e.preventDefault()
-    console.log("clicked hereeee", typeof(value))
-    console.log("clicked hereeee", typeof(mainValue))
+   
     // Object.keys(mainValue).forEach(key => {
     //   if (key in value) {
     //     mainValue[key] = value[key];
@@ -112,7 +112,18 @@ function SelectLanguage({handleClick, steps, currentStep}) {
         var userToken = JSON.parse(localStorage.getItem("userToken"))
         var userLanguagess = JSON.parse(localStorage.getItem("userLanguagess"))
      }
-      const res = await simpleHttp.get(`/api/v1/dev/getFrameworksBasedOnLanguages/${userLanguagess[0]}/${userLanguagess[1]}/${userLanguagess[2]}/${userLanguagess[3]}/${userLanguagess[4]}/${userLanguagess[5]}`,userToken)
+     const lang1 =  userLanguagess[0] !==undefined? parseInt(userLanguagess[0].id):'undefined'
+     const lang2 =  userLanguagess[1] !==undefined? parseInt(userLanguagess[1].id):'undefined'
+     const lang3 =  userLanguagess[2] !==undefined? parseInt(userLanguagess[2].id):'undefined'
+     const lang4 =  userLanguagess[3] !==undefined? parseInt(userLanguagess[3].id):'undefined'
+     const lang5 =  userLanguagess[4] !==undefined? parseInt(userLanguagess[4].id):'undefined'
+     const lang6 =  userLanguagess[5] !==undefined? parseInt(userLanguagess[5].id):'undefined'
+     const lang7 =  userLanguagess[6] !==undefined? parseInt(userLanguagess[6].id):'undefined'
+     const lang8 =  userLanguagess[7] !==undefined? parseInt(userLanguagess[7].id):'undefined'
+  
+      const res = await simpleHttp.get(`/api/v1/dev/getFrameworksBasedOnLanguages/${lang1}/${lang2}/${lang3}/${lang4}/${lang5}/${lang6}/${lang7}/${lang8}`,userToken)
+
+      console.log(res,'responseofFrameworks')
    
       if(res.status == true){setUserFrameworks(res.data)}else{toast.error(res.error.message)}
  
@@ -165,14 +176,38 @@ const handleSelectLanguage = async(e)=>{
 }
 
 
+
+
 const handleSubmitFrameworks = async(e)=>{
   e.preventDefault()
-  var userFrameworks = JSON.parse(localStorage.getItem("userFrameworks"))
+  // if (typeof window !== "undefined") {window.localStorage.setItem('userLanguagess', JSON.stringify(mainValue))}
+  if(mainValue.length == 0){return toast.error('You did not select any framework')}else{
+  var userToken = JSON.parse(localStorage.getItem("userToken"))
 
-  if(userFrameworks == null){
-   return toast.error('You did not select any language')
-  }
+  const frameId1 =  mainValue[0] !==undefined? mainValue[0].id:'undefined'
+  const frameId2 =  mainValue[1] !==undefined? mainValue[1].id:'undefined'
+  const frameId3 =  mainValue[2] !==undefined? mainValue[2].id:'undefined'
+  const frameId4 =  mainValue[3] !==undefined? mainValue[3].id:'undefined'
+  const frameId5 =  mainValue[4] !==undefined? mainValue[4].id:'undefined'
+  const frameId6 =  mainValue[5] !==undefined? mainValue[5].id:'undefined'
+
+
+  const frameExp1 =  mainValue[0] !==undefined? parseInt(mainValue[0].value):'undefined'
+  const frameExp2 =  mainValue[1] !==undefined? parseInt(mainValue[1].value):'undefined'
+  const frameExp3 =  mainValue[2] !==undefined? parseInt(mainValue[2].value):'undefined'
+  const frameExp4 =  mainValue[3] !==undefined? parseInt(mainValue[3].value):'undefined'
+  const frameExp5 =  mainValue[4] !==undefined? parseInt(mainValue[4].value):'undefined'
+  const frameExp6 =  mainValue[5] !==undefined? parseInt(mainValue[5].value):'undefined'
+  
+  
+  const res = await simpleHttp.put(`/api/v1/dev/chooseMyFramework/${frameId1}/${frameId2}/${frameId3}/${frameId4}/${frameId5}/${frameId6}`,userToken)
+  if(res.status === true ){}else{toast.error(res.error.message)}
+  const ress = await simpleHttp.put(`/api/v1/dev/enterMyFrameworkExperience/${frameExp1}/${frameExp2}/${frameExp3}/${frameExp4}/${frameExp5}/${frameExp6}`,userToken)
+  
+  if(ress.status === true ){}else{toast.error(ress.message)}
   handleClick("next")
+  }
+  
 }
 
   return (
@@ -218,6 +253,7 @@ const handleSubmitFrameworks = async(e)=>{
                        { id: single.id, value: e.target.value } 
                       )
                       }} id={single.id} name="experience">
+                      <option value = '0'>select years</option>
                       <option value = '1'>1 year</option>
                       <option value = '2'>2 years</option>
                       <option value = '3'>3 years</option>
