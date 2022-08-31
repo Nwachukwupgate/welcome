@@ -1,6 +1,6 @@
 import React from 'react'
 import SectionTitle from 'components/mainPage/homePage/title'
-
+import Link from 'next/link'
 function DevStep() {
   return (
     <>
@@ -203,7 +203,7 @@ function DevStep() {
             </div>
 
             <div className="text-center lg:pb-20">
-                <button className="inline-flex w-fit justify-center px-5 py-2 font-semibold text-gray-100 transition-colors duration-200 transform bg-[#001935] rounded-md hover:bg-white hover:text-[#001935] hover:border-2 hover:border-solid hover:border-[#001935]">Apply Now</button>
+                <button className="inline-flex w-fit justify-center px-5 py-2 font-semibold text-gray-100 transition-colors duration-200 transform bg-[#001935] rounded-md hover:bg-white hover:text-[#001935] hover:border-2 hover:border-solid hover:border-[#001935]"><Link href='/register'><a>Apply Now</a></Link></button>
             </div>
         </div>
         

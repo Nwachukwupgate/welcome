@@ -3,9 +3,10 @@ import myFetch from 'helpers/useFetch';
 import EasyHTTP from 'helpers/easyHttp';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import Link from 'next/link'
 const simpleHttp =  new EasyHTTP()
 
-if(process.env.NODE_ENV === 'development') {
+if(process.env.NEXT_PUBLIC_NODE_ENV === 'development') {
     var api_origin = 'http://127.0.0.1:3333'
 } else {
     api_origin = 'https://api.droomwork.io'
@@ -21,60 +22,36 @@ if(TokenAuthless){localStorage.setItem('authless', JSON.stringify(TokenAuthless)
 
 const Tabs = ({ color }) => {
     const [openTab, setOpenTab] = React.useState(1);
-    const [location, setLocation] = useState('');
+    const [location, setLocation] = useState(null);
     const [isPending, setIsPending] = useState(true);
     const [isLoading, setIsLoading] = useState(true);
     const [err, setErr] = useState(null);
     const [price, setPrice] = useState(null)
 
-    useEffect(() => {
-        if (typeof window !== "undefined") {
-            const items = JSON.parse(localStorage.getItem('location'));
-            setLocation(items)
-        }
-        // const items = JSON.parse(localStorage.getItem('location'));
-        // if (items) {
-        //     setLocation(items);
-        // }
-    }, []);
- 
 
     const {data: stackData, isPending: stackLoading, error: stackError} = myFetch(`${api_origin}/api/v1/all/getStacks`)
 
-    // useEffect(() =>{
-    //     async function fetchData() {
-    //         const res = await simpleHttp.get(`/api/v1/all/getPrice/${location}/1`)
-        
-    //         if(res.status == true){
-    //             setPrice(res.data)
-    //             setIsLoading(false)
-    //         } else  {
-    //             toast.error(res.error.message)
-    //         }
-    //     }
-    //     fetchData();
-    // }, [])
-
     useEffect(() => {
-        const fetchData = async () => {
-          await fetch(`${api_origin}/api/v1/all/getPrice/${location}/1`)
-            .then((res) => res.json())
-            .then((res) => {
-                setPrice(res.data)
-                setIsLoading(false)
-            })
-            .catch((e) => toast.error(e.message));
-        };
-        // fetchData()
     
-        const timer = setTimeout(() => {
-          fetchData();
-        }, 8000);
+            const fetchData = async () => {
+                const res = await simpleHttp.get(`/api/v1/all/getLocationByIp`)
+                if(res.status == true){
+                localStorage.setItem('location', JSON.stringify(res.data.continent))
+                const res1 = await simpleHttp.get(`/api/v1/all/getPrice/${res.data.continent}/1`)
+                if(res1.status ==true){
+                    setPrice(res1.data)
+                    setIsLoading(false)
+                }else{ toast.error(res.error.message)}
+                  
+                 
+                }else{ toast.error(res.error.message)}
+            
+              };
+              fetchData()
+        
+      
     
-        return () => clearTimeout(timer);
       }, [location]);
-
-    // console.log("this is the Stackdata", stackData)
 
     const handleClick = async (id) => {
         const res = await simpleHttp.getNoAuth(`/api/v1/all/getPrice/${location}/${id}`)
@@ -85,7 +62,7 @@ const Tabs = ({ color }) => {
             toast.error(res.error.message)
         }
     }
-    // console.log("the price data", price)
+
 
 
   return (
@@ -193,7 +170,7 @@ const Tabs = ({ color }) => {
                                                 Top Freelencer
                                                 </span>
                                                 <h2 className="font-bold text-dark mb-5 text-[36px]">
-                                                    ${price[0].lower_price} - ${price[0].higher_price}
+                                                    ${price[0]?price[0].lower_price:''} - ${price[0]?price[0].higher_price:''}
                                                     <span className="text-base text-body-color font-medium">
                                                     / hr
                                                     </span>
@@ -218,25 +195,25 @@ const Tabs = ({ color }) => {
                                                 </ul>
                                                
                                                 </div>
-                                                <a
-                                                    href="javascript:void(0)"
-                                                    className="
-                                                    w-full
-                                                    block
-                                                    text-base
-                                                    font-semibold
-                                                    text-primary
-                                                    bg-transparent
-                                                    border border-[#D4DEFF]
-                                                    rounded-md
-                                                    text-center
-                                                    p-4
-                                                    hover:text-white hover:bg-primary hover:border-primary
-                                                    transition
-                                                    "
-                                                    >
-                                                Hire Top Freelancers
-                                                </a>
+                                                <Link href='companyStep'><a
+                            
+                            className="
+                            w-full
+                            block
+                            text-base
+                            font-semibold
+                            text-black
+                            bg-primary
+                            border border-primary
+                            rounded-md
+                            text-center
+                            p-4
+                            hover:bg-opacity-90
+                            transition
+                            "
+                            >
+                        Hire Top Freelancers
+                        </a></Link>
                                                 <div>
                                                     <span className="absolute right-0 top-7 z-[-1]">
                                                         <svg
@@ -527,7 +504,7 @@ const Tabs = ({ color }) => {
                                                 Expert Freelancer
                                                 </span>
                                                 <h2 className="font-bold text-dark mb-5 text-[36px]">
-                                                ${price[1].lower_price} - ${price[1].higher_price}
+                                                ${price[1]?price[1].lower_price:''} - ${price[1]?price[1].higher_price:''}
                                                     <span className="text-base text-body-color font-medium">
                                                     / hr
                                                     </span>
@@ -543,8 +520,8 @@ const Tabs = ({ color }) => {
                                                     <li>Can mentor junior developers</li>
                                                 </ul>
                                                 </div>
-                                                <a
-                                                    href="javascript:void(0)"
+                                           <Link href='companyStep'><a
+                            
                                                     className="
                                                     w-full
                                                     block
@@ -561,7 +538,7 @@ const Tabs = ({ color }) => {
                                                     "
                                                     >
                                                 Hire Expert Freelancers
-                                                </a>
+                                                </a></Link>
                                                 <div>
                                                     <span className="absolute right-0 top-7 z-[-1]">
                                                         <svg
@@ -852,7 +829,7 @@ const Tabs = ({ color }) => {
                                                 Tech Lead Freelancer
                                                 </span>
                                                 <h2 className="font-bold text-dark mb-5 text-[42px]">
-                                                ${price[2].lower_price} - ${price[2].higher_price}
+                                                ${price[2]?price[2].lower_price:''} - ${price[2]?price[2].higher_price:''}
                                                     <span className="text-base text-body-color font-medium">
                                                     / hr
                                                     </span>
@@ -872,25 +849,25 @@ const Tabs = ({ color }) => {
 
                                                 </ul>
                                                 </div>
-                                                <a
-                                                    href="javascript:void(0)"
-                                                    className="
-                                                    w-full
-                                                    block
-                                                    text-base
-                                                    font-semibold
-                                                    text-primary
-                                                    bg-transparent
-                                                    border border-[#D4DEFF]
-                                                    rounded-md
-                                                    text-center
-                                                    p-4
-                                                    hover:text-white hover:bg-primary hover:border-primary
-                                                    transition
-                                                    "
-                                                    >
-                                                Hire Lead Freelancer
-                                                </a>
+                                                <Link href='companyStep'><a
+                            
+                            className="
+                            w-full
+                            block
+                            text-base
+                            font-semibold
+                            text-black
+                            bg-primary
+                            border border-primary
+                            rounded-md
+                            text-center
+                            p-4
+                            hover:bg-opacity-90
+                            transition
+                            "
+                            >
+                        Hire Lead Freelancers
+                        </a></Link>
                                                 <div>
                                                     <span className="absolute right-0 top-7 z-[-1]">
                                                         <svg

@@ -78,7 +78,7 @@ function CompStep() {
                                 Continued Excellence
                                 </span>
                             </div>
-                            <p className={styles.p}>We continuously keep tract of the performance of our developers to ensure they maintain continuous quality delivery--</p>
+                            <p className={styles.p}>We continuously keep tract of the performance of our developers to ensure they maintain continuous quality delivery</p>
                         </section>
                     </div>
                 </div>

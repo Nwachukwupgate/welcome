@@ -32,7 +32,7 @@ const HireSteps = () => {
                         <div class="relative text-center space-y-4 p-6 md:p-8">
                             <img src="images/undraw_start_building_re_xani.svg" class="w-24 m-auto" width="520" height="520" alt="developer fit" />
                             <h4 class="text-2xl text-gray-800 font-medium transition group-hover:text-[#F49038]">Start</h4>
-                            <p class="text-gray-600">Payments structure, delivery time, SLA agreement, etc. begin the project.</p>
+                            <p class="text-gray-600">Begin project after concluding on payment structure, delivery time,SLA agreement etc.</p>
                         </div>
                     </div>
                     {/* <div class="relative group lg:hidden">

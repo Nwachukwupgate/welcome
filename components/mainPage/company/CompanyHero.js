@@ -70,12 +70,12 @@ function CompanyHero() {
                 <div>
                     {/* <p className="text-[#F49038] text-lg ml-2 mb-[0.8rem] font-medium">For Company</p> */}
                     <h1 className="text-gray-900 font-bold text-4xl xl:text-5xl">
-                        Hire Pre-Screened Developers for Full Time Jobs in Your Company
+                        Hire Vetted Developers for Contract &amp; Fulltime Jobs in Your Company/Startup
                     </h1>
                 </div>
                 
                 <p className="text-gray-600 max-w-xl leading-relaxed sm:mx-auto lg:ml-0">
-                    We have engineers with strong technical communication & cultural skill fit to match your company culture & time zone
+                    We have engineers with strong technical, communication & cultural fit to match your requirments & time zone
                 </p>
                 <div>
                     

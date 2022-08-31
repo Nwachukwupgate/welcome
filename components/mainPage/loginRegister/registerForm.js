@@ -4,6 +4,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useRouter } from 'next/router'
 import EasyHTTP from '../../../helpers/easyHttp'
+import Link from 'next/link';
 
 const simpleHttp =  new EasyHTTP()
 
@@ -118,8 +119,9 @@ function RegisterForm() {
                             </div>
                             <div className="text-center space-x-4">
                                 <span>&copy; Droomwork</span>
-                                <a href="#" className="text-sm hover:text-sky-900">Home</a>
-                                <a href="#" className="text-sm hover:text-sky-900">Contact</a>
+                                <Link href="/"><a className="text-sm hover:text-sky-900">Home</a></Link>
+                                
+                                {/* <a href="#" className="text-sm hover:text-sky-900">Contact</a> */}
                             </div>
                         </div>
                     </div>

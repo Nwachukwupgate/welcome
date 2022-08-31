@@ -29,11 +29,11 @@ const TeamPage = () => {
         {
             id: 1,
             availability: 'Available',
-            name: 'Raphael Donance',
+            name: 'Raphael Donanu',
             about: 'I am a frontend engineer working in a team of experienced engineers employing diverse tools, modern frontend technologies and best practices to build performant and accessible web interface.',
             profession: 'Frontend Developer',
             imgFile:"images/developers/rapheal.jpg",
-            country: "California",
+            country: "Nigeria",
             work: 'Konga',
             language : [{
                     id: 1,
@@ -75,7 +75,7 @@ const TeamPage = () => {
             about: 'Tech savvy dev operations engineer  with solid background in software engineering paired with in-depth knowledge of sql and database.',
             profession: 'Devop Engineers',
             imgFile:"images/developers/IMG-20220825-WA0016.jpg",
-            country: "UK",
+            country: "Nigeria",
             work: 'Jumia',
             language : [{
                     id: 1,
@@ -86,6 +86,27 @@ const TeamPage = () => {
                 }, {
                     id: 3,
                     name: 'Cloud computing'
+                }
+            ]
+        },
+        {
+            id: 4,
+            availability: 'Available',
+            name: 'Success Otto',
+            about: 'I am a passionate fullstack developer with over 7 years of professional experience',
+            profession: 'Fullstack Developer',
+            imgFile:"images/developers/success.jpg",
+            country: "Nigeria",
+            work: 'Gidea',
+            language : [{
+                    id: 1,
+                    name: 'Nodejs'
+                }, {
+                    id: 2,
+                    name: 'React'
+                }, {
+                    id: 3,
+                    name: 'Nextjs'
                 }
             ]
         }
@@ -118,7 +139,7 @@ const TeamPage = () => {
                         >
                         {state && state.map((items) => ( 
                             <SwiperSlide key={items.id}>
-                            <div className="flex flex-col sm:-mx-4 sm:flex-row">
+                            <Link href='/companyStep'><a><div className="flex flex-col sm:-mx-4 sm:flex-row">
                                 <img className="flex-shrink-0 object-cover w-24 h-24 rounded-full sm:mx-4 ring-4 ring-gray-300" src={items.imgFile} alt="" />
 
                                 <div className="mt-4 sm:mx-4 sm:mt-0">
@@ -136,13 +157,15 @@ const TeamPage = () => {
                                     <span>{item.name}</span>
                                 </a>
                             ))}
-                            </div>
+                            </div></a></Link>
+                        
                             </SwiperSlide>
                         ))}
                         </Swiper>
                     </div>
 
-                    <div className="px-12 py-8 bg-[rgba(255, 255, 255, 0.3)] shadow-[0_4px_30px_rgba(0,0,0,0.1)] backdrop-blur-md transition-colors duration-200 transform border cursor-pointer rounded-2xl hover:border-transparent group hover:bg-[#001935] dark:border-gray-700 dark:hover:border-transparent">
+                <Link href='/companyStep'><a>
+                <div className="px-12 py-8 bg-[rgba(255, 255, 255, 0.3)] shadow-[0_4px_30px_rgba(0,0,0,0.1)] backdrop-blur-md transition-colors duration-200 transform border cursor-pointer rounded-2xl hover:border-transparent group hover:bg-[#001935] dark:border-gray-700 dark:hover:border-transparent">
                         <div className="flex flex-col sm:-mx-4 sm:flex-row">
                             <img className="flex-shrink-0 object-cover w-24 h-24 rounded-full sm:mx-4 ring-4 ring-gray-300" src="images/developers/emmanuel.jpeg" alt="developer" />
 
@@ -169,8 +192,10 @@ const TeamPage = () => {
                             </a>
                         </div>
                     </div>
+                </a></Link>
 
-                    <div className="px-12 py-8 bg-[rgba(255, 255, 255, 0.3)] shadow-[0_4px_30px_rgba(0,0,0,0.1)] backdrop-blur-md transition-colors duration-200 transform border cursor-pointer rounded-2xl hover:border-transparent group hover:bg-[#001935] dark:border-gray-700 dark:hover:border-transparent">
+                  <Link href='companyStep'><a>
+                  <div className="px-12 py-8 bg-[rgba(255, 255, 255, 0.3)] shadow-[0_4px_30px_rgba(0,0,0,0.1)] backdrop-blur-md transition-colors duration-200 transform border cursor-pointer rounded-2xl hover:border-transparent group hover:bg-[#001935] dark:border-gray-700 dark:hover:border-transparent">
                         <div className="flex flex-col sm:-mx-4 sm:flex-row">
                             <img className="flex-shrink-0 object-cover w-24 h-24 rounded-full sm:mx-4 ring-4 ring-gray-300" src="images/developers/haveed.jpeg" alt="freelancers" />
 
@@ -195,9 +220,12 @@ const TeamPage = () => {
                             </a>
                         </div>
                     </div>
+                  </a></Link>
 
-                    <div className="px-12 py-8 bg-[rgba(255, 255, 255, 0.3)] shadow-[0_4px_30px_rgba(0,0,0,0.1)] backdrop-blur-md transition-colors duration-200 transform border cursor-pointer rounded-2xl hover:border-transparent group hover:bg-[#001935] dark:border-gray-700 dark:hover:border-transparent">
-                        <div className="flex flex-col sm:-mx-4 sm:flex-row">
+         
+               <div className="px-12 py-8 bg-[rgba(255, 255, 255, 0.3)] shadow-[0_4px_30px_rgba(0,0,0,0.1)] backdrop-blur-md transition-colors duration-200 transform border cursor-pointer rounded-2xl hover:border-transparent group hover:bg-[#001935] dark:border-gray-700 dark:hover:border-transparent">
+               <Link href='/companyStep'><a>
+               <div className="flex flex-col sm:-mx-4 sm:flex-row">
                             <img className="flex-shrink-0 object-cover w-24 h-24 rounded-full sm:mx-4 ring-4 ring-gray-300" src="images/developers/mayowa.jpeg" alt="developer" />
 
                             <div className="mt-4 sm:mx-4 sm:mt-0">
@@ -222,9 +250,14 @@ const TeamPage = () => {
                                 <span>MySql</span>
                             </a>
                         </div>
-                    </div>
+               </a></Link>
 
-                    <div className="px-12 py-8 bg-[rgba(255, 255, 255, 0.3)] shadow-[0_4px_30px_rgba(0,0,0,0.1)] backdrop-blur-md transition-colors duration-200 transform border cursor-pointer rounded-2xl hover:border-transparent group hover:bg-[#001935] dark:border-gray-700 dark:hover:border-transparent">
+                   
+                    </div>
+              
+
+                <Link href='companyStep'><a>
+                <div className="px-12 py-8 bg-[rgba(255, 255, 255, 0.3)] shadow-[0_4px_30px_rgba(0,0,0,0.1)] backdrop-blur-md transition-colors duration-200 transform border cursor-pointer rounded-2xl hover:border-transparent group hover:bg-[#001935] dark:border-gray-700 dark:hover:border-transparent">
                         <div className="flex flex-col sm:-mx-4 sm:flex-row">
                             <img className="flex-shrink-0 object-cover w-24 h-24 rounded-full sm:mx-4 ring-4 ring-gray-300" src="images/developers/ali.jpeg" alt="" />
 
@@ -251,9 +284,12 @@ const TeamPage = () => {
                             </a>
                         </div>
                     </div>
+                </a></Link>
 
-                    <div className="px-12 py-8 bg-[rgba(255, 255, 255, 0.3)] shadow-[0_4px_30px_rgba(0,0,0,0.1)] backdrop-blur-md transition-colors duration-200 transform border cursor-pointer rounded-2xl hover:border-transparent group hover:bg-[#001935] dark:border-gray-700 dark:hover:border-transparent">
-                        <div className="flex flex-col sm:-mx-4 sm:flex-row">
+                
+        <div className="px-12 py-8 bg-[rgba(255, 255, 255, 0.3)] shadow-[0_4px_30px_rgba(0,0,0,0.1)] backdrop-blur-md transition-colors duration-200 transform border cursor-pointer rounded-2xl hover:border-transparent group hover:bg-[#001935] dark:border-gray-700 dark:hover:border-transparent">
+                <Link href='companyStep'><a>
+                <div className="flex flex-col sm:-mx-4 sm:flex-row">
                             <img className="flex-shrink-0 object-cover w-24 h-24 rounded-full sm:mx-4 ring-4 ring-gray-300" src="images/developers/otobong.jpg" alt="" />
 
                             <div className="mt-4 sm:mx-4 sm:mt-0">
@@ -278,7 +314,10 @@ const TeamPage = () => {
                                 <span>Python</span>
                             </a>
                         </div>
+                </a></Link>
+                       
                     </div>
+                
                 </div>
             </div>
         </section>

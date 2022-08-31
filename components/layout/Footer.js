@@ -4,7 +4,7 @@ export const Footer = () => {
     return (
       <div className="px-4 pt-16 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8">
 
-        <div className="grid gap-10 justify-center row-gap-6 mb-8 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="grid justify-items-center gap-10 justify-center row-gap-6 mb-8 sm:grid-cols-2 lg:grid-cols-4">
 
           <div className="sm:col-span-1">
             <a
@@ -89,7 +89,7 @@ export const Footer = () => {
                 title="Our phone"
                 className="transition-colors duration-300 text-deep-purple-accent-400 hover:text-[#F49038]"
               >
-                Front end
+                NodeJs
               </a>
             </div>
             <div className="">
@@ -100,7 +100,7 @@ export const Footer = () => {
                 title="Our phone"
                 className="transition-colors duration-300 text-deep-purple-accent-400 hover:text-[#F49038]"
               >
-              Back end
+              React
               </a>
             </div>
             <div className="">
@@ -111,7 +111,18 @@ export const Footer = () => {
                 title="Our phone"
                 className="transition-colors duration-300 text-deep-purple-accent-400 hover:text-[#F49038]"
               >
-                Machine learning
+                Python
+              </a>
+            </div>
+            <div className="">
+              {/* <p className="mr-1 text-gray-800">Phone:</p> */}
+              <a
+                href="https://jobs.droomwork.io/"
+                aria-label="Our phone"
+                title="Our phone"
+                className="transition-colors duration-300 text-deep-purple-accent-400 hover:text-[#F49038]"
+              >
+                laravel
               </a>
             </div>
           </div>

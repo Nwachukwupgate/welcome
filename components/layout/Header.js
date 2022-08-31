@@ -9,14 +9,7 @@ export const Nav = () => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const [navbar, setNavbar] = useState(false)
     
-    useEffect(() =>{
-        async function fetchData() {
-        const res = await simpleHttp.get(`/api/v1/all/getLocationByIp`)
-        if(res.status == true){localStorage.setItem('location', JSON.stringify(res.data.continent))}else{toast.error(res.error.message)}
-      
-        }
-        fetchData()
-    }, [])
+  
 
 
     const handleClick = () => {
