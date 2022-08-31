@@ -3,7 +3,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Link from 'next/link';
 
-if(process.env.APP_env === 'development') {
+if(process.env.NEXT_PUBLIC_NODE_ENV === 'development') {
     var api_origin = 'http://127.0.0.1:3333'
 } else {
     api_origin = 'https://api.droomwork.io'
@@ -112,7 +112,7 @@ function CompanyHero() {
                     alt="hero"
                     class="max-w-full lg:ml-auto"
                     />
-                    <span class="absolute -left-8 -bottom-8 z-[-1]">
+                    <span className="absolute -left-8 -bottom-8 z-[-1]">
                     <svg
                         width="93"
                         height="93"

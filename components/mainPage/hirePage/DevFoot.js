@@ -4,9 +4,9 @@ import React from 'react';
 const DevFoot = () => {
     return (
     <>
-        <div class="rounded-xl">
-            <div class="container m-auto px-6 py-16 space-y-8 text-gray-600 md:px-12 lg:px-20">
-                <p class="text-2xl text-center font-extrabold"> Droomwork Developers </p>
+        <div className="rounded-xl">
+            <div className="container m-auto px-6 py-16 space-y-8 text-gray-600 md:px-12 lg:px-20">
+                <p className="text-2xl text-center font-extrabold"> Droomwork Developers </p>
                 {/* <div class="flex flex-wrap gap-4 items-center justify-between pb-8 border-b">
                     <img width="100" height="42" src="https://meschacirung.github.io/tailus-blocks/public/images/logo.svg" alt="logo tailus" class="w-32" />
                     <div class="flex gap-6">
@@ -27,9 +27,9 @@ const DevFoot = () => {
                         </a>
                     </div>
                 </div> */}
-                <div class="grid justify-center justify-items-center grid-cols-2 gap-6 sm:grid-cols-4">
+                <div className="grid justify-center justify-items-center grid-cols-2 gap-6 sm:grid-cols-4">
                     <div>
-                        <ul class="list-inside mt-4 space-y-4">
+                        <ul className="list-inside mt-4 space-y-4">
                             <li>
                                 <a href="#" class="transition">.Net Developer</a>
                             </li>
@@ -43,64 +43,64 @@ const DevFoot = () => {
                                 <a href="#" class=" transition">Java Developers</a>
                             </li>
                             <li>
-                                <a href="#" class="transition">C++ Developer</a>
+                                <a href="#" className="transition">C++ Developer</a>
                             </li>
                         </ul>
                     </div>
                     <div>
                         <ul class="list-inside mt-4 space-y-4">
                             <li>
-                                <a href="#" class=" transition">React Developers</a>
+                                <a href="#" className=" transition">React Developers</a>
                             </li>
                             <li>
-                                <a href="#" class=" transition">Bun Developer</a>
+                                <a href="#" className=" transition">Bun Developer</a>
                             </li>
                             <li>
-                                <a href="#" class=" transition">Node Developer</a>
+                                <a href="#" className=" transition">Node Developer</a>
                             </li>
                             <li>
-                                <a href="#" class=" transition">Django Developers</a>
+                                <a href="#" className=" transition">Django Developers</a>
                             </li>
                             <li>
-                                <a href="#" class=" transition">Javascript Developers</a>
-                            </li>
-                        </ul>
-                    </div>
-                    <div>
-                        <ul class="list-inside mt-4 space-y-4">
-                            <li>
-                                <a href="#" class=" transition">Vue Developers</a>
-                            </li>
-                            <li>
-                                <a href="#" class=" transition">Angular Developers</a>
-                            </li>
-                            <li>
-                                <a href="#" class=" transition">R developers</a>
-                            </li>
-                            <li>
-                                <a href="#" class=" transition">Php Developers</a>
-                            </li>
-                            <li>
-                                <a href="#" class=" transition">Scalar Developers</a>
+                                <a href="#" className=" transition">Javascript Developers</a>
                             </li>
                         </ul>
                     </div>
                     <div>
                         <ul class="list-inside mt-4 space-y-4">
                             <li>
-                                <a href="#" class=" transition">Next Developers</a>
+                                <a href="#" className=" transition">Vue Developers</a>
                             </li>
                             <li>
-                                <a href="#" class=" transition">Flutter Developers</a>
+                                <a href="#" className=" transition">Angular Developers</a>
                             </li>
                             <li>
-                                <a href="#" class=" transition">Mobile Developers</a>
+                                <a href="#" className=" transition">R developers</a>
                             </li>
                             <li>
-                                <a href="#" class=" transition">Andonis Developers</a>
+                                <a href="#" className=" transition">Php Developers</a>
                             </li>
                             <li>
-                                <a href="#" class=" transition">Docker Developers</a>
+                                <a href="#" className=" transition">Scalar Developers</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div>
+                        <ul class="list-inside mt-4 space-y-4">
+                            <li>
+                                <a href="#" className=" transition">Next Developers</a>
+                            </li>
+                            <li>
+                                <a href="#" className=" transition">Flutter Developers</a>
+                            </li>
+                            <li>
+                                <a href="#" className=" transition">Mobile Developers</a>
+                            </li>
+                            <li>
+                                <a href="#" className=" transition">Andonis Developers</a>
+                            </li>
+                            <li>
+                                <a href="#" className=" transition">Docker Developers</a>
                             </li>
                         </ul>
                     </div>

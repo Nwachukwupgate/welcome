@@ -39,13 +39,13 @@ const HomeHero = () => {
                             <div>
                                 🔥🌟 
                                 <span>Other integrations :</span> 
-                                <a href="#" class="font-semibold text-gray-700">Discord,</a>
-                                <a href="#" class="font-semibold text-gray-700">Telegram</a>
+                                <a href="#" className="font-semibold text-gray-700">Discord,</a>
+                                <a href="#" className="font-semibold text-gray-700">Telegram</a>
                             </div>
                         </div>
 
-                        <div hidden class="lg:block lg:w-5/12">
-                            <img src="images/unsplash_sbVu5zitZt0(2).png" class="w-full" alt="wath illustration" loading="lazy" width="320" height="230" />
+                        <div hidden className="lg:block lg:w-5/12">
+                            <img src="images/unsplash_sbVu5zitZt0(2).png" className="w-full" alt="wath illustration" loading="lazy" width="320" height="230" />
                         </div>
                     </div>
                 </div>
