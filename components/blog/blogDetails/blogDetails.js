@@ -18,7 +18,7 @@ const BlogDetails = ({postDetails: {title, content, authors_name, featured_image
                     </a>
                     </div>
 
-                    <img src={featured_image_link} class="w-full object-cover lg:rounded"/>
+                    <img src={featured_image_link} className="w-full object-cover lg:rounded"/>
                 </div>
 
                 <div className="flex flex-col lg:flex-row lg:space-x-12">
