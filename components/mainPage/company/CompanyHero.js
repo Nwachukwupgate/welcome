@@ -69,7 +69,7 @@ function CompanyHero() {
             <div className="space-y-4  sm:text-center lg:text-left lg:space-y-10">
                 <div>
                     {/* <p className="text-[#F49038] text-lg ml-2 mb-[0.8rem] font-medium">For Company</p> */}
-                    <h1 className="text-gray-900 font-bold text-4xl xl:text-5xl">
+                    <h1 className="text-gray-900 font-bold text-4xl xl:text-5xl md:leading-tight">
                         Hire Vetted Developers for Contract &amp; Fulltime Jobs in Your Company/Startup
                     </h1>
                 </div>
@@ -104,13 +104,13 @@ function CompanyHero() {
                 </div>
             </div>
             {/* <div class="hidden lg:block lg:w-1/12 px-4"></div> */}
-            <div class="hidden w-full lg:block lg:w-full py-4">
-                <div class="lg:text-right lg:ml-auto">
-                <div class="relative inline-block z-10 pt-11 lg:pt-0">
+            <div className="hidden w-full lg:block lg:w-full py-4">
+                <div className="lg:text-right lg:ml-auto">
+                <div className="relative inline-block z-10 pt-11 lg:pt-0">
                     <img
                     src="https://cdn.tailgrids.com/1.0/assets/images/hero/hero-image-01.png"
                     alt="hero"
-                    class="max-w-full lg:ml-auto"
+                    className="max-w-full lg:ml-auto"
                     />
                     <span className="absolute -left-8 -bottom-8 z-[-1]">
                     <svg

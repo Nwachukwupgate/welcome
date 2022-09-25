@@ -276,21 +276,21 @@ export const Nav = () => {
                                     <li>
                                         {/* <Link href="#">
                                             <a href="#" className="block md:px-3"> */}
-                                                <span className="relative before:absolute before:block before:bottom-[-0.15rem] before:left-0 before:w-2/4 before:h-[1px] before:bg-[#F49038] before:-p-2 cursor-pointer ">Build</span>
+                                                <span className="relative before:absolute before:block before:bottom-[-0.15rem] before:left-0 before:w-2/4 before:h-[1px] before:bg-[#F49038] before:-p-2 cursor-pointer " onClick={handleClick}>Build</span>
                                             {/* </a>
                                         </Link> */}
                                     </li>
                                     <li>
                                         <Link href="https://jobs.droomwork.io/">
                                         <a className="block md:px-3">
-                                            <span>Jobs</span>
+                                            <span onClick={handleClick}>Jobs</span>
                                         </a>
                                         </Link>
                                     </li>
                                     <li>
                                         <Link href="/blog/">
                                             <a className="block md:px-3">
-                                                <span>Blog</span>
+                                                <span onClick={handleClick}>Blog</span>
                                             </a>
                                         </Link>
                                     </li>
@@ -301,7 +301,7 @@ export const Nav = () => {
                                         <button className="inline-flex w-full lg:w-fit justify-center px-5 py-2 font-semibold text-gray-100 transition-colors duration-200 transform bg-[#001935] rounded-md hover:bg-white hover:text-[#001935] border-2 border-solid border-[#001935]">
                                             <Link href="/developers">
                                                 <a>
-                                                <span className="block">
+                                                <span className="block" onClick={handleClick}>
                                                     Apply for Jobs
                                                 </span>
                                                 </a>
@@ -313,7 +313,7 @@ export const Nav = () => {
                                         <button className="inline-flex w-full lg:w-fit justify-center px-5 py-2 font-semibold bg-white text-[#001935] border-2 border-solid border-[#001935] hover:text-gray-100 transition-colors duration-200 transform hover:bg-[#001935] rounded-md ">
                                             <Link href="/recruiters">
                                                 <a>
-                                                    <span className="block">
+                                                    <span className="block" onClick={handleClick}>
                                                         Hire Developers
                                                     </span>
                                                 </a>

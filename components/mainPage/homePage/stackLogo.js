@@ -8,28 +8,38 @@ const StackLogo = () => {
             <div className="relative py-8 flex flex-col items-center bg-cyan-900 overflow-hidden md:py-8">
                 <div className="relative z-[1] container m-auto px-6 md:px-12">
                     <div className="m-auto text-center md:w-8/12 lg:w-6/12">
-                        <h2 className="text-2xl text-white font-bold md:text-4xl">Our heroes <span className="text-sky-400">contribute</span> to the development of tailus</h2>
+                        <h2 className="text-2xl text-white font-bold md:text-4xl">We intentionally leverage <span className="text-[#F49038]">standard development</span> frameworks for the build of our client’s products</h2>
                     </div>
-                    <div className="m-auto mt-16 md:w-11/12 lg:w-8/12 xl:w-7/12">
+                    <div className="m-auto mt-16 md:w-11/12 lg:w-8/12 xl:w-9/12">
                         <div className="flex flex-wrap justify-center gap-6">
                             <div className="group py-2 px-4 border border-opacity-10 rounded-xl bg-white bg-opacity-5 hover:bg-opacity-10">
-                                <img src="images/clients/airbnb.svg" className="contrast-0 transition group-hover:contrast-100" loading="lazy" alt="logo airbnb" />
+                                <img src="images/clients/solidity.png" className="contrast-0 transition group-hover:contrast-100" loading="lazy" alt="logo solidity" />
                             </div>
                             <div className="group py-2 px-4 border border-opacity-10 rounded-xl bg-white bg-opacity-5 hover:bg-opacity-10">
-                                <img src="images/clients/microsoft.svg" className="contrast-0 transition group-hover:contrast-100" loading="lazy" alt="logo microsoft" />
+                                <img src="images/clients/javaa.png" className="contrast-0 transition group-hover:contrast-100" loading="lazy" alt="logo javaa" />
                             </div>
                             <div className="group py-2 px-4 border border-opacity-10 rounded-xl bg-white bg-opacity-5 hover:bg-opacity-10">
-                                <img src="images/clients/ge.svg" className="contrast-0 transition group-hover:contrast-100" loading="lazy" alt="logo ge" />
+                                <img src="images/clients/reac.png" className="contrast-0 transition group-hover:contrast-100" loading="lazy" alt="logo react" />
                             </div>
                             <div className="group py-2 px-4 border border-opacity-10 rounded-xl bg-white bg-opacity-5 hover:bg-opacity-10">
-                                <img src="images/clients/bissell.svg" className="contrast-0 transition group-hover:contrast-100" loading="lazy" alt="logo bissell" />
+                                <img src="images/clients/React-native.png" className="contrast-0 transition group-hover:contrast-100" loading="lazy" alt="logo react native" />
                             </div>
                             <div className="group py-2 px-4 border border-opacity-10 rounded-xl bg-white bg-opacity-5 hover:bg-opacity-10">
-                                <img src="images/clients/bissell.svg" className="contrast-0 transition group-hover:contrast-100" loading="lazy" alt="logo bissell" />
+                                <img src="images/clients/kotlin.png" className="contrast-0 transition group-hover:contrast-100" loading="lazy" alt="logo kotlin" />
                             </div>
                             <div className="group py-2 px-4 border border-opacity-10 rounded-xl bg-white bg-opacity-5 hover:bg-opacity-10">
-                                <img src="images/clients/automatic.svg" className="contrast-0 transition group-hover:contrast-100" loading="lazy" alt="logo automatic" />
+                                <img src="images/clients/flutter.png" className="contrast-0 transition group-hover:contrast-100" loading="lazy" alt="logo flutter" />
                             </div>
+                            <div className="group py-2 px-4 border border-opacity-10 rounded-xl bg-white bg-opacity-5 hover:bg-opacity-10">
+                                <img src="images/clients/nodejs.png" className="contrast-0 transition group-hover:contrast-100" loading="lazy" alt="logo node" />
+                            </div>
+                            <div className="group py-2 px-4 border border-opacity-10 rounded-xl bg-white bg-opacity-5 hover:bg-opacity-10">
+                                <img src="images/clients/python.png" className="contrast-0 transition group-hover:contrast-100" loading="lazy" alt="logo python" />
+                            </div>
+                            <div className="group py-2 px-4 border border-opacity-10 rounded-xl bg-white bg-opacity-5 hover:bg-opacity-10">
+                                <img src="images/clients/vuejs.png" className="contrast-0 transition group-hover:contrast-100" loading="lazy" alt="logo vuejs" />
+                            </div>
+
                         </div>
                     </div>
                 </div>

@@ -36,15 +36,16 @@ const Tabs = ({ color }) => {
             const fetchData = async () => {
                 const res = await simpleHttp.get(`/api/v1/all/getLocationByIp`)
                 if(res.status == true){
-                localStorage.setItem('location', JSON.stringify(res.data.continent))
-                const res1 = await simpleHttp.get(`/api/v1/all/getPrice/${res.data.continent}/1`)
-                if(res1.status ==true){
-                    setPrice(res1.data)
-                    setIsLoading(false)
-                }else{ toast.error(res.error.message)}
-                  
-                 
-                }else{ toast.error(res.error.message)}
+                    localStorage.setItem('location', JSON.stringify(res.data.continent))
+                    const res1 = await simpleHttp.get(`/api/v1/all/getPrice/${res.data.continent}/1`)
+                    if(res1.status ==true){
+                        setPrice(res1.data)
+                        setIsLoading(false)
+                    }else{ 
+                        toast.error(res.error.message)
+                    }
+                }else{
+                    toast.error(res.error.message)}
             
               };
               fetchData()
@@ -54,6 +55,7 @@ const Tabs = ({ color }) => {
       }, [location]);
 
     const handleClick = async (id) => {
+        setLocation(localStorage.getItem('location'))
         const res = await simpleHttp.getNoAuth(`/api/v1/all/getPrice/${location}/${id}`)
         if(res.status == true) {
             setPrice(res.data)
@@ -233,11 +235,11 @@ const Tabs = ({ color }) => {
                                                                 y2="172"
                                                                 gradientUnits="userSpaceOnUse"
                                                                 >
-                                                                <stop stop-color="#3056D3" stop-opacity="0.09" />
+                                                                <stop stopColor="#3056D3" stopOpacity="0.09" />
                                                                 <stop
                                                                     offset="1"
-                                                                    stop-color="#C4C4C4"
-                                                                    stop-opacity="0"
+                                                                    stopColor="#C4C4C4"
+                                                                    stopOpacity="0"
                                                                     />
                                                             </linearGradient>
                                                             </defs>
@@ -558,11 +560,11 @@ const Tabs = ({ color }) => {
                                                                 y2="172"
                                                                 gradientUnits="userSpaceOnUse"
                                                                 >
-                                                                <stop stop-color="#3056D3" stop-opacity="0.09" />
+                                                                <stop stopColor="#3056D3" stopOpacity="0.09" />
                                                                 <stop
                                                                     offset="1"
-                                                                    stop-color="#C4C4C4"
-                                                                    stop-opacity="0"
+                                                                    stopColor="#C4C4C4"
+                                                                    stopOpacity="0"
                                                                     />
                                                             </linearGradient>
                                                             </defs>
@@ -887,11 +889,11 @@ const Tabs = ({ color }) => {
                                                                 y2="172"
                                                                 gradientUnits="userSpaceOnUse"
                                                                 >
-                                                                <stop stop-color="#3056D3" stop-opacity="0.09" />
+                                                                <stop stopColor="#3056D3" stopOpacity="0.09" />
                                                                 <stop
                                                                     offset="1"
-                                                                    stop-color="#C4C4C4"
-                                                                    stop-opacity="0"
+                                                                    stopColor="#C4C4C4"
+                                                                    stopOpacity="0"
                                                                     />
                                                             </linearGradient>
                                                             </defs>

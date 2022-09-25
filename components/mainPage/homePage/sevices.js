@@ -19,14 +19,14 @@ const ServicesSection = () => {
                                 <div className="w-full md:w-1/2 xl:w-2/5 px-2 md:px-4">
                                     <div className="bg-white rounded-lg overflow-hidden mb-10">
                                         <img
-                                            src="https://cdn.tailgrids.com/1.0/assets/images/cards/card-01/image-01.jpg"
+                                            src="images/services/Rectangle23.png"
                                             alt="image"
                                             className="w-full"
                                             />
                                         <div className="p-4 sm:p-9 md:p-7 xl:p-4 text-left">
                                             <h3>
                                                 <a
-                                                    href="javascript:void(0)"
+                                                    href="#"
                                                     className="
                                                     font-semibold
                                                     text-dark text-xl
@@ -40,7 +40,7 @@ const ServicesSection = () => {
                                                     hover:text-primary
                                                     "
                                                     >
-                                                50+ Best creative website themes & templates
+                                                Product Development
                                                 </a>
                                             </h3>
                                             <p className="text-base text-body-color leading-relaxed mb-7">
@@ -72,7 +72,7 @@ const ServicesSection = () => {
                                 <div className="w-full md:w-1/2 xl:w-2/5 px-2 md:px-4">
                                     <div className="bg-white rounded-lg overflow-hidden mb-10">
                                     <img
-                                        src="https://cdn.tailgrids.com/1.0/assets/images/cards/card-01/image-02.jpg"
+                                        src="images/services/best-workflow-management-software.png"
                                         alt="image"
                                         className="w-full"
                                         />
@@ -80,7 +80,7 @@ const ServicesSection = () => {
                                         <h3>
                                             <a
                                                 href="#"
-                                                class="
+                                                className="
                                                 font-semibold
                                                 text-dark text-xl
                                                 sm:text-[22px]
@@ -93,7 +93,7 @@ const ServicesSection = () => {
                                                 hover:text-primary
                                                 "
                                                 >
-                                            The ultimate UX and UI guide to card design
+                                            Auomate Workflow
                                             </a>
                                         </h3>
                                         <p className="text-base text-body-color leading-relaxed mb-7">

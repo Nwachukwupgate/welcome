@@ -1,11 +1,19 @@
 import React, {useState} from 'react';
-// import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
-// import { Carousel } from 'react-responsive-carousel';
 import Carousel from 'nuka-carousel';
 import { faAngleRight } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import "@fortawesome/fontawesome-svg-core/styles.css"
 import SectionTitle from './title';
+import { Navigation, Pagination, Scrollbar, A11y, Autoplay } from 'swiper';
+
+import { Swiper, SwiperSlide } from 'swiper/react';
+
+// Import Swiper styles
+import 'swiper/css';
+import 'swiper/css/navigation';
+import 'swiper/css/pagination';
+import 'swiper/css/scrollbar';
+import 'swiper/css/autoplay';
 
 const SuccessCase = () => {
     const[state, setState] = useState([
@@ -47,8 +55,26 @@ const SuccessCase = () => {
             title="Success Cases"
         />
         <div className="container m-auto px-6 md:px-12 lg:px-6">
-           <Carousel>
+            <Swiper
+                // install Swiper modules
+                modules={[Navigation, Pagination, Scrollbar, A11y, Autoplay]}
+                // spaceBetween={50}
+                // slidesPerView={3}
+                navigation
+                pagination={{ clickable: true }}
+                autoplay={{
+                    delay: 4000,
+                    pauseOnMouseEnter: true,
+                    disableOnInteraction: false
+                   }}
+                // scrollbar={{ draggable: true }}
+                onSwiper={(swiper) => console.log(swiper)}
+                onSlideChange={() => console.log('slide change')}
+                loop={true}
+            >
+           {/* <Carousel> */}
             {state && state.map((items) => (
+                <SwiperSlide key={items.id}>
                 <div className="relative flex flex-col-reverse py-16 lg:py-0 lg:flex-col" key={items.id}>
                 <div className="w-full max-w-xl px-4 mx-auto md:px-0 lg:px-8 lg:py-20 lg:max-w-screen-xl">
                     <div className="mb-0 lg:max-w-lg lg:pr-8 xl:pr-6">
@@ -82,10 +108,12 @@ const SuccessCase = () => {
                     alt=""
                     />
                 </div>
-            </div>
+                </div>
+            </SwiperSlide>
             ))
             }
-           </Carousel> 
+           {/* </Carousel>  */}
+           </Swiper>
         </div>
     </div>
     </>

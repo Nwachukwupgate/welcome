@@ -23,7 +23,7 @@ const ScrollIndicator = () => {
     return (      
         
         <div className="sticky top-16 bg-black h-2 left-0 z-10 w-full" style={{position: "sticky", top:"76px"}}>
-            <div className="h-2 bg-green-500" style={{ width: `${scroll}%`, backgroundColor: "green" }}>
+            <div className="h-2 bg-[#F49038]" style={{ width: `${scroll}%`, backgroundColor: "#F49038" }}>
             </div>
         </div>
     );

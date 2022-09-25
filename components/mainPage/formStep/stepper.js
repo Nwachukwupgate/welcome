@@ -77,7 +77,7 @@ function StepperPage({steps, currentStep}) {
                     </div>
         
                     {/* description */}
-                    <div className={`absolute top-0 mt-16 text-xs text-center uppercase font-semibold 
+                    <div className={`absolute top-0 mt-16 text-[0.6rem] md:text-xs text-center uppercase font-semibold 
                     ${step.highlighted ? "text-gray-900" : "text-gray-400" }`}>
                         {step.description}
                     </div>
@@ -94,7 +94,7 @@ function StepperPage({steps, currentStep}) {
 
   return (
     <>
-        <div className="mx-4 p-4 flex justify-between items-center">
+        <div className="md:mx-4 p-2 md:p-4 flex justify-between items-center">
 
             {displaySteps }
 
