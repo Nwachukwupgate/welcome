@@ -5,6 +5,12 @@ import { faTowerBroadcast } from "@fortawesome/free-solid-svg-icons";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
+if(process.env.NEXT_PUBLIC_NODE_ENV === 'development') {
+    var api_origin = 'http://127.0.0.1:3333'
+} else {
+    api_origin = 'https://api.droomwork.io'
+// api_origin = 'http://localhost:3000'
+}
 
 
 export default function FormField() {
@@ -19,6 +25,7 @@ export default function FormField() {
     const [message, setMessage] = useState('');
     const [attachement, setAttachement] = useState('');
     const [fileName, setFileName] = useState('')
+    const [isPending, setIsPending] = useState(false)
 
 
     const handleChange = (event) => {
@@ -52,41 +59,51 @@ export default function FormField() {
         formdata.append("website", website);
         formdata.append("attachement", attachement);
 
-        // if(email && company_Name) {
-        //     await customContact(formdata)
-        //     setIndividual_Name('')
-        //     setCompany_Name()
-        //     setEmail('')
-        //     setCountry('')
-        //     setWebsite('')
-        //     setMessage('')
-        //     setAttachement('')
-        // }else{
-        //     toast.error("Please fill out email and company name")
-        // }
         
-        try{
-            await customContact(formdata)
-            setIndividual_Name('')
-            setCompany_Name()
-            setEmail('')
-            setCountry('')
-            setWebsite('')
-            setMessage('')
-            setFileName('')
-            
-        } catch (error) {
-            toast.error(error.data.message)
-            console.error('Failed to save the post: ', error)
-        }
+        setIsPending(true)
+        await fetch(`${api_origin}/api/v1/comp/customContact`,{
+            mode: 'cors',
+            method: 'POST',
+            headers: {
+                'Content-type':'application/json',
+                'Accept':'application/json',
+                'Access-Control-Allow-Origin':'*',
+            },
+            body: JSON.stringify({
+                individual_name: individual_Name,
+                company_name: company_Name,
+                email: email,
+                message: message,
+                country: country,
+                website: website,
+                attachement: attachement,
+                userId: Math.random().toString(36).slice(2),
+             })
+        }).then((res) => res.json())
+        .then((post) => {
+            // setPosts((posts) => [post, ...posts]);
+            console.log("this is the post full", post)
+            if(post.status == true) {
+                setIndividual_Name('')
+                setCompany_Name()
+                setEmail('')
+                setCountry('')
+                setWebsite('')
+                setMessage('')
+                setFileName('')
+                setIsPending(false)
+                toast.success(post.message)
+            } else{
+                // toast.error(post.error.message)
+                toast.error(post.message)
+            }  
+         })
+         .catch((err) => {
+            toast.error(err.message);
+            console.log("this is d main", err.message)
+         });
     };
 
-    useEffect(() => {
-        if(isSuccess) {
-            // toast.success(data.message)
-      
-        }
-    }, [isSuccess]) 
 
     return (
       <>
@@ -162,7 +179,7 @@ export default function FormField() {
                             id="country"
                             name="country"
                             autoComplete="country-name"
-                            className="mt-1 block w-full py-2 px-3 border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-base p-2 border-2 border-solid"
+                            className="mt-1 block w-full py-2 px-3 border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-black-500 focus:border-black-500 sm:text-base p-2 border-2 border-solid"
                             value={country} onChange={(e)=> setCountry(e.target.value)}
                             >
                             <option>United States</option>
@@ -192,7 +209,7 @@ export default function FormField() {
                         
                         <div className="">
                             <textarea
-                                class="
+                                className="
                                     form-control
                                     block
                                     w-full
@@ -207,7 +224,7 @@ export default function FormField() {
                                     transition
                                     ease-in-out
                                     m-0
-                                    focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none
+                                    focus:text-gray-700 focus:bg-white focus:border-gray-600 focus:outline-none
                                 "
                                 id="exampleFormControlTextarea1"
                                 rows="3"
@@ -285,9 +302,18 @@ export default function FormField() {
                             </div>
                             <div className="px-4 py-3 bg-gray-50 text-right sm:px-6">
                                 
-                                <button className="inline-flex justify-center px-5 py-2 font-semibold text-gray-100 transition-colors duration-200 transform bg-[#001935] rounded-md hover:bg-white hover:text-[#001935] hover:border-2 hover:border-solid hover:border-[#001935]"
-                                onClick={(e) => {console.log("button click")}}
-                                >Submit</button>
+                                {!isPending && 
+                                    <button className="inline-flex justify-center px-5 py-2 font-semibold text-gray-100 transition-colors duration-200 transform bg-[#001935] rounded-md hover:bg-white hover:text-[#001935] hover:border-2 hover:border-solid hover:border-[#001935]"
+                                    onClick={handleSubmit}
+                                    >Submit</button>
+                                }
+
+                                {isPending && 
+                                    <button className="inline-flex justify-center px-5 py-2 font-semibold text-gray-100 transition-colors duration-200 transform bg-[#001935] rounded-md hover:bg-white hover:text-[#001935] hover:border-2 hover:border-solid hover:border-[#001935]"
+                                    onClick={handleSubmit}
+                                    >Submiting...</button>
+                                }
+
                             </div>
                             </div>
                         </div>

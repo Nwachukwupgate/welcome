@@ -9,25 +9,28 @@ const LogoCompany = () => {
                 <div className="m-auto text-center md:w-8/12 lg:w-6/12">
                     <h2 className="text-2xl text-white font-bold md:text-4xl">Our Clients <span className="text-sky-400">are</span> happy companies you know</h2>
                 </div>
-                <div className="m-auto mt-16 md:w-11/12 lg:w-8/12 xl:w-7/12">
+                <div className="m-auto mt-16 md:w-11/12 lg:w-8/12 xl:w-8/12">
                     <div className="flex flex-wrap justify-center gap-6">
                         <div className="group py-2 px-4 border border-opacity-10 rounded-xl bg-white bg-opacity-5 hover:bg-opacity-10">
-                            <img src="images/clients/nairaman-PhotoRoom.png" className="contrast-0 transition group-hover:contrast-100" loading="lazy" alt="logo airbnb" />
+                            <img src="images/clients/nairaman-PhotoRoom.png" className="contrast-0 transition group-hover:contrast-100" loading="lazy" alt="logo nairamerics" />
                         </div>
                         <div className="group py-2 px-4 border border-opacity-10 rounded-xl bg-white bg-opacity-5 hover:bg-opacity-10">
-                            <img src="images/clients/cinfores(1)-PhotoRoom(1).png" className="contrast-0 transition group-hover:contrast-100" loading="lazy" alt="logo microsoft" />
+                            <img src="images/clients/cinfores(1)-PhotoRoom(1).png" className="contrast-0 transition group-hover:contrast-100" loading="lazy" alt="logo cinfores" />
                         </div>
                         <div className="group py-2 px-4 border border-opacity-10 rounded-xl bg-white bg-opacity-5 hover:bg-opacity-10">
-                            <img src="images/clients/treepzs-PhotoRoom.png" className="contrast-0 transition group-hover:contrast-100" loading="lazy" alt="logo ge" />
+                            <img src="images/clients/treepzs-PhotoRoom.png" className="contrast-0 transition group-hover:contrast-100" loading="lazy" alt="logo treepz" />
                         </div>
                         <div className="group py-2 px-4 border border-opacity-10 rounded-xl bg-white bg-opacity-5 hover:bg-opacity-10">
-                            <img src="images/clients/pennecklogo.png" className="contrast-0 transition group-hover:contrast-100" loading="lazy" alt="logo bissell" />
+                            <img src="images/clients/pennecklogo.png" className="contrast-0 transition group-hover:contrast-100" loading="lazy" alt="logo penneck" />
                         </div>
                         <div className="group py-2 px-4 border border-opacity-10 rounded-xl bg-white bg-opacity-5 hover:bg-opacity-10">
-                            <img src="images/clients/bissell.svg" className="contrast-0 transition group-hover:contrast-100" loading="lazy" alt="logo bissell" />
+                            <img src="images/clients/gmh.png" className="contrast-0 transition group-hover:contrast-100" loading="lazy" alt="God made homes" />
                         </div>
                         <div className="group py-2 px-4 border border-opacity-10 rounded-xl bg-white bg-opacity-5 hover:bg-opacity-10">
                             <img src="images/clients/automatic.svg" className="contrast-0 transition group-hover:contrast-100" loading="lazy" alt="logo automatic" />
+                        </div> 
+                        <div className="group py-2 px-4 border border-opacity-10 rounded-xl bg-white bg-opacity-5 hover:bg-opacity-10">
+                            <img src="images/clients/cornelhealth.png" className="contrast-0 transition group-hover:contrast-100" loading="lazy" alt="logo automatic" />
                         </div>
                     </div>
                 </div>

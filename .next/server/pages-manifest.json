@@ -1,16 +1,5 @@
 {
   "/_app": "pages/_app.js",
-  "/companyStep": "pages/companyStep.html",
-  "/developers": "pages/developers.html",
-  "/login": "pages/login.html",
-  "/register": "pages/register.html",
-  "/stepForm": "pages/stepForm.html",
   "/_error": "pages/_error.js",
-  "/blog": "pages/blog.js",
-  "/blog/[slug]": "pages/blog/[slug].js",
-  "/": "pages/index.js",
-  "/build": "pages/build.js",
-  "/recruiters": "pages/recruiters.js",
-  "/_document": "pages/_document.js",
-  "/404": "pages/404.html"
+  "/_document": "pages/_document.js"
 }
