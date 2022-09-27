@@ -3,6 +3,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useRouter } from 'next/router'
 import EasyHTTP from '../../../helpers/easyHttp'
+import Link from 'next/link';
 
 const simpleHttp =  new EasyHTTP()
 
@@ -20,13 +21,32 @@ try {
 
 e.target.email.value = null
 e.target.password.value = null
-   //handle confirmation here  &isFullyReg=true
-  
-   if(res.user.cv !== null){
-    router.push(`/stepForm/?welcome=${res.token.token}&isFullyReg=true`)
-   }else{
-    router.push(`/stepForm/?welcome=${res.token.token}`)
+   //do not change the line ordering of the codes below
+  if(res.user.role==='admin'){
+   return window.location.href = `${process.env.NEXT_PUBLIC_ADMIN_URL_LIVE}/?enter=${res.token.token}`
    }
+   if(res.user.userCbtStack == null || res.user.userCbtLevel == null ){
+   return router.push(`/stepForm/?welcome=${res.token.token}&isFullyReg=1`)
+   }
+   if(res.user.userCbtLanguage.language1 == null){
+   return  router.push(`/stepForm/?welcome=${res.token.token}&isFullyReg=2`)
+   }
+   if(res.user.userCbtFramework.framework1 == null){
+   return router.push(`/stepForm/?welcome=${res.token.token}&isFullyReg=3`)
+   }
+   if(res.user.cv == null || res.user.photo_public_id == null){
+   return router.push(`/stepForm/?welcome=${res.token.token}&isFullyReg=4`)
+   }
+   if(res.user.cv !== null){
+    return router.push(`/stepForm/?welcome=${res.token.token}&isFullyReg=5`)
+    }
+    
+   
+
+
+//    else{
+//     router.push(`/stepForm/?welcome=${res.token.token}`)
+//    }
   
    }else{toast.error(res.message)}
     
@@ -77,9 +97,9 @@ e.target.password.value = null
                                     <div>
                                         <div className="flex items-center justify-between">
                                             <label for="pwd" className="text-gray-700">Password</label>
-                                            <button className="p-2 -mr-2" type="reset">
+                                            {/* <button className="p-2 -mr-2" type="reset">
                                                 <span className="text-sm text-[#F49038]">Forgot your password ?</span>
-                                            </button>
+                                            </button> */}
                                         </div>
                                         <input  type="password" name="password" id="pwd" 
                                                 className="block w-full px-4 py-3 rounded-md border border-gray-300 text-gray-600 transition duration-300
@@ -95,7 +115,7 @@ e.target.password.value = null
 
                                     <p className="border-t pt-6 text-sm">
                                         Don't have an account ? 
-                                        <a href="#" className="text-[#F49038]">Sign up</a>
+                                        <Link href='/register'><a className="text-[#F49038]"> Sign up</a></Link>
                                     </p>
                                 </form>
                             </div>
@@ -103,8 +123,8 @@ e.target.password.value = null
                     </div>
                     <div className="text-center space-x-4">
                         <span>&copy; Droomwork</span>
-                        <a href="#" className="text-sm hover:text-sky-900">Home</a>
-                        <a href="#" className="text-sm hover:text-sky-900">Contact</a>
+                        <a href="/" className="text-sm hover:text-sky-900">Home</a>
+                        {/* <a href="#" className="text-sm hover:text-sky-900">Contact</a> */}
                     </div>
                 </div>
             </div>

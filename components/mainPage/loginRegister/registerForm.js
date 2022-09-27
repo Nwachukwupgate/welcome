@@ -38,7 +38,8 @@ function RegisterForm() {
     e.target.email.value = null
     e.target.password.value = null
     //handle confirmation here
-    router.push(`/stepForm/?welcome=${res.data.confirmation_token}`)
+    // router.push(`/stepForm/?welcome=${res.data.confirmation_token}`)
+    return router.push(`/stepForm/?welcome=${res.data.confirmation_token}&isFullyReg=1`)
     }else{toast.error(res.message)}
     }  
     } catch (error) {
@@ -104,10 +105,10 @@ function RegisterForm() {
                                                 <span>Sign up</span>
                                             </button>
 
-                                            {/* <p className="border-t pt-6 text-sm">
+                                            <p className="border-t pt-6 text-sm">
                                                 Already have an account?
-                                                <a href="#" className="text-[#F49038]">Sign in</a>
-                                            </p> */}
+                                                <Link href='/login'><a className="text-[#F49038]"> Sign in</a></Link>
+                                            </p>
                                         </form>
                                     </div>
 

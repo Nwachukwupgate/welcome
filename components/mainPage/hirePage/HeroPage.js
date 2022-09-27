@@ -20,7 +20,7 @@ const HeroPage = () => {
                         </p>
                         </div>
 
-                        <h1 className=" font-bold text-gray-900 text-4xl md:text-6xl">Hire vetted Developers & Designers</h1>
+                        <h1 className=" font-bold text-gray-900 text-4xl md:text-6xl">Hire Vetted Freelance Developers & Designers</h1>
                         <p className="text-gray-600 lg:w-11/12 text-lg">
                             Get qualified and reliable developers & designers around the world with hourly rates ranging from $4 - $100 to jump on your project within 48hrs.
                         </p>

@@ -18,8 +18,12 @@ const router = useRouter()
          const parameters = new URLSearchParams(userRegData)
          var userToken = parameters.get('welcome')
          var checkFullReg = parameters.get('isFullyReg')//
-         if(checkFullReg == null){setCurrentStep(1)}else{
-            setCurrentStep(5)}
+        if(checkFullReg == 1){setCurrentStep(1)}
+        if(checkFullReg == 2){setCurrentStep(2)}
+        if(checkFullReg == 3){setCurrentStep(3)}
+        if(checkFullReg == 4){setCurrentStep(4)}
+        if(checkFullReg == 5){setCurrentStep(5)}
+        
         }
         if (typeof window !== "undefined") {
             window.localStorage.setItem('userToken', JSON.stringify(userToken))
