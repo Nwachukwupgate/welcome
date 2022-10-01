@@ -180,7 +180,7 @@ setSuggest(res.data)
           <div className="space-y-8">
 
             <div>
-                <label class="block mb-1 text-sm font-medium text-gray-900 dark:text-gray-300" htmlFor="file_input">Upload Picture</label>
+                <label class="block mb-1 text-sm font-medium text-gray-900 dark:text-gray-300" htmlFor="file_input">Upload Best Picture</label>
                 <input 
                   type="file" 
                   required

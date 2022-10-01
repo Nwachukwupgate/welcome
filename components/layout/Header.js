@@ -274,11 +274,11 @@ export const Nav = () => {
                                     
                                     {/* <li onClick={scrollTo}> */}
                                     <li>
-                                        {/* <Link href="#">
-                                            <a href="#" className="block md:px-3"> */}
+                                        <Link href="/build">
+                                            <a className="block md:px-3">
                                                 <span className="relative before:absolute before:block before:bottom-[-0.15rem] before:left-0 before:w-2/4 before:h-[1px] before:bg-[#F49038] before:-p-2 cursor-pointer " onClick={handleClick}>Build</span>
-                                            {/* </a>
-                                        </Link> */}
+                                            </a>
+                                        </Link>
                                     </li>
                                     <li>
                                         <Link href="https://jobs.droomwork.io/">
