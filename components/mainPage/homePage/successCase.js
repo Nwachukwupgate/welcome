@@ -20,27 +20,27 @@ const SuccessCase = () => {
         {
             id: 1,
             type: 'custom build',
-            buildTopic: 'Fixing for marketing',
-            stleTopic: 'for for a saas company',
-            buildContent: 'play is a free software company, tha hav jdhjd jsjdb hjdgshb hbdshcb bhsbh bhbs hschbhgcb bhbhsd bhbsh sdbchdn hghds jhsjm',
-            imgFile:"https://images.pexels.com/photos/3184360/pexels-photo-3184360.jpeg?auto=compress&amp;cs=tinysrgb&amp;dpr=2&amp;h=750&amp;w=1260",
-            country: "USA"
+            buildTopic: 'Digitalizing Company Operations',
+            stleTopic: 'Real Estate',
+            buildContent: 'Digitalization of all companies operational records to facilitate for more efficient workflow amongst department, promote a remote first work culture and enable data visualization and analytics for smarter business decisions.',
+            imgFile:"images/Blue Illustration Laptop Hello Circle Sticker.png",
+            country: "NGA"
         },
         {
             id: 2,
-            type: 'Quick Fix',
-            buildTopic: 'Fixing for marketing',
-            stleTopic: 'for for a saas company',
-            buildContent: 'play is a free software company, tha hav jdhjd jsjdb hjdgshb hbdshcb bhsbh bhbs hschbhgcb bhbhsd bhbsh sdbchdn hghds jhsjm',
-            imgFile:"https://images.pexels.com/photos/3184360/pexels-photo-3184360.jpeg?auto=compress&amp;cs=tinysrgb&amp;dpr=2&amp;h=750&amp;w=1260",
+            type: 'Custom Build',
+            buildTopic: 'Digital Transformation of Sales Funnel',
+            stleTopic: 'Retail and E-commerce',
+            buildContent: 'Leveraging tech and the power of multiple user channels to reach out to clients through AI powered intelligent systems to accelerate sales.',
+            imgFile:"images/nativeFood.png",
             country: "Nigeria"
         },
         {
             id: 3,
-            type: 'Staff Aug',
-            buildTopic: 'Fixing for marketing',
-            stleTopic: 'for for a saas company',
-            buildContent: 'play is a free software company, tha hav jdhjd jsjdb hjdgshb hbdshcb bhsbh bhbs hschbhgcb bhbhsd bhbsh sdbchdn hghds jhsjm',
+            type: 'Custom Build',
+            buildTopic: 'POS field Officers Tracking',
+            stleTopic: 'Fintech',
+            buildContent: 'Track locations, time to visit, work updates of all POS field officers across all bank branches and location',
             imgFile:"https://images.pexels.com/photos/3184360/pexels-photo-3184360.jpeg?auto=compress&amp;cs=tinysrgb&amp;dpr=2&amp;h=750&amp;w=1260",
             country: "UK"
         }

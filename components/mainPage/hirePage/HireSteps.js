@@ -1,10 +1,33 @@
 import React from 'react'
+import { motion, variants } from 'framer-motion';
+
+
+const containerVariant = {
+    hidden: {
+        y: 100,
+        opacity: 0,
+    },
+
+    visible: {
+        y: 0,
+        opacity: 1,
+        transition: {
+            type: "spring", bounce: 0.4, duration: 3, delay:0.3
+        }
+    }
+}
+
 
 const HireSteps = () => {
   return (
     <>
 
-        <div class="py-16 bg-white overflow-hidden">
+        <motion.div class="py-16 bg-white overflow-hidden"
+        initial={"hidden"}
+        whileInView={"visible"}
+        viewport={{once:true, amount:0.1}}
+        variants={containerVariant}
+        >
             <div class="container m-auto px-6 space-y-8 md:px-12 lg:px-20">
                 <div>
                     <span class="block w-max mx-auto py-2 px-4 rounded-full bg-[#F49038] text-[#001935] text-sm font-semibold">Hire Workflow</span>
@@ -45,7 +68,7 @@ const HireSteps = () => {
                     </div> */}
                 </div>
             </div>
-        </div>   
+        </motion.div>   
                                 
     </>
   )

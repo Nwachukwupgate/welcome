@@ -1,10 +1,31 @@
 import React from 'react';
+import { motion, variants } from 'framer-motion';
 
+
+const containerVariant = {
+    hidden: {
+        y: 100,
+        opacity: 0,
+    },
+
+    visible: {
+        y: 0,
+        opacity: 1,
+        transition: {
+            type: "spring", bounce: 0.4, duration: 3, delay:0.3
+        }
+    }
+}
 
 const TestPage = () => {
     return (
         <>
-            <div className="py-16 bg-gray-50">  
+            <motion.div className="py-16 bg-gray-50"
+            initial={"hidden"}
+            whileInView={"visible"}
+            viewport={{once:true, amount:0.1}}
+            variants={containerVariant}
+            >  
                 <div className="container m-auto text-gray-600 md:px-12 xl:px-6">
                     <div className="mb-12 space-y-4 px-6 md:px-0">
                         <h2 className="text-center text-2xl text-gray-900 font-bold md:text-4xl">Fans Club.</h2>
@@ -29,7 +50,7 @@ const TestPage = () => {
                     </div>
                     </div>
                 </div>
-            </div>
+            </motion.div>
         </>
     )
 }

@@ -11,6 +11,33 @@ import Link from 'next/link';
 // import 'swiper/modules/scrollbar/scrollbar.min.css';
 // import 'swiper/modules/zoom/zoom.min.css';
 // import '@ionic/react/css/ionic-swiper.css';
+import { motion, variants } from 'framer-motion';
+
+
+const containerVariant = {
+    hidden: {
+        y: 100,
+        opacity: 0,
+    },
+
+    visible: {
+        y: 0,
+        opacity: 1,
+        transition: {
+            type: "spring", bounce: 0.4, duration: 3, delay:0.3
+        }
+    }
+}
+
+const picsVariant = {
+    hover: {
+        scale: 1.1,
+        transition : {
+            duration: 0.3,
+            yoyo: Infinity,
+        }
+    }
+}
 
 
 
@@ -114,7 +141,12 @@ const TeamPage = () => {
   return (
     <>
 
-        <section className="bg-white dark:bg-gray-900">
+        <motion.section className="bg-white dark:bg-gray-900"
+        initial={"hidden"}
+        whileInView={"visible"}
+        viewport={{once:true, amount:0.1}}
+        variants={containerVariant}
+        >
             <div className="container px-6 py-10 mx-auto">
                 <h1 className="text-3xl font-semibold text-center text-gray-800 capitalize lg:text-4xl dark:text-white">Our <span className="">Talents</span></h1>
                 
@@ -123,7 +155,9 @@ const TeamPage = () => {
                 </p>
                 
                 <div className="grid grid-cols-1 gap-8 mt-8 xl:mt-16 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3">
-                    <div className="px-12 py-8 bg-[rgba(255, 255, 255, 0.3)] shadow-[0_4px_30px_rgba(0,0,0,0.1)] backdrop-blur-md transition-colors duration-200 transform border cursor-pointer rounded-2xl hover:border-transparent group hover:bg-[#001935] dark:border-gray-700 dark:hover:border-transparent">
+                    <motion.div className="px-12 py-8 bg-[rgba(255, 255, 255, 0.3)] shadow-[0_4px_30px_rgba(0,0,0,0.1)] backdrop-blur-md transition-colors duration-200 transform border cursor-pointer rounded-2xl hover:border-transparent group hover:bg-[#001935] dark:border-gray-700 dark:hover:border-transparent"
+                    whileHover= "hover"
+                    >
                         <Swiper modules={[Autoplay, Keyboard, Pagination, Scrollbar, Zoom]}
                             autoplay={{
                                 delay: 2000,
@@ -140,7 +174,9 @@ const TeamPage = () => {
                         {state && state.map((items) => ( 
                             <SwiperSlide key={items.id}>
                             <Link href='/companyStep'><a><div className="flex flex-col sm:-mx-4 sm:flex-row">
-                                <img className="flex-shrink-0 object-cover w-24 h-24 rounded-full sm:mx-4 ring-4 ring-gray-300" src={items.imgFile} alt="" />
+                                <motion.img className="flex-shrink-0 object-cover w-24 h-24 rounded-full sm:mx-4 ring-4 ring-gray-300" src={items.imgFile} alt="" 
+                                variants={picsVariant}
+                                />
 
                                 <div className="mt-4 sm:mx-4 sm:mt-0">
                                     <h1 className="text-xl font-semibold text-gray-700 capitalize md:text-2xl dark:text-white group-hover:text-white">{items.name}</h1>
@@ -162,12 +198,17 @@ const TeamPage = () => {
                             </SwiperSlide>
                         ))}
                         </Swiper>
-                    </div>
+                    </motion.div>
 
                 <Link href='/companyStep'><a>
-                <div className="px-12 py-8 bg-[rgba(255, 255, 255, 0.3)] shadow-[0_4px_30px_rgba(0,0,0,0.1)] backdrop-blur-md transition-colors duration-200 transform border cursor-pointer rounded-2xl hover:border-transparent group hover:bg-[#001935] dark:border-gray-700 dark:hover:border-transparent">
+                <motion.div className="px-12 py-8 bg-[rgba(255, 255, 255, 0.3)] shadow-[0_4px_30px_rgba(0,0,0,0.1)] backdrop-blur-md transition-colors duration-200 transform border cursor-pointer rounded-2xl hover:border-transparent group hover:bg-[#001935] dark:border-gray-700 dark:hover:border-transparent"
+                whileHover= "hover"
+                >
                         <div className="flex flex-col sm:-mx-4 sm:flex-row">
-                            <img className="flex-shrink-0 object-cover w-24 h-24 rounded-full sm:mx-4 ring-4 ring-gray-300" src="images/developers/emmanuel.jpeg" alt="developer" />
+                            <motion.img className="flex-shrink-0 object-cover w-24 h-24 rounded-full sm:mx-4 ring-4 ring-gray-300"
+                             src="images/developers/emmanuel.jpeg" alt="developer" 
+                             variants={picsVariant}
+                             />
 
                             <div className="mt-4 sm:mx-4 sm:mt-0">
                                 <h1 className="text-xl font-semibold text-gray-700 capitalize md:text-2xl dark:text-white group-hover:text-white">Emmanuel Okoh</h1>
@@ -191,13 +232,17 @@ const TeamPage = () => {
                                 <span>Firebase</span>
                             </a>
                         </div>
-                    </div>
+                    </motion.div>
                 </a></Link>
 
                   <Link href='companyStep'><a>
-                  <div className="px-12 py-8 bg-[rgba(255, 255, 255, 0.3)] shadow-[0_4px_30px_rgba(0,0,0,0.1)] backdrop-blur-md transition-colors duration-200 transform border cursor-pointer rounded-2xl hover:border-transparent group hover:bg-[#001935] dark:border-gray-700 dark:hover:border-transparent">
+                  <motion.div className="px-12 py-8 bg-[rgba(255, 255, 255, 0.3)] shadow-[0_4px_30px_rgba(0,0,0,0.1)] backdrop-blur-md transition-colors duration-200 transform border cursor-pointer rounded-2xl hover:border-transparent group hover:bg-[#001935] dark:border-gray-700 dark:hover:border-transparent"
+                  whileHover= "hover"
+                  >
                         <div className="flex flex-col sm:-mx-4 sm:flex-row">
-                            <img className="flex-shrink-0 object-cover w-24 h-24 rounded-full sm:mx-4 ring-4 ring-gray-300" src="images/developers/haveed.jpeg" alt="freelancers" />
+                            <motion.img className="flex-shrink-0 object-cover w-24 h-24 rounded-full sm:mx-4 ring-4 ring-gray-300" src="images/developers/haveed.jpeg" alt="freelancers" 
+                            variants={picsVariant}
+                            />
 
                             <div className="mt-4 sm:mx-4 sm:mt-0">
                                 <h1 className="text-xl font-semibold text-gray-700 capitalize md:text-2xl dark:text-white group-hover:text-white">Hassan Javed</h1>
@@ -219,14 +264,16 @@ const TeamPage = () => {
                                 <span>JMeter 2.7</span>
                             </a>
                         </div>
-                    </div>
+                    </motion.div>
                   </a></Link>
 
          
-               <div className="px-12 py-8 bg-[rgba(255, 255, 255, 0.3)] shadow-[0_4px_30px_rgba(0,0,0,0.1)] backdrop-blur-md transition-colors duration-200 transform border cursor-pointer rounded-2xl hover:border-transparent group hover:bg-[#001935] dark:border-gray-700 dark:hover:border-transparent">
-               <Link href='/companyStep'><a>
-               <div className="flex flex-col sm:-mx-4 sm:flex-row">
-                            <img className="flex-shrink-0 object-cover w-24 h-24 rounded-full sm:mx-4 ring-4 ring-gray-300" src="images/developers/mayowa.jpeg" alt="developer" />
+                    <motion.div className="px-12 py-8 bg-[rgba(255, 255, 255, 0.3)] shadow-[0_4px_30px_rgba(0,0,0,0.1)] backdrop-blur-md transition-colors duration-200 transform border cursor-pointer rounded-2xl hover:border-transparent group hover:bg-[#001935] dark:border-gray-700 dark:hover:border-transparent"
+                    whileHover= "hover">
+                    <Link href='/companyStep'><a>
+                    <div className="flex flex-col sm:-mx-4 sm:flex-row">
+                            <motion.img className="flex-shrink-0 object-cover w-24 h-24 rounded-full sm:mx-4 ring-4 ring-gray-300" src="images/developers/mayowa.jpeg" alt="developer" 
+                            variants={picsVariant}/>
 
                             <div className="mt-4 sm:mx-4 sm:mt-0">
                                 <h1 className="text-xl font-semibold text-gray-700 capitalize md:text-2xl dark:text-white group-hover:text-white">Oluwamayowa Fadairo</h1>
@@ -250,47 +297,44 @@ const TeamPage = () => {
                                 <span>MySql</span>
                             </a>
                         </div>
-               </a></Link>
-
-                   
-                    </div>
+                        </a></Link>
+                    </motion.div>
               
 
-                <Link href='companyStep'><a>
-                <div className="px-12 py-8 bg-[rgba(255, 255, 255, 0.3)] shadow-[0_4px_30px_rgba(0,0,0,0.1)] backdrop-blur-md transition-colors duration-200 transform border cursor-pointer rounded-2xl hover:border-transparent group hover:bg-[#001935] dark:border-gray-700 dark:hover:border-transparent">
-                        <div className="flex flex-col sm:-mx-4 sm:flex-row">
-                            <img className="flex-shrink-0 object-cover w-24 h-24 rounded-full sm:mx-4 ring-4 ring-gray-300" src="images/developers/ali.jpeg" alt="" />
+                    <Link href='companyStep'><a>
+                    <motion.div className="px-12 py-8 bg-[rgba(255, 255, 255, 0.3)] shadow-[0_4px_30px_rgba(0,0,0,0.1)] backdrop-blur-md transition-colors duration-200 transform border cursor-pointer rounded-2xl hover:border-transparent group hover:bg-[#001935] dark:border-gray-700 dark:hover:border-transparent" whileHover= "hover">
+                            <div className="flex flex-col sm:-mx-4 sm:flex-row">
+                                <motion.img className="flex-shrink-0 object-cover w-24 h-24 rounded-full sm:mx-4 ring-4 ring-gray-300" src="images/developers/ali.jpeg" alt="" variants={picsVariant}/>
 
-                            <div className="mt-4 sm:mx-4 sm:mt-0">
-                                <h1 className="text-xl font-semibold text-gray-700 capitalize md:text-2xl dark:text-white group-hover:text-white">Ali Hussnain</h1>
-                                
-                                <p className="mt-2 text-gray-500 capitalize dark:text-gray-300 group-hover:text-gray-300">Backend Developer</p>
+                                <div className="mt-4 sm:mx-4 sm:mt-0">
+                                    <h1 className="text-xl font-semibold text-gray-700 capitalize md:text-2xl dark:text-white group-hover:text-white">Ali Hussnain</h1>
+                                    
+                                    <p className="mt-2 text-gray-500 capitalize dark:text-gray-300 group-hover:text-gray-300">Backend Developer</p>
+                                </div>
                             </div>
-                        </div>
 
-                        <p className="mt-4 text-gray-500 capitalize dark:text-gray-300 group-hover:text-gray-300">I am a creative engineer with over 4 years of experience who loves to build slick products that work out perfectly I Can build WebApps, REST APIs, websites, integrations, and micro-services to help move your business forward.</p>
+                            <p className="mt-4 text-gray-500 capitalize dark:text-gray-300 group-hover:text-gray-300">I am a creative engineer with over 4 years of experience who loves to build slick products that work out perfectly I Can build WebApps, REST APIs, websites, integrations, and micro-services to help move your business forward.</p>
 
-                        <div className="flex mt-4 -mx-2">
-                            <a href="#" className="mx-1 text-gray-600 border border-solid border-gray-300  dark:text-gray-300 hover:text-gray-500 dark:hover:text-gray-300 group-hover:text-white py-0.5 rounded-lg px-2">
-                                <span>JavaScript</span>
-                            </a>
+                            <div className="flex mt-4 -mx-2">
+                                <a href="#" className="mx-1 text-gray-600 border border-solid border-gray-300  dark:text-gray-300 hover:text-gray-500 dark:hover:text-gray-300 group-hover:text-white py-0.5 rounded-lg px-2">
+                                    <span>JavaScript</span>
+                                </a>
 
-                            <a href="#" className="mx-1 text-gray-600 border border-solid border-gray-300  dark:text-gray-300 hover:text-gray-500 dark:hover:text-gray-300 group-hover:text-white py-0.5 rounded-lg px-2">
-                                <span>Php</span>
-                            </a>
+                                <a href="#" className="mx-1 text-gray-600 border border-solid border-gray-300  dark:text-gray-300 hover:text-gray-500 dark:hover:text-gray-300 group-hover:text-white py-0.5 rounded-lg px-2">
+                                    <span>Php</span>
+                                </a>
 
-                            <a href="#" className="mx-1 text-gray-600 border border-solid border-gray-300  dark:text-gray-300 hover:text-gray-500 dark:hover:text-gray-300 group-hover:text-white py-0.5 rounded-lg px-2">
-                                <span>GraphQL</span>
-                            </a>
-                        </div>
-                    </div>
-                </a></Link>
-
+                                <a href="#" className="mx-1 text-gray-600 border border-solid border-gray-300  dark:text-gray-300 hover:text-gray-500 dark:hover:text-gray-300 group-hover:text-white py-0.5 rounded-lg px-2">
+                                    <span>GraphQL</span>
+                                </a>
+                            </div>
+                        </motion.div>
+                    </a></Link>
                 
-        <div className="px-12 py-8 bg-[rgba(255, 255, 255, 0.3)] shadow-[0_4px_30px_rgba(0,0,0,0.1)] backdrop-blur-md transition-colors duration-200 transform border cursor-pointer rounded-2xl hover:border-transparent group hover:bg-[#001935] dark:border-gray-700 dark:hover:border-transparent">
-                <Link href='companyStep'><a>
-                <div className="flex flex-col sm:-mx-4 sm:flex-row">
-                            <img className="flex-shrink-0 object-cover w-24 h-24 rounded-full sm:mx-4 ring-4 ring-gray-300" src="images/developers/otobong.jpg" alt="" />
+                    <motion.div className="px-12 py-8 bg-[rgba(255, 255, 255, 0.3)] shadow-[0_4px_30px_rgba(0,0,0,0.1)] backdrop-blur-md transition-colors duration-200 transform border cursor-pointer rounded-2xl hover:border-transparent group hover:bg-[#001935] dark:border-gray-700 dark:hover:border-transparent" whileHover= "hover">
+                        <Link href='companyStep'><a>
+                        <div className="flex flex-col sm:-mx-4 sm:flex-row">
+                            <motion.img className="flex-shrink-0 object-cover w-24 h-24 rounded-full sm:mx-4 ring-4 ring-gray-300" src="images/developers/otobong.jpg" alt="" variants={picsVariant}/>
 
                             <div className="mt-4 sm:mx-4 sm:mt-0">
                                 <h1 className="text-xl font-semibold text-gray-700 capitalize md:text-2xl dark:text-white group-hover:text-white">Otobong Peter</h1>
@@ -314,13 +358,12 @@ const TeamPage = () => {
                                 <span>Python</span>
                             </a>
                         </div>
-                </a></Link>
+                    </a></Link>
                        
-                    </div>
-                
+                    </motion.div>
                 </div>
             </div>
-        </section>
+        </motion.section>
     </>
   )
 }

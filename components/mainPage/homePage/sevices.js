@@ -1,7 +1,31 @@
+import React from 'react';
+import { motion, variants } from 'framer-motion';
+
+
+const containerVariant = {
+    hidden: {
+        y: 100,
+        opacity: 0,
+    },
+
+    visible: {
+        y: 0,
+        opacity: 1,
+        transition: {
+            type: "spring", bounce: 0.4, duration: 3, delay:0.3
+        }
+    }
+}
+
 const ServicesSection = () => {
     return(
         <>
-            <div className="pb-20">
+            <motion.div className="pb-20"
+            initial={"hidden"}
+            whileInView={"visible"}
+            viewport={{once:true, amount:0.1}}
+            variants={containerVariant}
+            >
                 <div className="container m-auto px-6 md:px-12 lg:px-6">
                     
                     
@@ -19,7 +43,7 @@ const ServicesSection = () => {
                                 <div className="w-full md:w-1/2 xl:w-2/5 px-2 md:px-4">
                                     <div className="bg-white rounded-lg overflow-hidden mb-10">
                                         <img
-                                            src="images/services/Rectangle23.png"
+                                            src="images/Custom-Software-Development.jpg"
                                             alt="image"
                                             className="w-full"
                                             />
@@ -40,12 +64,11 @@ const ServicesSection = () => {
                                                     hover:text-primary
                                                     "
                                                     >
-                                                Product Development
+                                                Custom Software Build
                                                 </a>
                                             </h3>
                                             <p className="text-base text-body-color leading-relaxed mb-7">
-                                                Lorem ipsum dolor sit amet pretium consectetur adipiscing
-                                                elit. Lorem consectetur adipiscing elit.
+                                                With our carefully crafted software engineering process, we turn clients idea into product that users will love.
                                             </p>
                                             {/* <a
                                                 href="javascript:void(0)"
@@ -72,7 +95,7 @@ const ServicesSection = () => {
                                 <div className="w-full md:w-1/2 xl:w-2/5 px-2 md:px-4">
                                     <div className="bg-white rounded-lg overflow-hidden mb-10">
                                     <img
-                                        src="images/services/best-workflow-management-software.png"
+                                        src="images/team.webp"
                                         alt="image"
                                         className="w-full"
                                         />
@@ -93,12 +116,11 @@ const ServicesSection = () => {
                                                 hover:text-primary
                                                 "
                                                 >
-                                            Auomate Workflow
+                                            Dedicated Team
                                             </a>
                                         </h3>
                                         <p className="text-base text-body-color leading-relaxed mb-7">
-                                            Lorem ipsum dolor sit amet pretium consectetur adipiscing
-                                            elit. Lorem consectetur adipiscing elit.
+                                            Our inhouse profesional engineers integrates very closely with your internal team to deliver value just as an inhouse team.
                                         </p>
                                         {/* <a
                                             href="javascript:void(0)"
@@ -125,7 +147,7 @@ const ServicesSection = () => {
                     </section>
 
                 </div>
-            </div>
+            </motion.div>
         </>
     )
 }

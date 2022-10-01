@@ -99,7 +99,9 @@ if(isLevelSelected == true && myStack !== ''){
            return <>
             <div className="flex items-center" key={single.id}>
               <input id="orange-radio" type="radio" value={single.id} name="colored-radio" className="w-4 h-4 text-orange-500 bg-gray-100 border-gray-300 focus:ring-orange-500 dark:focus:ring-orange-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" onChange={(e)=> setRadio(e.target.value)} />
-              <label for="orange-radio" className="ml-2 text-lg text-gray-900 dark:text-gray-300">{single.name}</label>
+              <label for="orange-radio" className="ml-2 text-lg text-gray-900 dark:text-gray-300">
+                {single.name} {single.id === 1 ? '0 - 3years' : (single.id === 2 ? '3 - 7years' : (single.id ===3 ? '7+ years' : ''))}
+                </label>
             </div>
             </>
           })}

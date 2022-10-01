@@ -1,10 +1,32 @@
 import React from 'react';
+import { motion, variants } from 'framer-motion';
+
+
+const containerVariant = {
+    hidden: {
+        y: 100,
+        opacity: 0,
+    },
+
+    visible: {
+        y: 0,
+        opacity: 1,
+        transition: {
+            type: "spring", bounce: 0.4, duration: 3, delay:0.3
+        }
+    }
+}
 
 
 const DevFoot = () => {
     return (
     <>
-        <div className="rounded-xl">
+        <motion.div className="rounded-xl"
+        initial={"hidden"}
+        whileInView={"visible"}
+        viewport={{once:true, amount:0.1}}
+        variants={containerVariant}
+        >
             <div className="container m-auto px-6 py-16 space-y-8 text-gray-600 md:px-12 lg:px-20">
                 <p className="text-2xl text-center font-extrabold"> Droomwork Developers </p>
                 {/* <div class="flex flex-wrap gap-4 items-center justify-between pb-8 border-b">
@@ -107,7 +129,7 @@ const DevFoot = () => {
                 </div>
                 
             </div>
-        </div>                           
+        </motion.div>                           
     </>
     )
 }

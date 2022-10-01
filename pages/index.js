@@ -10,6 +10,7 @@ import HireSteps from 'components/mainPage/hirePage/HireSteps';
 import TestPage from 'components/mainPage/hirePage/TesPage';
 import DevFoot from 'components/mainPage/hirePage/DevFoot';
 import HomeBlog from 'components/mainPage/homePage/homeBlog';
+import { motion, variants } from 'framer-motion';
 
 
 if(process.env.APP_env === 'development') {
@@ -25,7 +26,6 @@ if (typeof window !== "undefined") {
 if(TokenAuthless){localStorage.setItem('authless', JSON.stringify(TokenAuthless))}
     var Token = JSON.parse(localStorage.getItem("authless"))
 }
-  
 
 export default function Home({blogData}) {
     return(
@@ -50,7 +50,8 @@ export default function Home({blogData}) {
                 </script>
             </Head>
 
-            <div className='grid container mx-auto'>
+            <div 
+            className='grid container mx-auto'>
                 <HeroPage />
                 <WhySection />
                 <TeamPage />

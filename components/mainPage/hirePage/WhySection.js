@@ -1,16 +1,56 @@
 import React from 'react'
 import Link from 'next/link';
+import { motion, variants } from 'framer-motion';
+
+
+const containerVariant = {
+    hidden: {
+        y: 10,
+        opacity: 0,
+    },
+
+    visible: {
+        y: 0,
+        opacity: 1,
+        transition: {
+            type: "spring", bounce: 0.4, duration: 3, delay:0.3
+        }
+    }
+}
+
+const imageVariant = {
+    hidden: {
+        x: 100,
+        opacity: 0,
+    },
+
+    visible: {
+        x: 0,
+        opacity: 1,
+        transition: {
+            type: "spring", bounce: 0.4, duration: 3, delay:0.3
+        }
+    }
+}
 
 const WhySection = () => {
   return (
     <>
 
-    <section className="bg-white dark:bg-gray-800">
+    <motion.section className="bg-white dark:bg-gray-800"
+    initial={"hidden"}
+    whileInView={"visible"}
+    viewport={{once:true, amount:0.5}}
+    transition={{staggerChildren: 0.5}}
+    >
         
 
         <div className="container px-6 py-16 mx-auto">
             <div className="items-center flex flex-col lg:flex-row">
-                <div className="w-full lg:w-1/2 order-last mt-4 lg:mt-0 lg:order-first">
+
+                <motion.div className="w-full lg:w-1/2 order-last mt-4 lg:mt-0 lg:order-first"
+                variants={containerVariant}
+                >
                     <div className="lg:max-w-lg">
                         <h3 className="text-3xl mt-2 leading-snug font-semibold text-gray-600 dark:text-white md:text-4xl lg:text-5xl">Meet vetted freelancers that will deliver your projects</h3>
                         <p className="prose mt-2 text-lg text-gray-600 dark:text-gray-400">We understand the place of a successful project towards your move to the next level, so we agonize over the right talent who will deliver quality, precision, and timeliness..</p>
@@ -22,15 +62,22 @@ const WhySection = () => {
                         </Link>
                         </button>
                     </div>
-                </div>
+                </motion.div>
         
-                <div className="flex items-center justify-center w-full mt-6 lg:mt-0 lg:w-1/2">
+                <motion.div className="flex items-center justify-center w-full mt-6 lg:mt-0 lg:w-1/2"
+                variants={imageVariant}
+                whileHover={{
+                    scale: 1,
+                    transition: { duration: 1 },
+                    }}
+                whileTap={{ scale: 0.9 }}
+                >
                     <img className="w-full h-full lg:max-w-2xl" src="images/giphy.gif" alt="Catalogue-pana.svg" />
                     {/* <div style={{"width": "100%", "height": "0", "paddingBottom": "56%", "position": "relative" }}><iframe src="https://giphy.com/embed/L1R1tvI9svkIWwpVYr" width="100%" height="100%" style={{position: "absolute"}} frameBorder="0" className="giphy-embed" allowFullScreen></iframe></div><p><a href="https://giphy.com/gifs/Pluralsight-computer-technology-coding-L1R1tvI9svkIWwpVYr"></a></p> */}
-                </div>
+                </motion.div>
             </div>
         </div>
-    </section>
+    </motion.section>
     </>
   )
 }
