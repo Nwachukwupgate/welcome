@@ -19,7 +19,7 @@ const containerVariant = {
 
 const imageVariant = {
     hidden: {
-        x: 10,
+        x: 5,
         opacity: 0,
     },
 
@@ -44,7 +44,6 @@ const HeroPage = () => {
                 <div className="container m-auto px-6 md:px-12 lg:px-6">
                     <div className="lg:flex lg:items-center lg:gap-x-16">
 
-<<<<<<< HEAD
                         <motion.div 
                         className="space-y-8 lg:w-7/12"
                         variants={containerVariant}
@@ -59,16 +58,10 @@ const HeroPage = () => {
                                 <span className="text-[#F49038]"><Link href="/blog/"><a> Read more</a></Link></span> 
                             </p>
                             </div>
-=======
-                        <h1 className=" font-bold text-gray-900 text-4xl md:text-6xl">Hire Vetted Freelance Developers & Designers</h1>
-                        <p className="text-gray-600 lg:w-11/12 text-lg">
-                            Get qualified and reliable developers & designers around the world with hourly rates ranging from $4 - $100 to jump on your project within 48hrs.
-                        </p>
->>>>>>> 3d0de379b4c1e4e4f36cd716df41b38899148174
 
                             <h1 className=" font-bold text-gray-900 text-4xl md:text-6xl">Hire vetted Developers & Designers</h1>
                             <p className="text-gray-600 lg:w-11/12 text-lg">
-                                Get qualified and reliable developers & designers around the world with hourly rates ranging from $4 - $100 to jump on your project within 48hrs.
+                                Get qualified and reliable developers & designers around the world with hourly rates ranging from $12 - $142 to jump on your project within 48hrs.
                             </p>
 
                             <button className="inline-flex w-fit justify-center px-5 py-2 font-semibold text-gray-100 transition-colors duration-200 transform bg-[#001935] rounded-md hover:bg-white hover:text-[#001935] hover:border-2 hover:border-solid hover:border-[#001935]">

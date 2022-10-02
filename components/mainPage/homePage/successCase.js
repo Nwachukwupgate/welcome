@@ -24,7 +24,8 @@ const SuccessCase = () => {
             stleTopic: 'Real Estate',
             buildContent: 'Digitalization of all companies operational records to facilitate for more efficient workflow amongst department, promote a remote first work culture and enable data visualization and analytics for smarter business decisions.',
             imgFile:"images/Blue Illustration Laptop Hello Circle Sticker.png",
-            country: "NGA"
+            country: "NGA",
+            company: "God Made Homes Luxury"
         },
         {
             id: 2,
@@ -33,7 +34,8 @@ const SuccessCase = () => {
             stleTopic: 'Retail and E-commerce',
             buildContent: 'Leveraging tech and the power of multiple user channels to reach out to clients through AI powered intelligent systems to accelerate sales.',
             imgFile:"images/nativeFood.png",
-            country: "Nigeria"
+            country: "Germany",
+            company: "Nuthoop"
         },
         {
             id: 3,
@@ -41,8 +43,9 @@ const SuccessCase = () => {
             buildTopic: 'POS field Officers Tracking',
             stleTopic: 'Fintech',
             buildContent: 'Track locations, time to visit, work updates of all POS field officers across all bank branches and location',
-            imgFile:"https://images.pexels.com/photos/3184360/pexels-photo-3184360.jpeg?auto=compress&amp;cs=tinysrgb&amp;dpr=2&amp;h=750&amp;w=1260",
-            country: "UK"
+            imgFile:"images/pos.png",
+            country: "NGA",
+            company: "Zenith Bank"
         }
     ])
 
@@ -95,7 +98,8 @@ const SuccessCase = () => {
                         </p>
                         <p className="text-left mb-5 text-base text-gray-700 md:text-lg md:text-left">
                             <span className="text-[#F49038]"> 
-                            See more <FontAwesomeIcon icon={faAngleRight} beat size="sm"/>
+                            {items.company} 
+                            {/* <FontAwesomeIcon icon={faAngleRight} beat size="sm"/> */}
                             </span>
                         </p>
                         

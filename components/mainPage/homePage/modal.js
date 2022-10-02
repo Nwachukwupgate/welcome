@@ -22,7 +22,7 @@ const ModalTestimony = ({setShowModal}) => {
                                 </button>
                             </div>
                             <div className="space-y-2 p-4 mt-3 text-[15.5px] leading-relaxed text-gray-500">
-                                <ReactPlayer url='https://www.youtube.com/watch?v=GraouODpL60' width='100%' height='27rem' />
+                                <ReactPlayer url='https://www.youtube.com/watch?v=KLFK7cY5nvk' width='100%' height='27rem' />
                             </div>
                         </div>
                     </div>

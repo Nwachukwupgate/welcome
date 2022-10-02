@@ -17,6 +17,10 @@ const containerVariant = {
     }
 }
 
+const scrollTo = () => {
+    document.getElementById('form').scrollIntoView({behavior: "smooth", inline: "nearest"});
+}
+
 const ServicesSection = () => {
     return(
         <>
@@ -87,7 +91,9 @@ const ServicesSection = () => {
                                             View Details
                                             </a> */}
                                             {/* <div className="mt-8"> */}
-                                                <a href="#" className="px-5 py-2 font-semibold text-gray-100 transition-colors duration-200 transform bg-[#001935] rounded-md hover:bg-white hover:text-[#001935] hover:border-2 hover:border-solid hover:border-[#001935]">View Details</a>
+                                                <p className="w-fit px-5 py-2 font-semibold text-gray-100 transition-colors duration-200 transform bg-[#001935] rounded-md hover:bg-white hover:text-[#001935] hover:border-2 hover:border-solid hover:border-[#001935] cursor-pointer"
+                                                aria-label="coming soon"
+                                                title="coming soon" onClick={scrollTo}>View Details</p>
                                             {/* </div> */}
                                         </div>
                                     </div>
@@ -138,7 +144,9 @@ const ServicesSection = () => {
                                             >
                                         View Details
                                         </a> */}
-                                        <a href="#" className="px-5 py-2 font-semibold text-gray-100 transition-colors duration-200 transform bg-[#001935] rounded-md hover:bg-white hover:text-[#001935] hover:border-2 hover:border-solid hover:border-[#001935]">View Details</a>
+                                        <p className="w-fit px-5 py-2 font-semibold text-gray-100 transition-colors duration-200 transform bg-[#001935] rounded-md hover:bg-white hover:text-[#001935] hover:border-2 hover:border-solid hover:border-[#001935] cursor-pointer"
+                                        aria-label="coming soon"
+                                        title="coming soon" onClick={scrollTo}>View Details</p>
                                     </div>
                                     </div>
                                 </div>

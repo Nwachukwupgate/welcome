@@ -57,7 +57,7 @@ const HomeHero = () => {
                         variants={containerVariant}
                         >
                             <h1 className=" font-bold text-gray-900 text-4xl md:text-5xl"> Build Custom Software &#38; Scale Up your Tech Team / Staff</h1>
-                            <p className="text-gray-600 lg:w-11/12">Whether fully end to end outsourcing, dedicated team or outstaffing of prevetted developers, we are here to see you through 
+                            <p className="text-gray-600 lg:w-11/12">Whether fully end to end outsourcing, dedicated team or outstaffing of vetted freelancers, we are here to see you through 
                             </p>
 
                             <span className="block text-gray-600">
