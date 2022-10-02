@@ -53,16 +53,16 @@ const DevFoot = () => {
                     <div>
                         <ul className="list-inside mt-4 space-y-4">
                             <li>
-                                <a href="#" class="transition">.Net Developer</a>
+                                <a href="#" className="transition">.Net Developer</a>
                             </li>
                             <li>
-                                <a href="#" class=" transition">Asp Developer</a>
+                                <a href="#" className=" transition">Asp Developer</a>
                             </li>
                             <li>
-                                <a href="#" class=" transition">Dev ops</a>
+                                <a href="#" className=" transition">Dev ops</a>
                             </li>
                             <li>
-                                <a href="#" class=" transition">Java Developers</a>
+                                <a href="#" className=" transition">Java Developers</a>
                             </li>
                             <li>
                                 <a href="#" className="transition">C++ Developer</a>
@@ -70,7 +70,7 @@ const DevFoot = () => {
                         </ul>
                     </div>
                     <div>
-                        <ul class="list-inside mt-4 space-y-4">
+                        <ul className="list-inside mt-4 space-y-4">
                             <li>
                                 <a href="#" className=" transition">React Developers</a>
                             </li>
@@ -89,7 +89,7 @@ const DevFoot = () => {
                         </ul>
                     </div>
                     <div>
-                        <ul class="list-inside mt-4 space-y-4">
+                        <ul className="list-inside mt-4 space-y-4">
                             <li>
                                 <a href="#" className=" transition">Vue Developers</a>
                             </li>
@@ -108,7 +108,7 @@ const DevFoot = () => {
                         </ul>
                     </div>
                     <div>
-                        <ul class="list-inside mt-4 space-y-4">
+                        <ul className="list-inside mt-4 space-y-4">
                             <li>
                                 <a href="#" className=" transition">Next Developers</a>
                             </li>

@@ -71,7 +71,7 @@ function CompStep() {
 
                         <section className={styles.sections}>
                             <div className={styles.icon}>
-                                <FontAwesomeIcon icon={faCheckDouble} beat size="2sx" />
+                                <FontAwesomeIcon icon={faCheckDouble} beat size="2xs" />
                             </div>
                             <div className={styles.details}>
                                 <span className={styles.title}>

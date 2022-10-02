@@ -25,19 +25,7 @@ function SelectLevel({handleClick, steps, currentStep}) {
 
  
    useEffect(() =>{
-  //   const userRegData = router.asPath.slice(10)
-  //   if(userRegData.startsWith('welcome')){
-  //    const parameters = new URLSearchParams(userRegData)
-  //    var userToken = parameters.get('welcome')
-  //   }
-  //   if (typeof window !== "undefined") {
-  //       window.localStorage.setItem('userToken', JSON.stringify(userToken))
-  //       var checkToken = localStorage.getItem("userToken")
-  //   }
-  //  history.replaceState(null, "", location.href.split("?")[0])
-  //  if(checkToken == 'undefined' || checkToken == null || checkToken == ''){
-  //    router.push(`/`)
-  //  }
+ 
     async function fetchData() {
 
       var userToken = JSON.parse(localStorage.getItem("userToken"))
@@ -90,8 +78,8 @@ if(isLevelSelected == true && myStack !== ''){
         <div className="space-y-8">
 
           <div className="flex flex-col text-center">
-            <span className="text-2xl font-semibold">Welcome to Droomwork</span>
-            <span className="text-lg" >Select Level & Stack You Will Be Vetted On</span>
+            <span className="text-2xl font-semibold">Welcome</span>
+            <span className="text-lg" >Select your experience level & stack you work with</span>
           </div>
 
           <div onChange={onChangeValue}>
@@ -100,7 +88,7 @@ if(isLevelSelected == true && myStack !== ''){
             <div className="flex items-center" key={single.id}>
               <input id="orange-radio" type="radio" value={single.id} name="colored-radio" className="w-4 h-4 text-orange-500 bg-gray-100 border-gray-300 focus:ring-orange-500 dark:focus:ring-orange-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" onChange={(e)=> setRadio(e.target.value)} />
               <label for="orange-radio" className="ml-2 text-lg text-gray-900 dark:text-gray-300">
-                {single.name} {single.id === 1 ? '0 - 3years' : (single.id === 2 ? '3 - 7years' : (single.id ===3 ? '7+ years' : ''))}
+                {single.name} {single.id === 1 ? '0 - 3 yrs' : (single.id === 2 ? '4 - 6 yrs' : (single.id ===3 ? '7+ yrs' : ''))}
                 </label>
             </div>
             </>

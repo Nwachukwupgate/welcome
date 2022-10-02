@@ -3,14 +3,6 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import SwiperCore, { Autoplay, Keyboard, Scrollbar, Zoom , Pagination } from "swiper";
 import 'swiper/css';
 import Link from 'next/link';
-// import 'swiper/css/effect-fade';
-// // import 'swiper/swiper.min.css';
-// import 'swiper/modules/autoplay/autoplay.min.css';
-// import 'swiper/modules/keyboard/keyboard.min.css';
-// import 'swiper/modules/pagination/pagination.min.css';
-// import 'swiper/modules/scrollbar/scrollbar.min.css';
-// import 'swiper/modules/zoom/zoom.min.css';
-// import '@ionic/react/css/ionic-swiper.css';
 import { motion, variants } from 'framer-motion';
 
 
