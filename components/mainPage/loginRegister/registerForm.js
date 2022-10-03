@@ -9,11 +9,17 @@ import Link from 'next/link';
 const simpleHttp =  new EasyHTTP()
 
 function RegisterForm() {
+    const Sources = ['droomwork','twitter', 'facebook', 'instagram','tiktok','linkedin','slack','whatsapp','reddit','quora','telegram']
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
+    const [registration_source, setRegistration_source] = useState('')
     const router = useRouter()
     //http://localhost:3000/register?applyUrl=https://airtable.com/shrxhUyRsVFOMKQJB
     useEffect(() =>{
+        var registration_source = JSON.parse(localStorage.getItem("Src"))
+        let confirmedSources = Sources.filter((single)=>{if(single==registration_source){return single}})
+        confirmedSources.length !==0?setRegistration_source(registration_source):setRegistration_source('droomwork')
+       
         const applyUrlData = router.asPath.slice(10)
         if(applyUrlData.startsWith('applyUrl')){
          const parameters = new URLSearchParams(applyUrlData)
@@ -31,7 +37,7 @@ function RegisterForm() {
     try {
     e.preventDefault()
     if(email !== '' && password !== ''){
-    const data = {email,password}
+    const data = {email,password,registration_source}
     const res = await simpleHttp.postNoAuth('/api/v1/all/register',data)
     if(res.status == true){
     toast.info(res.message)

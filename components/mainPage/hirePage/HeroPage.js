@@ -61,7 +61,7 @@ const HeroPage = () => {
 
                             <h1 className=" font-bold text-gray-900 text-4xl md:text-6xl">Hire vetted Developers & Designers</h1>
                             <p className="text-gray-600 lg:w-11/12 text-lg">
-                                Get qualified and reliable developers & designers around the world with hourly rates ranging from $12 - $142 to jump on your project within 48hrs.
+                                Get qualified and reliable developers & designers around the world with hourly rates ranging from $8 - $193 to jump on your project within 48hrs.
                             </p>
 
                             <button className="inline-flex w-fit justify-center px-5 py-2 font-semibold text-gray-100 transition-colors duration-200 transform bg-[#001935] rounded-md hover:bg-white hover:text-[#001935] hover:border-2 hover:border-solid hover:border-[#001935]">

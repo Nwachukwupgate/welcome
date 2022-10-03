@@ -12,6 +12,7 @@ function MajorForm() {
 
 const [currentStep, setCurrentStep] = useState(0)
 const router = useRouter()
+///stepForm/?welcome=${res.token.token}&isFullyReg=1
     useEffect(() =>{
         const userRegData = router.asPath.slice(10)
         if(userRegData.startsWith('welcome')){
