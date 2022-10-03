@@ -135,7 +135,7 @@ export default function FormField() {
                             name="Name"
                             id="Name"
                             autoComplete="given-name"
-                            placeHolder="Name"
+                            placeholder="Name"
                             value={individual_Name} onChange={(e)=> setIndividual_Name(e.target.value)}
                             className="focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-base rounded-md p-2 border-2 border-solid border-gray-300 text-black"
                             />
@@ -150,7 +150,7 @@ export default function FormField() {
                             name="Company Name"
                             id="Company Name"
                             autoComplete="given-name"
-                            placeHolder="Company Name"
+                            placeholder="Company Name"
                             value={company_Name} onChange={(e)=> setCompany_Name(e.target.value)}
                             className="focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-base rounded-md p-2 border-2 border-solid border-gray-300 text-black"
                             />
@@ -165,7 +165,7 @@ export default function FormField() {
                             name="email-address"
                             id="email-address"
                             autoComplete="email"
-                            placeHolder="Company Mail"
+                            placeholder="Company Mail"
                             value={email} onChange={(e)=> setEmail(e.target.value)}
                             className="focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-base border-gray-300 rounded-md p-2 border-2 border-solid  text-black"
                             />
@@ -185,6 +185,9 @@ export default function FormField() {
                             <option>United States</option>
                             <option>Canada</option>
                             <option>Mexico</option>
+                            <option>Nigeria</option>
+                            <option>UK</option>
+                            <option>Others</option>
                             </select>
                         </div>
 

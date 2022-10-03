@@ -56,8 +56,8 @@ const HomeHero = () => {
                         <motion.div className="space-y-8 lg:w-7/12"
                         variants={containerVariant}
                         >
-                            <h1 className=" font-bold text-gray-900 text-4xl md:text-5xl"> Build Custom Software &#38; Scale Up your Tech Team / Staff</h1>
-                            <p className="text-gray-600 lg:w-11/12">Whether fully end to end outsourcing, dedicated team or outstaffing of vetted freelancers, we are here to see you through 
+                            <h1 className=" font-bold text-gray-900 text-6xl md:text-6xl"> Build Custom Software</h1>
+                            <p className="text-gray-600 lg:w-11/12">Whether fully end to end outsourcing, dedicated team or outstaffing of vetted engineers, we are here to see you through 
                             </p>
 
                             <span className="block text-gray-600">
@@ -79,8 +79,8 @@ const HomeHero = () => {
                             <div>
                                 🔥🌟 
                                 <span>Quick Reach :</span> 
-                                <Link href="https://wa.me/message/SEPR4C43ZJGSO1"><a target='_blank' className="font-semibold text-gray-700">Watsapp,</a></Link>
-                                <a href="#" className="font-semibold text-gray-700">Telegram</a>
+                                <Link href="https://wa.me/message/SEPR4C43ZJGSO1"><a target='_blank' className="font-semibold text-gray-700"> Whatsapp</a></Link>
+                                {/* <a href="#" className="font-semibold text-gray-700">Telegram</a> */}
                             </div>
                         </motion.div>
 

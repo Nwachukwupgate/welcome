@@ -19,7 +19,7 @@ const SuccessCase = () => {
     const[state, setState] = useState([
         {
             id: 1,
-            type: 'custom build',
+            type: 'Real Estate',
             buildTopic: 'Digitalizing Company Operations',
             stleTopic: 'Real Estate',
             buildContent: 'Digitalization of all companies operational records to facilitate for more efficient workflow amongst department, promote a remote first work culture and enable data visualization and analytics for smarter business decisions.',
@@ -29,7 +29,7 @@ const SuccessCase = () => {
         },
         {
             id: 2,
-            type: 'Custom Build',
+            type: 'Retail and E-commerce',
             buildTopic: 'Digital Transformation of Sales Funnel',
             stleTopic: 'Retail and E-commerce',
             buildContent: 'Leveraging tech and the power of multiple user channels to reach out to clients through AI powered intelligent systems to accelerate sales.',
@@ -39,7 +39,7 @@ const SuccessCase = () => {
         },
         {
             id: 3,
-            type: 'Custom Build',
+            type: 'Fintech',
             buildTopic: 'POS field Officers Tracking',
             stleTopic: 'Fintech',
             buildContent: 'Track locations, time to visit, work updates of all POS field officers across all bank branches and location',
@@ -55,7 +55,7 @@ const SuccessCase = () => {
 
     <div className="pb-20">
         <SectionTitle 
-            title="Success Cases"
+            title="Our Portfolio"
         />
         <div className="container m-auto px-6 md:px-12 lg:px-6">
             <Swiper
@@ -81,7 +81,7 @@ const SuccessCase = () => {
                 <div className="relative flex flex-col-reverse py-16 lg:py-0 lg:flex-col" key={items.id}>
                 <div className="w-full max-w-xl px-4 mx-auto md:px-0 lg:px-8 lg:py-20 lg:max-w-screen-xl">
                     <div className="mb-0 lg:max-w-lg lg:pr-8 xl:pr-6">
-                        <div className="flex flex-col text-left items-start mb-6 text-center md:mb-16 lg:mb-6">
+                        <div className="flex flex-col  items-start mb-6 text-center md:mb-16 lg:mb-6">
                             <p
                             className="inline-flex items-center justify-center w-full h-12 px-6 font-medium tracking-wide text-white transition duration-200 rounded shadow-md md:w-auto bg-deep-purple-accent-400 hover:bg-deep-purple-accent-700 focus:shadow-outline focus:outline-none  bg-[#001935]"
                             >
@@ -91,7 +91,7 @@ const SuccessCase = () => {
                         <p className="mb-5 text-left font-sans font-bold tracking-tight text-gray-900 sm:text-4xl md:text-left">
                             {items.buildTopic}
                             <br className="hidden md:block" />
-                            {items.stleTopic}
+                            {/* {items.stleTopic} */}
                         </p>
                         <p className="text-left mb-5 text-base text-gray-700 md:text-lg md:text-left">
                             {items.buildContent} in <span className="font-semibold"> {items.country} </span>.

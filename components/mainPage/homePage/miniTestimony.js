@@ -36,17 +36,17 @@ const MiniTestimony = () => {
     const[state, setState] = useState([
         {
             id: 1,
-            name: 'Mr. Zino',
-            company: 'Manager Pfxnet',
+            name: 'Mr. Chris',
+            company: 'Manager,Pfxnet',
             buildContent: 'We had our platform, pfxnet Nigerian foremost property monoline profit system built by droomwork from ground up. They are excellent in delivery and we can recommend them to anyone.',
-            imgFile:"images/dotunBrown.jpg"
+            imgFile:"images/IMG-20220927-WA0011.jpg"
         },
         {
             id: 2,
-            name: 'Mr. Chris',
+            name: 'Mr. Dotun Brown',
             company: 'Nuthoop',
             buildContent: 'I have had the opportunity of working with droomwork limited in the development of our web portal. The development team has been on point in terms of meeting our companys acceptance criteria and delivering value. I reckon they are fast growing indigenous software company to work with',
-            imgFile:"images/IMG-20220927-WA0011.jpg"
+            imgFile:"images/dotunBrown.jpg"
         }
     ])
     return(
