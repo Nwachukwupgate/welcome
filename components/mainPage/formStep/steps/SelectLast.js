@@ -180,7 +180,7 @@ setSuggest(res.data)
           <div className="space-y-8">
 
             <div>
-                <label class="block mb-1 text-sm font-medium text-gray-900 dark:text-gray-300" htmlFor="file_input">Upload Best Picture</label>
+                <label className="block mb-1 text-sm font-medium text-gray-900 dark:text-gray-300" htmlFor="file_input">Upload Best Picture</label>
                 <input 
                   type="file" 
                   required
@@ -193,7 +193,7 @@ setSuggest(res.data)
                 <div>
                   {profileName}
                 </div>
-                <p class="mt-1 text-sm text-gray-500 dark:text-gray-300" id="file_input_help">PNG, JPG(MAX. 1mb).</p>
+                <p className="mt-1 text-sm text-gray-500 dark:text-gray-300" id="file_input_help">PNG, JPG(MAX. 1mb).</p>
             </div>
 
             <div>
@@ -240,12 +240,12 @@ setSuggest(res.data)
                 />
               </div>
 
-              <div class="absolute left-0 z-20 w-full max-h-52 overflow-y-auto py-1 overflow-hidden bg-white rounded-md shadow-xl dark:bg-gray-800"> 
+              <div className="absolute left-0 z-20 w-full max-h-52 overflow-y-auto py-1 overflow-hidden bg-white rounded-md shadow-xl dark:bg-gray-800"> 
               {suggest
             
                 .map((item) => (
                                
-                    <p class="block px-4 py-3 text-sm text-gray-600 capitalize transition-colors duration-200 transform dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 dark:hover:text-white cursor-pointer"
+                    <p className="block px-4 py-3 text-sm text-gray-600 capitalize transition-colors duration-200 transform dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 dark:hover:text-white cursor-pointer"
                     onClick={() => handleSelectSkill(item.name,item.id)}
                     key={item.id}>
                         {item.name}

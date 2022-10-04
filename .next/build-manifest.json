@@ -25,6 +25,7 @@
       "static/chunks/main.js",
       "static/chunks/pages/_error.js"
     ],
+<<<<<<< HEAD
     "/login": [
       "static/chunks/webpack.js",
       "static/chunks/main.js",
@@ -34,6 +35,24 @@
       "static/chunks/webpack.js",
       "static/chunks/main.js",
       "static/chunks/pages/stepForm.js"
+=======
+<<<<<<< HEAD
+    "/register": [
+      "static/chunks/webpack.js",
+      "static/chunks/main.js",
+      "static/chunks/pages/register.js"
+    ],
+    "/stepForm": [
+      "static/chunks/webpack.js",
+      "static/chunks/main.js",
+      "static/chunks/pages/stepForm.js"
+=======
+    "/build": [
+      "static/chunks/webpack.js",
+      "static/chunks/main.js",
+      "static/chunks/pages/build.js"
+>>>>>>> 4f663fa240019502edba7a642227cd6ef5c8b9f1
+>>>>>>> 4c1f8e9552bdceb1485171452a2834899566c708
     ]
   },
   "ampFirstPages": []

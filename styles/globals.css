@@ -22,6 +22,7 @@ a {
 
 * {
   font-family: 'Poppins', sans-serif;
+  box-sizing: border-box;
 } 
 
 .carousel .thumbs-wrapper{
