@@ -314,8 +314,6 @@ setSuggest(res.data)
 
             <div className="">
             <label className="block text-base font-base text-gray-700">File</label>
-
-           
                 <div className="mt-1 flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 border-dashed rounded-md">
                     <div className="space-y-1 text-center">
                     <svg
@@ -346,7 +344,6 @@ setSuggest(res.data)
                     <p className="text-xs text-gray-500">.pdf only less than 1MB</p>
                     </div>
                 </div>
-  
                 <div>
                     <p className="font-bold text-center">
                        <span >{cvName}</span>  
@@ -356,24 +353,11 @@ setSuggest(res.data)
             </div>
 
             </div>
-            </div>
-
-                   
+            </div>       
       </div>
       <div className="container mt-4 mb-8">
             <div className="flex flex-col items-center gap-y-4 w-2/4 mx-auto">
-            {/* Back button */}
-
-            
-            <button 
-              onClick={()=>handleClick("")}
-              className={`bg-[#001935] inline-flex items-center justify-center w-fit  text-center text-white py-2 px-28 rounded-xl font-semibold cursor-pointer border-2 border-slate-300 hover:bg-slate-700 hover:text-white transiion duration-200 ease-in-out ${currentStep === 1 ? "opacity-50 cursor-not-allowed" : "" }`} style={{color: "gray"}}>
-                Previous
-            </button>
-            
-
-            {/*  Next button */}
-            
+             {/*  Submit button */}
             <button 
                 type="submit"
                 className="bg-[#001935] inline-flex items-center justify-center  text-center text-white w-fit py-2 px-24 rounded-xl font-semibold cursor-pointer border-2 border-slate-300 hover:bg-slate-700 hover:text-white transiion duration-200 
@@ -382,7 +366,13 @@ setSuggest(res.data)
                 {!spinner && currentStep === steps.length - 1 ? "Submit"
     :"  submitting.."}
                 </button>
-            
+            {/* Back button */}
+            <button 
+              onClick={()=>handleClick("")}
+              className={`bg-white inline-flex items-center justify-center w-fit  text-center text-white py-2 px-28 rounded-xl font-semibold cursor-pointer border-2 border-slate-300 hover:bg-slate-700 hover:text-white transiion duration-200 ease-in-out ${currentStep === 1 ? "opacity-50 cursor-not-allowed" : "" }`} style={{color: "gray"}}>
+                Previous
+            </button>
+ 
             </div>
 
       </div>

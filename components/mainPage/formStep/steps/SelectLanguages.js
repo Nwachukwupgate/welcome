@@ -29,7 +29,6 @@ function SelectLanguages({handleClick, steps, currentStep}) {
    
     
     const res = await simpleHttp.get(`/api/v1/dev/getLanguagesBasedOnStacks/${userStack}`,userToken)
-
     if(res.status == true){setUserLanguagess(res.data)}else{toast.error(res.error.message)}
     
     }
