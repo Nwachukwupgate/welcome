@@ -244,9 +244,9 @@ const handleSubmitFrameworks = async(e)=>{
                   </div>
                 </label>
 
-                <div className={`${saveAction[single.id] ? "block" : "hidden"} absolute z-10`}>
+                <div className={`${saveAction[single.id] ? "block" : "hidden"} absolute z-10 left-[-20%]`}>
                 
-                  <div className='flex gap-y-4 min-w-[20rem] bg-white z-10 shadow-2xl flex-col p-2'>
+                  <div className='flex gap-y-4 min-w-[18rem] md:min-w-[20rem] bg-white z-10 shadow-2xl flex-col p-2'>
                     <p>Years of professional experience</p>
 
                     <select onChange={(e)=> {setValue(
@@ -263,7 +263,7 @@ const handleSubmitFrameworks = async(e)=>{
                       <option value = '7'>7 years</option>
                     </select>
 
-                    <div className='flex justify-around'>
+                    <div className='flex justify-around gap-2'>
                       <button className="inline-flex w-full lg:w-fit justify-center px-2 py-1 font-semibold bg-white text-[#001935] border-2 border-solid border-[#001935] hover:text-gray-100 transition-colors duration-200 transform hover:bg-[#001935] rounded-md " onClick={cancelShow(single.id)}>cancel</button>
                       <button className="inline-flex w-full lg:w-fit justify-center px-2 py-1 font-semibold text-gray-100 transition-colors duration-200 transform bg-[#001935] rounded-md hover:bg-white hover:text-[#001935] border-2 border-solid border-[#001935]" onClick={saveShow(single.id, value)}>save</button>    
                     </div>
@@ -280,24 +280,23 @@ const handleSubmitFrameworks = async(e)=>{
 
           <div className="container mt-4 mb-8">
             <div className="flex flex-col items-center gap-y-4 w-2/4 mx-auto">
-            {/* Back button */}
-
-            
-            <button 
-              onClick={()=>handleClick("")}
-              className={`bg-[#001935] inline-flex items-center justify-center w-full uppercase text-center text-white py-2 px-32 rounded-xl font-semibold cursor-pointer border-2 border-slate-300 hover:bg-slate-700 hover:text-white transiion duration-200 ease-in-out ${currentStep === 1 ? "opacity-50 cursor-not-allowed" : "" }`} style={{color: "gray"}}>
-                Previous
-            </button>
-            
-
             {/*  Next button */}
             
             <button 
-            type="submit"
-            className="bg-white w-full text-slate-400 uppercase py-2 px-32 rounded-xl font-semibold cursor-pointer border-2 border-slate-300 hover:bg-slate-700 hover:text-white transiion duration-200 ease-in-out inline-flex
+            type='submit'
+            className="bg-[#001935] text-white w-full  uppercase py-2 px-32 rounded-xl font-semibold cursor-pointer border-2 border-slate-300 hover:bg-slate-700 hover:text-white transiion duration-200 ease-in-out inline-flex
             items-center
             justify-center">
                 {currentStep === steps.length - 1 ? "Confirm" : "Next"}
+            </button>
+            
+
+            {/* Back button */}
+            
+            <button 
+              onClick={()=>handleClick("")}
+              className={`bg-white text-slate-400 inline-flex items-center justify-center w-full uppercase text-center py-2 px-32 rounded-xl font-semibold cursor-pointer border-2 border-slate-300 hover:bg-slate-700 hover:text-white transiion duration-200 ease-in-out ${currentStep === 1 ? "opacity-50 cursor-not-allowed" : "" }`} style={{color: "gray"}}>
+                Previous
             </button>
             
             </div>

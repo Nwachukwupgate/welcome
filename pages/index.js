@@ -10,7 +10,7 @@ import HireSteps from 'components/mainPage/hirePage/HireSteps';
 import TestPage from 'components/mainPage/hirePage/TesPage';
 import DevFoot from 'components/mainPage/hirePage/DevFoot';
 import HomeBlog from 'components/mainPage/homePage/homeBlog';
-import { motion, variants } from 'framer-motion';
+
 
 //http://localhost:3000/?src=facebook
 

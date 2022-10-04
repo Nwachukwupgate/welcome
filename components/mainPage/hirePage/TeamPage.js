@@ -8,7 +8,7 @@ import { motion, variants } from 'framer-motion';
 
 const containerVariant = {
     hidden: {
-        y: 100,
+        y: 10,
         opacity: 0,
     },
 

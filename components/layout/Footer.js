@@ -128,7 +128,7 @@ export const Footer = () => {
 
             <Link href="https://www.facebook.com/pg/droomwork/community/">
             <a
-              className="text-gray-500 transition-colors duration-300 hover:text-deep-purple-accent-400"
+              className="text-gray-800 transition-colors duration-300 hover:text-[#F49038]"
             >
               <svg viewBox="0 0 24 24" fill="currentColor" className="h-5">
                 <path d="M22,0H2C0.895,0,0,0.895,0,2v20c0,1.105,0.895,2,2,2h11v-9h-3v-4h3V8.413c0-3.1,1.893-4.788,4.659-4.788 c1.325,0,2.463,0.099,2.795,0.143v3.24l-1.918,0.001c-1.504,0-1.795,0.715-1.795,1.763V11h4.44l-1,4h-3.44v9H22c1.105,0,2-0.895,2-2 V2C24,0.895,23.105,0,22,0z" />
@@ -148,13 +148,25 @@ export const Footer = () => {
         </p>
         <ul className="flex flex-col mb-3 space-y-2 lg:mb-0 sm:space-y-0 sm:space-x-5 sm:flex-row">
           <li>
-            <Link href="#">
+            <Link href="https://res.cloudinary.com/droomwork/image/upload/v1664529526/Media_Resources/blog_body_images/hmjy4jod7jelta62aour.pdf">
             <a
-              aria-label="coming soon"
-              title="coming soon"
+              // aria-label="coming soon"
+              // title="coming soon"
               className="text-sm text-gray-600 transition-colors duration-300 hover:text-deep-purple-accent-400"
             >
               Terms &amp; Conditions
+            </a>
+            </Link>
+          </li>
+
+          <li>
+            <Link href="https://res.cloudinary.com/droomwork/image/upload/v1664528875/Media_Resources/blog_body_images/qwrsng8sppvl4eg3d0kf.pdf">
+            <a
+              // aria-label="coming soon"
+              // title="coming soon"
+              className="text-sm text-gray-600 transition-colors duration-300 hover:text-deep-purple-accent-400"
+            >
+              Privacy Policy
             </a>
             </Link>
           </li>

@@ -10,7 +10,7 @@ const simpleHttp = new EasyHTTP()
 
 const containerVariant = {
     hidden: {
-        y: 100,
+        y: 10,
         opacity: 0,
     },
 
@@ -142,7 +142,7 @@ const Tabs = ({ color }) => {
                 <div className="mx-8 flex flex-wrap">
                     <div className="w-full">
                         <ul
-                            className="flex mb-0 list-none flex-wrap pt-3 pb-4 flex-row"
+                            className="flex mb-0 list-none gap-y-2 flex-wrap pt-3 pb-4 flex-row"
                             role="tablist"
                         >
                             {stackData && stackData.data.map(items => (

@@ -20,7 +20,7 @@ const containerVariant = {
 
 const imageVariant = {
     hidden: {
-        x: 100,
+        x: 10,
         opacity: 0,
     },
 
