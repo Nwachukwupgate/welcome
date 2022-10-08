@@ -126,7 +126,7 @@ export const Footer = () => {
             </a>
             </Link>
 
-            <Link href="https://www.facebook.com/pg/droomwork/community/">
+            <Link href="https://www.facebook.com/droomwork">
             <a
               className="text-gray-800 transition-colors duration-300 hover:text-[#F49038]"
             >
@@ -138,7 +138,7 @@ export const Footer = () => {
 
           </div>
           <p className="mt-4 text-sm text-gray-800">
-            Stay conneced with droomwork.io on your social accounts.
+            Stay conneced with Droomwork on your social accounts.
           </p>
         </div>
       </div>

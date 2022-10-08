@@ -12,7 +12,7 @@ import DevFoot from 'components/mainPage/hirePage/DevFoot';
 import HomeBlog from 'components/mainPage/homePage/homeBlog';
 
 
-//http://localhost:3000/?src=facebook
+//https://droomwork.io/?src=facebook
 
 if(process.env.APP_env === 'development') {
     var api_origin = 'https://api.droomwork.io'
