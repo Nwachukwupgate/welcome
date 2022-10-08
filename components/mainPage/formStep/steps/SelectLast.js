@@ -89,10 +89,10 @@ const handleChange=(e)=>{
   
   var ext = file.name.split('.').pop()
  
-  if(ext=="png" || ext=="jpeg" || ext=="jpg"){
-  if(file.size >1000000){return toast.error('picture size is too large')}
+  if(ext=="png" || ext=="jpeg" || ext=="jpg" || ext=="JPG"){
+  if(file.size >9000000){return toast.error('picture size is too large')}
   
-  }else{return toast.error('Kindly upload your picture')}
+  }else{return toast.error('Image type not supported')}
 
   return file
 }
@@ -105,7 +105,7 @@ const handleCVChange =(e)=>{
   
   var ext = cvFile.name.split('.').pop()
   if(ext=="docx" || ext=="doc" || ext=="pdf"){
-  if(cvFile.size >1000000){
+  if(cvFile.size >2000000){
     return toast.error('CV size is too large')}
     
   }else{return toast.error('Kindly upload your CV')}

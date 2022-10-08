@@ -31,6 +31,7 @@ e.target.password.value = null
      const cleanLangArray = langArray.filter((single)=>{return single.id !== null})
     //  console.log(cleanLangArray,'cleanLan')
      localStorage.setItem('userStack', JSON.stringify(resp.data[0].userCbtStack.stack1))
+     localStorage.setItem('userLevel', JSON.stringify(resp.data[0].userCbtLevel.level_name))
      window.localStorage.setItem('userLanguagess', JSON.stringify(cleanLangArray))
     }
     }

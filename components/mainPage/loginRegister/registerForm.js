@@ -9,7 +9,7 @@ import Link from 'next/link';
 const simpleHttp =  new EasyHTTP()
 
 function RegisterForm() {
-    const Sources = ['droomwork','twitter', 'facebook', 'instagram','tiktok','linkedin','slack','whatsapp','reddit','quora','telegram']
+    const Sources = ['droomwork','twitter', 'facebook', 'instagram','tiktok','linkedin','slack','whatsapp','reddit','quora','telegram','email']
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const [registration_source, setRegistration_source] = useState('')

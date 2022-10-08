@@ -47,8 +47,13 @@ if(isLevelSelected == true && myStack !== ''){
   var userToken = JSON.parse(localStorage.getItem("userToken"))
   const res = await simpleHttp.put(`/api/v1/dev/chooseMyStacks/${myStack}`,userToken)
   const response = await simpleHttp.put(`/api/v1/dev/chooseMyLevel/${radio}`,userToken)
+  console.log(radio)
+  console.log(typeof(radio),'hello')
   if(res.status === true && response.status === true ){
-  handleClick("next")
+    if(radio == '1'){ localStorage.setItem('userLevel', JSON.stringify('junior'))}
+    if(radio == '2'){ localStorage.setItem('userLevel', JSON.stringify('mid'))}
+    if(radio == '3'){ localStorage.setItem('userLevel', JSON.stringify('senior'))}
+    handleClick("next")
   }else{
     
     toast.error(res.message)

@@ -8,16 +8,16 @@ const simpleHttp =  new EasyHTTP()
 
 
 
-
+//http://localhost:3000/register?applyUrl=https://jobs.forem.com/o/senior-full-stack-engineer-new-york-city/c/new
 function SuccessPage() {
 const router = useRouter()
 const [applyEmail, setApplyEmail] = useState('')
 const [myLevel, setMyLevel] = useState('')
     useEffect(() =>{
     async function fetchData() {
-        var userToken = JSON.parse(localStorage.getItem("userToken"))
-        const res = await simpleHttp.get(`/api/v1/dev/getMyLevel`,userToken)
-        if(res.status == true){setMyLevel(res.data.level_name)}else{toast.error(res.error.message)}
+   
+        var useLevel = JSON.parse(localStorage.getItem("userLevel"))
+        if(useLevel){setMyLevel(useLevel)}
         if (typeof window !== "undefined"){var checkApplyUrl = localStorage.getItem("applyUrl")}
         if(checkApplyUrl !=="undefined" && checkApplyUrl !==null ){
         var applyUrl = JSON.parse(localStorage.getItem("applyUrl"))
@@ -29,8 +29,8 @@ const [myLevel, setMyLevel] = useState('')
                 
         }else{
         const timer = setTimeout(() => {
-        // window.open (applyUrl, '_ blank')
-        router.push(applyUrl)
+        window.open (applyUrl, '_ blank')
+        // router.push(applyUrl)
         localStorage.removeItem("applyUrl")
         }, 5000);
          return () => clearTimeout(timer)
@@ -48,6 +48,8 @@ const [myLevel, setMyLevel] = useState('')
         window.open(process.env.NEXT_PUBLIC_CALENDLY_LINK, '_ blank')
     }
     
+
+  
   return (
     
     <>
@@ -62,7 +64,7 @@ const [myLevel, setMyLevel] = useState('')
       draggable
       pauseOnHover
       />
-    
+   
         <div className="flex flex-col space-y-4 lg:flex-row lg:items-center lg:space-x-3">
             <div className="mx-auto lg:basis-3/6">
                 <img src="images/athlete-training-outdoors.svg" />
@@ -75,7 +77,7 @@ const [myLevel, setMyLevel] = useState('')
                     {applyEmail !== '' && (
                     <p className="text-md"> Kindly send your CV to <span className="font-bold flex">{applyEmail}</span> to apply for the job</p> 
                     )}
-                    {applyEmail == '' && myLevel == 'junior'?
+                    {applyEmail == '' && myLevel =='junior'?
                     <>
                      <p className="font-bold text-lg"> Your Details have been taken, you will be contacted for an interview session by our team not too long.</p>
                     <p className="text-gray-500">Upon completion of the next stage, you would have no need to search for contract jobs.Companies will rather apply to you. Thank you!</p>
@@ -83,7 +85,7 @@ const [myLevel, setMyLevel] = useState('')
                         <a className="inline-flex justify-center w-fit px-5 py-2 font-semibold text-gray-100 transition-colors duration-200 transform bg-[#001935] rounded-md hover:bg-white hover:text-[#001935] hover:border-2 hover:border-solid hover:border-[#001935]">Home</a>
                     </Link>
                      </>:null}
-                     {applyEmail == '' && myLevel !== 'junior'?
+                     {applyEmail == '' && myLevel !=='junior'?
                     <>
                      <p className="font-bold text-lg"> Proceed by booking a fun interview chat with us now. </p>
                     <p className="text-gray-500">Upon completion of the next stage, you would have no need to search for contract jobs.Companies will rather apply to you. Thank you!</p>
