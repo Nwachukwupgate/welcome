@@ -90,7 +90,7 @@ const handleChange=(e)=>{
   var ext = file.name.split('.').pop()
  
   if(ext=="png" || ext=="jpeg" || ext=="jpg" || ext=="JPG"){
-  if(file.size >9000000){return toast.error('picture size is too large')}
+  if(file.size >20000000){return toast.error('picture size is too large')}
   
   }else{return toast.error('Image type not supported')}
 
