@@ -23,18 +23,22 @@ e.target.email.value = null
 e.target.password.value = null
 
    //do not change the line ordering of the codes below
-  if(res.user.cv == null || res.user.photo_public_id == null){
+   if(res.user.userCbtStack !== null || res.user.userCbtLevel !== null ){
+    if(res.user.cv == null || res.user.photo_public_id == null){
     const resp = await simpleHttp.get('/api/v1/dev/getAllUserCbtDetails',res.token.token)
+      
     if(resp.status == true){
-     //stack and languages
-     const langArray = [{id:resp.data[0].userCbtLanguage.language1,value:resp.data[0].userCbtLanguage.experience1},{id:resp.data[0].userCbtLanguage.language2,value:resp.data[0].userCbtLanguage.experience2},{id:resp.data[0].userCbtLanguage.language3,value:resp.data[0].userCbtLanguage.experience3},{id:resp.data[0].userCbtLanguage.language4,value:resp.data[0].userCbtLanguage.experience4},{id:resp.data[0].userCbtLanguage.language5,value:resp.data[0].userCbtLanguage.experience5},{id:resp.data[0].userCbtLanguage.language6,value:resp.data[0].userCbtLanguage.experience6},{id:resp.data[0].userCbtLanguage.language7,value:resp.data[0].userCbtLanguage.experience7},{id:resp.data[0].userCbtLanguage.language8,value:resp.data[0].userCbtLanguage.experience8}]
-     const cleanLangArray = langArray.filter((single)=>{return single.id !== null})
-    //  console.log(cleanLangArray,'cleanLan')
-     localStorage.setItem('userStack', JSON.stringify(resp.data[0].userCbtStack.stack1))
-     localStorage.setItem('userLevel', JSON.stringify(resp.data[0].userCbtLevel.level_name))
-     window.localStorage.setItem('userLanguagess', JSON.stringify(cleanLangArray))
-    }
-    }
+         //stack and languages
+         const langArray = [{id:resp.data[0].userCbtLanguage.language1,value:resp.data[0].userCbtLanguage.experience1},{id:resp.data[0].userCbtLanguage.language2,value:resp.data[0].userCbtLanguage.experience2},{id:resp.data[0].userCbtLanguage.language3,value:resp.data[0].userCbtLanguage.experience3},{id:resp.data[0].userCbtLanguage.language4,value:resp.data[0].userCbtLanguage.experience4},{id:resp.data[0].userCbtLanguage.language5,value:resp.data[0].userCbtLanguage.experience5},{id:resp.data[0].userCbtLanguage.language6,value:resp.data[0].userCbtLanguage.experience6},{id:resp.data[0].userCbtLanguage.language7,value:resp.data[0].userCbtLanguage.experience7},{id:resp.data[0].userCbtLanguage.language8,value:resp.data[0].userCbtLanguage.experience8}]
+         const cleanLangArray = langArray.filter((single)=>{return single.id !== null})
+       
+         localStorage.setItem('userStack', JSON.stringify(resp.data[0].userCbtStack.stack1))
+         localStorage.setItem('userLevel', JSON.stringify(resp.data[0].userCbtLevel.level_name))
+         window.localStorage.setItem('userLanguagess', JSON.stringify(cleanLangArray))
+        }
+        }
+   }
+
   if(res.user.role==='admin'){
    return window.location.href = `${process.env.NEXT_PUBLIC_ADMIN_URL_LIVE}/?enter=${res.token.token}`
    }
