@@ -39,12 +39,12 @@ const TitlePage = () => {
                                     Our Portfolio
                                 </span>
                                 <h2
-                                    className="text-dark mb-4 text-4xl font-bold sm:text-4xl md:text-[40px]"
+                                    className="text-dark mb-4 text-4xl font-boldz sm:text-4xl md:text-[40px]"
                                 >
                                     Our Recent Product(s)
                                 </h2>
                                 <p className="text-body-color text-base">
-                                Track, optimize and achieve business success. Our innovative product offers real-time monitoring and powerful features.
+                                Providing first class technology solutions to ambitious companies in in the Real Estate,Fintech and Logistics Space
                                 </p>
                                 </div>
                             </div>

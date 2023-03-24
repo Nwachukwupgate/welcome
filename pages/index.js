@@ -14,7 +14,7 @@ import HomeBlog from 'components/mainPage/homePage/homeBlog';
 
 //https://droomwork.io/?src=facebook
 
-if(process.env.APP_env === 'development') {
+if(process.env.APP_env === 'production') {
     var api_origin = 'https://api.droomwork.io'
 } else {
     api_origin = 'http://api.droomwork.io'
