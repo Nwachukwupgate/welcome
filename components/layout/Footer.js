@@ -48,6 +48,18 @@ export const Footer = () => {
             </a>
             </Link>
           </div>
+          <div className="flex">
+            <p className="mr-1 text-gray-800">Product:</p>
+            <Link href="/products">
+            <a
+              aria-label="Our projects"
+              title="Our email"
+              className="transition-colors duration-300 text-sm text-gray-800"
+            >
+              view 
+            </a>
+            </Link>
+          </div>
         </div>
 
         <div className="space-y-2 text-sm sm:col-span-2">

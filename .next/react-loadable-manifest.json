@@ -1,80 +1,80 @@
 {
   "..\\node_modules\\react-player\\lazy\\ReactPlayer.js -> ./Preview": {
-    "id": 7801,
+    "id": "..\\node_modules\\react-player\\lazy\\ReactPlayer.js -> ./Preview",
     "files": [
-      "static/chunks/reactPlayerPreview.3318e34da8a4a892.js"
+      "static/chunks/reactPlayerPreview.js"
     ]
   },
   "..\\node_modules\\react-player\\lazy\\players\\index.js -> ./DailyMotion": {
-    "id": 5134,
+    "id": "..\\node_modules\\react-player\\lazy\\players\\index.js -> ./DailyMotion",
     "files": [
-      "static/chunks/reactPlayerDailyMotion.69fde993a00097c0.js"
+      "static/chunks/reactPlayerDailyMotion.js"
     ]
   },
   "..\\node_modules\\react-player\\lazy\\players\\index.js -> ./Facebook": {
-    "id": 6429,
+    "id": "..\\node_modules\\react-player\\lazy\\players\\index.js -> ./Facebook",
     "files": [
-      "static/chunks/reactPlayerFacebook.da694c9e48e52ce1.js"
+      "static/chunks/reactPlayerFacebook.js"
     ]
   },
   "..\\node_modules\\react-player\\lazy\\players\\index.js -> ./FilePlayer": {
-    "id": 3364,
+    "id": "..\\node_modules\\react-player\\lazy\\players\\index.js -> ./FilePlayer",
     "files": [
-      "static/chunks/reactPlayerFilePlayer.1d308119fabb792c.js"
+      "static/chunks/reactPlayerFilePlayer.js"
     ]
   },
   "..\\node_modules\\react-player\\lazy\\players\\index.js -> ./Kaltura": {
-    "id": 9289,
+    "id": "..\\node_modules\\react-player\\lazy\\players\\index.js -> ./Kaltura",
     "files": [
-      "static/chunks/reactPlayerKaltura.d079fc5dfeb5196a.js"
+      "static/chunks/reactPlayerKaltura.js"
     ]
   },
   "..\\node_modules\\react-player\\lazy\\players\\index.js -> ./Mixcloud": {
-    "id": 9734,
+    "id": "..\\node_modules\\react-player\\lazy\\players\\index.js -> ./Mixcloud",
     "files": [
-      "static/chunks/reactPlayerMixcloud.dcea3c7c08119620.js"
+      "static/chunks/reactPlayerMixcloud.js"
     ]
   },
   "..\\node_modules\\react-player\\lazy\\players\\index.js -> ./SoundCloud": {
-    "id": 6655,
+    "id": "..\\node_modules\\react-player\\lazy\\players\\index.js -> ./SoundCloud",
     "files": [
-      "static/chunks/reactPlayerSoundCloud.7321755a6c09f244.js"
+      "static/chunks/reactPlayerSoundCloud.js"
     ]
   },
   "..\\node_modules\\react-player\\lazy\\players\\index.js -> ./Streamable": {
-    "id": 6479,
+    "id": "..\\node_modules\\react-player\\lazy\\players\\index.js -> ./Streamable",
     "files": [
-      "static/chunks/reactPlayerStreamable.f6f8247d32e503f1.js"
+      "static/chunks/reactPlayerStreamable.js"
     ]
   },
   "..\\node_modules\\react-player\\lazy\\players\\index.js -> ./Twitch": {
-    "id": 9743,
+    "id": "..\\node_modules\\react-player\\lazy\\players\\index.js -> ./Twitch",
     "files": [
-      "static/chunks/reactPlayerTwitch.52d1298710caec4e.js"
+      "static/chunks/reactPlayerTwitch.js"
     ]
   },
   "..\\node_modules\\react-player\\lazy\\players\\index.js -> ./Vidyard": {
-    "id": 7287,
+    "id": "..\\node_modules\\react-player\\lazy\\players\\index.js -> ./Vidyard",
     "files": [
-      "static/chunks/reactPlayerVidyard.889501e58dbc52aa.js"
+      "static/chunks/reactPlayerVidyard.js"
     ]
   },
   "..\\node_modules\\react-player\\lazy\\players\\index.js -> ./Vimeo": {
-    "id": 6746,
+    "id": "..\\node_modules\\react-player\\lazy\\players\\index.js -> ./Vimeo",
     "files": [
-      "static/chunks/reactPlayerVimeo.efbf17c379459ef3.js"
+      "static/chunks/reactPlayerVimeo.js"
     ]
   },
   "..\\node_modules\\react-player\\lazy\\players\\index.js -> ./Wistia": {
-    "id": 3134,
+    "id": "..\\node_modules\\react-player\\lazy\\players\\index.js -> ./Wistia",
     "files": [
-      "static/chunks/reactPlayerWistia.f3c2287fa3b5c2da.js"
+      "static/chunks/reactPlayerWistia.js"
     ]
   },
   "..\\node_modules\\react-player\\lazy\\players\\index.js -> ./YouTube": {
-    "id": 5034,
+    "id": "..\\node_modules\\react-player\\lazy\\players\\index.js -> ./YouTube",
     "files": [
-      "static/chunks/reactPlayerYouTube.307092652e768385.js"
+      "static/chunks/reactPlayerYouTube.js"
     ]
   }
 }
